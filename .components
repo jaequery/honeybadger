@@ -1,0 +1,9 @@
+---
+:orm: sequel
+:test: none
+:mock: none
+:script: none
+:renderer: erb
+:stylesheet: none
+:namespace: Honeybadger
+:migration_format: number
