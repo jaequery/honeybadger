@@ -12,6 +12,7 @@ source 'https://rubygems.org'
 
 # Project requirements
 gem 'rake'
+gem 'json'
 
 # Component requirements
 gem 'erubis', '~> 2.7.0'
@@ -36,4 +37,3 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 end
-

@@ -91,7 +91,11 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   erubis (~> 2.7.0)
+  json
   padrino (= 0.12.5)
   pg
   rake
   sequel
+
+BUNDLED WITH
+   1.10.6
