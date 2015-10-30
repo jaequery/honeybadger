@@ -14,13 +14,15 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'json'
 
-# Omniauth
+# authentication
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-instagram'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-linkedin'
+gem 'sequel_secure_password'
+gem 'bcrypt'
 
 # Component requirements
 gem 'erubis', '~> 2.7.0'
@@ -31,14 +33,6 @@ gem 'sequel'
 
 # Padrino Stable Gem
 gem 'padrino', '0.12.5'
-
-# Or Padrino Edge
-# gem 'padrino', :github => 'padrino/padrino-framework'
-
-# Or Individual Gems
-# %w(core support gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '0.12.5'
-# end
 
 # Better Errors
 group :development do

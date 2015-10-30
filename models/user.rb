@@ -1,17 +1,26 @@
-class Account < Sequel::Model
+class User < Sequel::Model
+
+  plugin :validation_helpers
+  plugin :secure_password
+  plugin :timestamps
+
+  def validate
+    super
+    validates_presence [:username, :role]
+  end
 
   def self.login_with_omniauth(auth)
 
-    # get account
-    account = Account.where(:provider => auth["provider"], :uid => auth["uid"]).first
+    # get user
+    user = User.where(:provider => auth["provider"], :uid => auth["uid"]).first
 
     # create if not exist
-    if account.nil?
+    if user.nil?
       data = {
         :provider => auth["provider"],
         :uid => auth["uid"],
         :name => auth["name"],
-        :nickname => auth["nickname"],
+        :username => auth["username"],
         :email => auth["user_info"]["email"],
         :role => "users",
       }
@@ -24,20 +33,20 @@ class Account < Sequel::Model
       # twitter
       if auth["provider"] == "twitter"
         data[:name] = auth["info"]["name"]
-        data[:nickname] = auth["info"]["nickname"]
+        data[:username] = auth["info"]["username"]
       end
 
       # instagram
       if auth["provider"] == "instagram"
         data[:name] = auth["info"]["name"]
-        data[:nickname] = auth["info"]["nickname"]
+        data[:username] = auth["info"]["username"]
       end
 
-      account = Account.create(data)
+      user = User.create(data)
 
     end
 
-    return account
+    return user
 
   end
 
