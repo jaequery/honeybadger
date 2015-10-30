@@ -14,6 +14,14 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'json'
 
+# Omniauth
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-instagram'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+gem 'omniauth-linkedin'
+
 # Component requirements
 gem 'erubis', '~> 2.7.0'
 gem 'pg'

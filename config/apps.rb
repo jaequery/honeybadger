@@ -4,6 +4,7 @@ Padrino.configure_apps do
   set :protection, :except => :path_traversal
   #set :protect_from_csrf, true
   #set :protect_from_csrf, except: %r{/__better_errors/\w+/\w+\z} if Padrino.env == :development
+  set :wtf, 'omg omgomgomg'
 end
 
 # Mounts the core application for this project
