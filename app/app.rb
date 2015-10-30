@@ -49,9 +49,15 @@ module Honeybadger
     get '/auth/:name/callback' do
       auth    = request.env["omniauth.auth"]
       user = User.login_with_omniauth(auth)
-      session[:user] = user
-      content_type :json
-      auth.to_json
+
+      if user
+        session[:user] = user
+        redirect("/")
+      else
+        output(user.values)
+        "prob"
+      end
+
     end
 
     get "/login" do

@@ -1,7 +1,6 @@
 class User < Sequel::Model
 
   plugin :validation_helpers
-  plugin :secure_password
   plugin :timestamps
 
   def validate
@@ -16,36 +15,40 @@ class User < Sequel::Model
 
     # create if not exist
     if user.nil?
-      data = {
-        :provider => auth["provider"],
-        :uid => auth["uid"],
-        :name => auth["name"],
-        :username => auth["username"],
-        :email => auth["user_info"]["email"],
-        :role => "users",
-      }
+
+      user = User.new
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+      user.name = auth["name"]
+      user.username = auth["username"]
+      user.email = auth["email"]
+      user.role = "users"
 
       # facebook
       if auth["provider"] == "facebook"
-        data[:email] = auth["user_info"]["email"]
+        user.email = auth["user_info"]["email"]
       end
 
       # twitter
       if auth["provider"] == "twitter"
-        data[:name] = auth["info"]["name"]
-        data[:username] = auth["info"]["username"]
+        user.name = auth["info"]["name"]
+        user.username = auth["info"]["username"]
       end
 
       # instagram
       if auth["provider"] == "instagram"
-        data[:name] = auth["info"]["name"]
-        data[:username] = auth["info"]["username"]
+        user.name = auth["info"]["name"]
+        user.username = auth["info"]["username"]
       end
 
-      user = User.create(data)
+      # create user
+      if user.valid?
+        user.save
+      end
 
     end
 
+    # return
     return user
 
   end

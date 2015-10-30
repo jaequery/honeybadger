@@ -146,6 +146,3 @@ DEPENDENCIES
   rake
   sequel
   sequel_secure_password
-
-BUNDLED WITH
-   1.10.6

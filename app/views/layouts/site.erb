@@ -31,15 +31,13 @@
                     <li><a href="/signup">Create Account</a>
                     </li>
                   <% else %>
-                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/logout">Logout <%= session[:user].name %></a></li>
                     <% end %>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container">
-
-
         <%= yield %>
         <hr>
     </div>
