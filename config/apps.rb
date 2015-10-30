@@ -4,7 +4,13 @@ Padrino.configure_apps do
   set :protection, :except => :path_traversal
   #set :protect_from_csrf, true
   #set :protect_from_csrf, except: %r{/__better_errors/\w+/\w+\z} if Padrino.env == :development
-  set :wtf, 'omg omgomgomg'
+
+  # single sign on credentials
+  set :auth, {
+        :twitter_key => '', :twitter_secret => '',
+        :instagram_key => '', :instagram_secret => '',
+      }
+
 end
 
 # Mounts the core application for this project

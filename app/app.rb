@@ -17,8 +17,8 @@ module Honeybadger
 
     ### single sign on ###
     use OmniAuth::Builder do
-      provider :twitter,  '--key--', '--secret--'
-      provider :instagram,  '--key--', '--secret--'
+      provider :twitter,  Util::config('auth')[:twitter_key], Util::config('auth')[:twitter_secret]
+      provider :instagram,  Util::config('auth')[:instagram_key], Util::config('auth')[:instagram_secret]
     end
 
     get '/auth/:name/callback' do

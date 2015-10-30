@@ -1,8 +1,7 @@
 module Util
 
-  def config(key)
-    #return Honeybadger::App.settings
-    return "hokey"
+  def self.config(key)
+    return Honeybadger::App.settings.send(key)
   end
 
 end
