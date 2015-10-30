@@ -77,7 +77,8 @@ module Honeybadger
         session[:user] = user
         redirect("/")
       else
-        output(user.errors)
+        flash[:notice] = user.errors[:validation][0]
+        redirect("/login")
       end
 
     end
@@ -98,6 +99,7 @@ module Honeybadger
         session[:user] = user
         redirect("/")
       else
+        #flash[:notice] = user.errors[:validation][0]
         output(user.errors)
       end
 

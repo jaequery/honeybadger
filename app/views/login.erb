@@ -2,6 +2,8 @@
   <h3>app/views/login.erb</h3>
 </div>
 
+<%= flash_tag(:notice, :class => 'alert alert-warning') %>
+
 <form role="form" method="POST" class="form-horizontal" action="/login">
 
   <div class="form-group">
@@ -24,7 +26,6 @@
     </div>
   </div>
 </form>
-
 
 <hr>
 <a href='/auth/twitter'>Sign in with Twitter</a><br>

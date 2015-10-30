@@ -1,8 +1,8 @@
 ---
 :orm: sequel
-:test: none
+:test: rspec
 :mock: none
-:script: none
+:script: jquery
 :renderer: erb
 :stylesheet: none
 :namespace: Honeybadger
