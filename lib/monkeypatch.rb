@@ -23,6 +23,14 @@ class Hash
 end
 
 class String
+
+  def is_json?(json)
+    JSON.parse(json)
+    true
+  rescue
+    false
+  end
+
   def is_number?
     true if Float(self) rescue false
   end

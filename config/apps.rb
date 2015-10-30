@@ -7,8 +7,8 @@ Padrino.configure_apps do
 
   # single sign on credentials
   set :auth, {
-        :twitter_key => '', :twitter_secret => '',
-        :instagram_key => '', :instagram_secret => '',
+        :twitter => {:key => 'key', :secret => 'secret'},
+        :instagram => {:key => 'key', :secret => 'secret'}
       }
 
 end

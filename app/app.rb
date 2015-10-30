@@ -18,6 +18,16 @@ module Honeybadger
 
 
     ### routes ###
+
+    get '/test' do
+      render "test"
+    end
+
+    post '/test', :provides => :js do
+      "alert('User is not valid');"
+    end
+
+
     get "/" do
       render "index"
     end
@@ -34,16 +44,11 @@ module Honeybadger
       output(params)
     end
 
-    get "/test" do
-      auth = Util::config('auth')
-      output("testing #{auth[:twitter_key]}")
-    end
-
 
     ### authentication routes ###
+    auth_keys = settings.auth # @todo: settings is not available in Builder
     use OmniAuth::Builder do
-      provider :twitter,  Util::config('auth')[:twitter_key], Util::config('auth')[:twitter_secret]
-      provider :instagram,  Util::config('auth')[:instagram_key], Util::config('auth')[:instagram_secret]
+      provider :twitter,  auth_keys[:twitter][:key], auth_keys[:twitter][:secret]
     end
 
     get '/auth/:name/callback' do
@@ -64,6 +69,19 @@ module Honeybadger
       render "login"
     end
 
+    post "/login" do
+
+      user = User.login(params)
+
+      if user.errors.blank?
+        session[:user] = user
+        redirect("/")
+      else
+        output(user.errors)
+      end
+
+    end
+
     get "/logout" do
       session.delete(:user)
       redirect("/")
@@ -75,16 +93,8 @@ module Honeybadger
 
     post "/signup" do
 
-      user = User.new
-      user.username = params[:email]
-      user.email = params[:email]
-      user.password = params[:password]
-      user.password_confirmation = params[:password]
-      user.role = 'users'
-      user.provider = 'email'
-
-      if user.valid?
-        user.save
+      user = User.register(params)
+      if user.errors.blank?
         session[:user] = user
         redirect("/")
       else
@@ -97,7 +107,7 @@ module Honeybadger
     def output(val)
       case val
       when String
-        if Util::valid_json?(val)
+        if val.is_json?(val)
           content_type :json
           val.to_json
         else
