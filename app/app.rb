@@ -8,6 +8,7 @@ module Honeybadger
     register Padrino::Mailer
     register Padrino::Helpers
     enable :sessions
+    enable :reload
     layout :site
 
 
@@ -20,7 +21,22 @@ module Honeybadger
     ### routes ###
 
     get '/test' do
-      render "test"
+
+      data = {
+        :name => "jae"
+      }
+      rules = {
+          :name => {:type => 'string', :min => 4, :required => true},
+      }
+
+      validator = Validator.new(data, rules)
+      if validator.is_valid?
+        "valid!"
+      else
+        "not valid #{validator.errors}"
+      end
+
+      #render "test"
     end
 
     post '/test', :provides => :js do
@@ -60,7 +76,6 @@ module Honeybadger
         redirect("/")
       else
         output(user.values)
-        "prob"
       end
 
     end
@@ -72,12 +87,11 @@ module Honeybadger
     post "/login" do
 
       user = User.login(params)
-
-      if user.errors.blank?
+      if user.errors.empty?
         session[:user] = user
         redirect("/")
       else
-        flash[:notice] = user.errors[:validation][0]
+        flash[:notice] = user.errors[:validation]
         redirect("/login")
       end
 
@@ -95,12 +109,12 @@ module Honeybadger
     post "/signup" do
 
       user = User.register(params)
-      if user.errors.blank?
+      if user.errors.empty?
         session[:user] = user
         redirect("/")
       else
-        #flash[:notice] = user.errors[:validation][0]
-        output(user.errors)
+        flash[:notice] = "Please try again"
+        redirect("/signup")
       end
 
     end

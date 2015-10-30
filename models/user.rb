@@ -1,12 +1,23 @@
 class User < Sequel::Model
 
-  plugin :validation_helpers
   plugin :timestamps
-  plugin :secure_password
+  plugin :secure_password, include_validations: false
 
   def validate
     super
-    validates_presence [:username, :role, :provider]
+    rules = {
+      :email => {
+        :type => 'email', :min => 4, :required => true
+      },
+      :role => {
+        :type => 'string', :required => true
+      },
+      :provider => {
+        :type => 'string', :required => true
+      }
+    }
+    validator = Honeybadger::Validator.new(self.values, rules)
+    errors.add(:validation, validator.errors) if !validator.valid?
   end
 
   def self.login(params)

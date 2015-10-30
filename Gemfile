@@ -1,15 +1,5 @@
 source 'https://rubygems.org'
 
-# Distribute your app as a gem
-# gemspec
-
-# Server requirements
-# gem 'thin' # or mongrel
-# gem 'trinidad', :platform => 'jruby'
-
-# Optional JSON codec (faster performance)
-# gem 'oj'
-
 # Project requirements
 gem 'rake'
 gem 'json'
@@ -28,6 +18,9 @@ gem 'bcrypt'
 gem 'erubis', '~> 2.7.0'
 gem 'pg'
 gem 'sequel'
+
+# App requirements
+
 
 # Test requirements
 gem 'rspec', :group => 'test'
