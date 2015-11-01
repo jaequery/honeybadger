@@ -18,6 +18,7 @@ class User < Sequel::Model
     }
     validator = Honeybadger::Validator.new(self.values, rules)
     errors.add(:validation, validator.errors) if !validator.valid?
+
   end
 
   def self.login(params)

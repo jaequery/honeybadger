@@ -19,8 +19,7 @@ gem 'erubis', '~> 2.7.0'
 gem 'pg'
 gem 'sequel'
 
-# App requirements
-
+# Application requirements
 
 # Test requirements
 gem 'rspec', :group => 'test'
@@ -29,8 +28,11 @@ gem 'rack-test', :require => 'rack/test', :group => 'test'
 # Padrino Stable Gem
 gem 'padrino', '0.12.5'
 
-# Better Errors
+# Testing
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
+  gem "guard"
+  gem "guard-rspec"
+  gem 'growl'
 end

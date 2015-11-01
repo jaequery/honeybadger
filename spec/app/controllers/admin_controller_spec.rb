@@ -1,13 +1,11 @@
 require 'spec_helper'
 
-RSpec.describe "/admin" do
-  pending "add some examples to #{__FILE__}" do
-    before do
-      get "/admin"
-    end
+describe "standard messages" do
 
-    it "returns hello world" do
-      expect(last_response.body).to eq "Hello World"
-    end
+  it 'passes just because' do
+    get "/admin"
+    expect(last_response.body).not_to be_empty
+
   end
+
 end
