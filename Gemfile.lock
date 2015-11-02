@@ -176,6 +176,9 @@ GEM
       thread_safe (~> 0.1)
     url_mount (0.2.1)
       rack
+    will_paginate (3.0.7)
+    will_paginate-bootstrap (1.0.1)
+      will_paginate (>= 3.0.3)
 
 PLATFORMS
   ruby
@@ -202,3 +205,7 @@ DEPENDENCIES
   rspec
   sequel
   sequel_secure_password
+  will_paginate-bootstrap
+
+BUNDLED WITH
+   1.10.6

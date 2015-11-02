@@ -7,6 +7,7 @@ module Honeybadger
 
     register Padrino::Mailer
     register Padrino::Helpers
+    register WillPaginate::Sinatra
     enable :sessions
     enable :reload
     layout :site
