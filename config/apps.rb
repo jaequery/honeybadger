@@ -14,4 +14,5 @@ Padrino.configure_apps do
 end
 
 # Mounts the core application for this project
-Padrino.mount('Honeybadger::App', :app_file => Padrino.root('app/app.rb')).to('/')
+Padrino.mount('Honeybadger::Admin', :app_file => Padrino.root('app/admin/app.rb')).to('/admin')
+Padrino.mount('Honeybadger::Site', :app_file => Padrino.root('app/site/app.rb')).to('/')

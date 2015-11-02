@@ -3,7 +3,7 @@
 
 module Honeybadger
 
-  class App < Padrino::Application
+  class Site < Padrino::Application
 
     register Padrino::Mailer
     register Padrino::Helpers
