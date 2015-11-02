@@ -13,13 +13,13 @@ module Honeybadger
     layout :site
 
 
-    ### run before all routes ###
+    ### this runs before all routes ###
     before do
       @title = "Honeybadger CMS"
     end
 
 
-    ### routes ###
+    ### put your routes here ###
 
     get '/test' do
 
@@ -31,7 +31,7 @@ module Honeybadger
       }
 
       validator = Validator.new(data, rules)
-      if validator.is_valid?
+      if validator.valid?
         "valid!"
       else
         "not valid #{validator.errors}"

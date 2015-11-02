@@ -3,10 +3,7 @@ Honeybadger::App.controllers :admin do
   layout :admin
 
   before do
-    @page = 1
-    if !params[:page].blank?
-      @page = params[:page].to_i
-    end
+    @page = !params[:page].blank? ? @page = params[:page].to_i : 1
     @per_page = 15
   end
 
@@ -14,14 +11,38 @@ Honeybadger::App.controllers :admin do
     render "admin/index"
   end
 
-  get '/users' do
-    @users = User.order(:created_at).reverse.paginate(@page, @per_page)
-    render "admin/users"
-  end
+  post '/data/(:cmd)', :provides => :js do
 
-  get '/user/:id' do
-    @user = User[params[:id]]
-    render "admin/user"
+    rules = {
+      :model => {:type => 'string', :min => 2, :required => true},
+      :cmd => {:type => 'string', :min => 3, :required => true},
+    }
+
+    validator = Honeybadger::Validator.new(params, rules)
+    if validator.valid?
+
+      # get model obj
+      model = Object.const_get(params[:model])
+
+      # check if new or update
+      if params[:id].blank?
+        model.new
+      else
+        model = model[params[:id]]
+      end
+
+      case params[:cmd]
+      when "save"
+        model.set(params).save
+        "alert('saved!');"
+      when "delete"
+        abort
+        "delete"
+      end
+    else
+      "not valid #{validator.errors}"
+    end
+
   end
 
 end

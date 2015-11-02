@@ -7,3 +7,4 @@ Sequel::Model.db = case Padrino.env
   when :test        then Sequel.connect("postgres://postgres:j@honeybadger-postgres/honeybadger_test",        :loggers => [logger])
 end
 Sequel::Model.db.extension(:pagination)
+Sequel::Model.strict_param_setting = false
