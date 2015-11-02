@@ -18,27 +18,29 @@
       <div class="col-md-12">
         <div class="box">
           <div class="box-header with-border pull-left">
-            <button class="btn btn-default">Add New +</button>
+            <a href="/admin/user" class="btn btn-default">Add New +</a>
           </div><!-- /.box-header -->
           <div class="box-body">
             <table class="table table-bordered">
               <tr>
                 <th style="width: 10px">#</th>
                 <th>Username</th>
+                <th>Email</th>
                 <th>Role</th>
                 <th>Created</th>
                 <th style="width: 120px">Actions</th>
               </tr>
 
               <% @users.each do |user| %>
-              <tr>
+              <tr id="row-<%= user[:id] %>">
                 <td><%= user[:id] %></td>
                 <td><%= user[:username] %></td>
+                <td><%= user[:email] %></td>
                 <td><%= user[:role] %></td>
                 <td><%= user[:created_at] %></td>
                 <td>
                   <a href="/admin/user/<%=user[:id] %>" class="btn btn-default btn-sm">Edit</a>
-                  <a href="/admin/user/<%=user[:id] %>" class="btn bg-warning btn-sm">Delete</a>
+                  <a href="/admin/user/delete/<%=user[:id] %>.js" data-remote="true" data-confirm="Are You Sure?" class="btn bg-warning btn-sm">Delete</a>
                 </td>
               </tr>
               <% end %>

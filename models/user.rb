@@ -7,13 +7,13 @@ class User < Sequel::Model
     super
     rules = {
       :email => {
-        :type => 'email', :min => 4, :required => true
+        :type => 'email', :min => 4
       },
       :role => {
-        :type => 'string', :required => true
+        :type => 'string', :required => true, :min => 4
       },
       :provider => {
-        :type => 'string', :required => true
+        :type => 'string', :required => true, :min => 3
       }
     }
     validator = Honeybadger::Validator.new(self.values, rules)

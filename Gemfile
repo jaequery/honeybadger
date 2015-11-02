@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Project requirements
 gem 'rake'
 gem 'json'
+gem 'sinatra-contrib'
 
 # authentication
 gem 'omniauth'

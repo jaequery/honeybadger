@@ -37,6 +37,9 @@
     <link rel="stylesheet" href="/admin/plugins/daterangepicker/daterangepicker-bs3.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <!-- Sweetalert -->
+    <link rel="stylesheet" href="/bower_components/sweetalert/dist/sweetalert.css">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,16 +79,16 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                  <img src="http://blogs.hillandknowlton.com/hank/files/2011/02/honey-badger-close-up2.jpg" class="user-image" alt="User Image">
                   <span class="hidden-xs"><%= session[:user][:username]%></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="http://images.mentalfloss.com/sites/default/files/styles/insert_main_wide_image/public/600honeybadger_plush.jpg" class="img-circle" alt="User Image">
                     <p>
                       <%= session[:user][:username] %> - <%= session[:user][:role] %>
-                      <small>Member since <%= session[:user][:created_at] %></small>
+                      <small>Member since <%= session[:user][:created_at].strftime('%F') %></small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -94,7 +97,7 @@
                       <a href="/admin/user/<%= session[:user][:id] %>" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -366,7 +369,9 @@
     <script src="/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
     <script src="/admin/plugins/fastclick/fastclick.min.js"></script>
-    <!-- AdminLTE App -->
+    <!-- Sweetalert -->
+    <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+        <!-- AdminLTE App -->
     <script src="/admin/dist/js/app.min.js"></script>
 
   </body>

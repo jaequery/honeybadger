@@ -16,9 +16,7 @@
   <!-- Main content -->
   <section class="content">
 
-    <form action="/admin/data/save.js" method="POST" id="admin-form" data-remote="true">
-      <input type="hidden" name="id" value="<%= params[:id] %>">
-      <input type="hidden" name="model" value="User">
+    <form action="/admin/user/save/<%= params[:id] %>.js" data-remote="true" method="POST" id="admin-form">
 
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
@@ -56,7 +54,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Provider</label>
-                <select class="form-control select2" style="width: 100%;">
+                <select class="form-control select2" style="width: 100%;" name="provider">
                   <option selected="selected">Email</option>
                   <option>Twitter</option>
                   <option>Instagram</option>
@@ -71,7 +69,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Role</label>
-                <select class="form-control select2" style="width: 100%;">
+                <select class="form-control select2" style="width: 100%;" name="role">
                   <option>Admin</option>
                   <option>Users</option>
                 </select>
@@ -84,6 +82,7 @@
               <div class="form-group">
                 <hr>
                 <button class="btn btn-primary">Save</button>
+                <button class="btn btn-default" onclick="javascript: history.go(-1);">Go back</button>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
