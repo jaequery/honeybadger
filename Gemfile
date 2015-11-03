@@ -23,7 +23,7 @@ gem 'sequel'
 # Application requirements
 #gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-#gem 'roda-will_paginate'
+gem 'roda-will_paginate'
 
 # Test requirements
 gem 'rspec', :group => 'test'
@@ -38,5 +38,6 @@ group :development do
   gem "binding_of_caller"
   gem "guard"
   gem "guard-rspec"
+  gem 'guard-bundler'
   gem 'growl'
 end

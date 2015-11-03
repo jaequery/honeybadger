@@ -8,6 +8,7 @@ app:
  restart: always
  volumes:
    - .:/app
+   - ./Docker/init_container.sh:/init_container.sh
 db:
  image: postgres
  environment:

@@ -39,6 +39,18 @@ module Honeybadger
     end
     # end user routes
 
+    # post routes
+    get '/posts' do
+      @posts = Post.order(:id).reverse
+      render "posts"
+    end
+
+    get '/post/(:id)' do
+      @post = Post[params[:id]]
+      render "post"
+    end
+    # end user routes
+
 
 
     ### shared routes ###
