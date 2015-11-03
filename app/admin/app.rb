@@ -16,13 +16,9 @@ module Honeybadger
     ### this runs before all routes ###
     before do
 
-      if session[:user].nil? || (!session[:user][:role].blank? && session[:user][:role] != "admin")
-        redirect("/")
-      end
-
+      only_for("admin")
       @title = "Honeybadger CMS"
-      @page = !params[:page].blank? ? @page = params[:page].to_i : 1
-      @per_page = 15
+
     end
     ###
 
@@ -33,7 +29,7 @@ module Honeybadger
 
     # user routes
     get '/users' do
-      @users = User.order(:created_at).reverse.paginate(@page, @per_page)
+      @users = User.order(:id).reverse
       render "users"
     end
 
@@ -48,6 +44,9 @@ module Honeybadger
     ### shared routes ###
 
     # universal model save
+    ### /user/save.js
+    ### /user/save/22.js
+    ### /user/delete/22 .js
     route :post, :get, '/:model/:action/(:id)', :provides => :js  do
 
       msg = ""
@@ -68,19 +67,22 @@ module Honeybadger
         when "save"
 
           # check if new or update
-          data = params.except("model", "action")
+          data = params.except("model", "action", "format")
           if params[:id].blank?
-            if model.create(data)
+            if model.create(data.except("id"))
               msg = "swal('success', 'created!');"
-              msg += "location.href = '/admin/users';"
+              msg += "location.href = '/admin/#{params[:model].downcase.pluralize}';"
             else
               msg = "swal('error', 'Sorry, there was a problem creating');"
             end
           else
             model = model[params[:id]]
-            if model.update(data)
+            model = model.set(data)
+
+            if model.save
               msg = "swal('success', 'updated!');"
             else
+              abort
               msg = "swal('error', 'Sorry, there was a problem updating');"
             end
           end
@@ -89,7 +91,7 @@ module Honeybadger
           model = model[params[:id]]
           if !model.blank? && model.destroy
             msg = "swal('success', 'Record deleted!');"
-            msg += "$('#row-#{params[:id]}').slideUp();"
+            msg += "$('#row_#{params[:id]}').slideUp();"
           else
             msg = "swal('error', 'Sorry, there was a problem deleting');"
           end
@@ -103,7 +105,11 @@ module Honeybadger
 
     end
 
-
+    def only_for(role)
+      if session[:user].nil? || (!session[:user][:role].blank? && session[:user][:role] != role)
+        redirect("/")
+      end
+    end
 
   end # end class
 

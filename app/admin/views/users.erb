@@ -18,21 +18,25 @@
       <div class="col-md-12">
         <div class="box">
           <div class="box-header with-border pull-left">
-            <a href="/admin/user" class="btn btn-default">Add New +</a>
+            <a href="/admin/user" class="btn-sm btn btn-default">Add New +</a>
           </div><!-- /.box-header -->
+          <div style="clear:both;">
           <div class="box-body">
-            <table class="table table-bordered">
-              <tr>
-                <th style="width: 10px">#</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Created</th>
-                <th style="width: 120px">Actions</th>
-              </tr>
+
+            <table class="table table-bordered table-hover datatable">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Created</th>
+                  <th style="width: 120px">Actions</th>
+                </tr>
+              </thead>
 
               <% @users.each do |user| %>
-              <tr id="row-<%= user[:id] %>">
+              <tr id="row_<%= user[:id] %>">
                 <td><%= user[:id] %></td>
                 <td><%= user[:username] %></td>
                 <td><%= user[:email] %></td>
@@ -40,16 +44,14 @@
                 <td><%= user[:created_at] %></td>
                 <td>
                   <a href="/admin/user/<%=user[:id] %>" class="btn btn-default btn-sm">Edit</a>
-                  <a href="/admin/user/delete/<%=user[:id] %>.js" data-remote="true" data-confirm="Are You Sure?" class="btn bg-warning btn-sm">Delete</a>
+                  <a href="/admin/user/delete/<%=user[:id] %>" data-remote="true" data-confirm="Are You Sure?" class="btn bg-warning btn-sm">Delete</a>
                 </td>
               </tr>
               <% end %>
 
             </table>
           </div><!-- /.box-body -->
-          <div class="box-footer clearfix" style="text-align: left;">
-            <%= will_paginate @users, renderer: BootstrapPagination::Sinatra %>
-          </div>
+
         </div><!-- /.box -->
       </div><!-- /.col -->
 
@@ -57,3 +59,19 @@
     </div>
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+<script>
+ $(function(){
+
+   $('.datatable').DataTable({
+     "paging": true,
+     "lengthChange": true,
+     "searching": true,
+     "ordering": true,
+     "order": [[ 0, "desc" ]],
+     "info": true,
+     "autoWidth": true
+   });
+
+ });
+</script>

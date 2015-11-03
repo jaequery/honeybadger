@@ -20,6 +20,10 @@
     <link rel="stylesheet" href="/admin/plugins/colorpicker/bootstrap-colorpicker.min.css">
     <!-- Bootstrap time Picker -->
     <link rel="stylesheet" href="/admin/plugins/timepicker/bootstrap-timepicker.min.css">
+
+    <!-- - DataTables -->
+    <link rel="stylesheet" href="/admin/plugins/datatables/dataTables.bootstrap.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="/admin/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -80,14 +84,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="http://blogs.hillandknowlton.com/hank/files/2011/02/honey-badger-close-up2.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs"><%= session[:user][:username]%></span>
+                  <span class="hidden-xs"><%= session[:user][:email]%></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="http://images.mentalfloss.com/sites/default/files/styles/insert_main_wide_image/public/600honeybadger_plush.jpg" class="img-circle" alt="User Image">
                     <p>
-                      <%= session[:user][:username] %> - <%= session[:user][:role] %>
+                      <%= session[:user][:email] %> - <%= session[:user][:role] %>
                       <small>Member since <%= session[:user][:created_at].strftime('%F') %></small>
                     </p>
                   </li>
@@ -120,7 +124,7 @@
               <img src="/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p><%= session[:user][:username] %></p>
+              <p><%= session[:user][:email] %></p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -367,6 +371,9 @@
     <script src="/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
     <!-- Slimscroll -->
     <script src="/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- - DataTables -->
+    <script src="/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/admin/plugins/datatables/dataTables.bootstrap.min.js"></script>-->
     <!-- FastClick -->
     <script src="/admin/plugins/fastclick/fastclick.min.js"></script>
     <!-- Sweetalert -->

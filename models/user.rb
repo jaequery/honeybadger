@@ -16,6 +16,13 @@ class User < Sequel::Model
         :type => 'string', :required => true, :min => 3
       }
     }
+
+    if self.values[:provider] == "email"
+      # rules[:password] = {
+      #   :type => 'string', :required => true, :min => 4
+      # }
+    end
+
     validator = Honeybadger::Validator.new(self.values, rules)
     errors.add(:validation, validator.errors) if !validator.valid?
 
@@ -41,7 +48,7 @@ class User < Sequel::Model
     user.username = params[:email]
     user.email = params[:email]
     user.password = params[:password]
-    user.password_confirmation = params[:password]
+    user.password_confirmation = params[:password_confirmation]
     user.role = 'users'
     user.provider = 'email'
 

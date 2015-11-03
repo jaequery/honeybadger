@@ -1,0 +1,4 @@
+module Honeybadger
+
+
+end

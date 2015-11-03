@@ -20,31 +20,6 @@ module Honeybadger
 
 
     ### put your routes here ###
-
-    get '/test' do
-
-      data = {
-        :name => "jae"
-      }
-      rules = {
-          :name => {:type => 'string', :min => 4, :required => true},
-      }
-
-      validator = Validator.new(data, rules)
-      if validator.valid?
-        "valid!"
-      else
-        "not valid #{validator.errors}"
-      end
-
-      #render "test"
-    end
-
-    post '/test', :provides => :js do
-      "alert('User is not valid');"
-    end
-
-
     get "/" do
       render "index"
     end
