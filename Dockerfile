@@ -12,5 +12,6 @@ ADD . /app
 
 #set default directory
 WORKDIR /app
+RUN bundle
 
 EXPOSE 3000
