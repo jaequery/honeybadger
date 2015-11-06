@@ -37,6 +37,41 @@ module Honeybadger
       @user = User[params[:id]]
       render "user"
     end
+
+    post '/user/save/(:id)' do
+      data = params[:user]
+      if params[:id].blank? # create
+        model = User.new(data).save
+        if model
+          msg = "swal('success', 'created!');"
+          msg += "location.href = '/admin/users';"
+        else
+          abort
+          msg = "swal('error', 'Sorry, there was a problem creating');"
+        end
+      else # update
+        model = User[params[:id]]
+        if !model.nil?
+          model = model.set(data)
+          if model.save
+            msg = "swal('success', 'updated!');"
+          else
+            abort
+            msg = "swal('error', 'Sorry, there was a problem updating');"
+          end
+        end
+      end
+    end
+
+    get '/user/delete(:id)' do
+      model = User[params[:id]]
+      if !model.nil? && model.destroy
+        msg = "swal('success', 'Record deleted!');"
+        msg += "$('#row_#{params[:id]}').slideUp();"
+      else
+        msg = "swal('error', 'Sorry, there was a problem deleting');"
+      end
+    end
     # end user routes
 
     # post routes
@@ -49,74 +84,45 @@ module Honeybadger
       @post = Post[params[:id]]
       render "post"
     end
-    # end user routes
 
-
-
-    ### shared routes ###
-
-    # universal model save
-    ### /user/save.js
-    ### /user/save/22.js
-    ### /user/delete/22 .js
-    route :post, :get, '/:model/:action/(:id)', :provides => :js  do
-
-      msg = ""
-
-      rules = {
-        :model => {:type => 'string', :min => 2, :required => true},
-        :action => {:type => 'string', :min => 3, :required => true},
-      }
-      validator = Honeybadger::Validator.new(params, rules)
-
-      if validator.valid?
-
-        # get model obj
-        model = Object.const_get(params[:model].capitalize)
-
-        # run action
-        case params[:action]
-        when "save"
-
-          # check if new or update
-          data = params.except("model", "action", "format")
-          if params[:id].blank?
-            if model.create(data.except("id"))
-              msg = "swal('success', 'created!');"
-              msg += "location.href = '/admin/#{params[:model].downcase.pluralize}';"
-            else
-              msg = "swal('error', 'Sorry, there was a problem creating');"
-            end
+    post '/post/save/(:id)' do
+      data = params[:post]
+      if params[:id].blank? # create
+        model = Post.new(data).save
+        if model
+          msg = "swal('success', 'created!');"
+          msg += "location.href = '/admin/posts';"
+        else
+          abort
+          msg = "swal('error', 'Sorry, there was a problem creating');"
+        end
+      else # update
+        model = Post[params[:id]]
+        if !model.nil?
+          model = model.set(data)
+          if model.save
+            msg = "swal('success', 'updated!');"
           else
-            model = model[params[:id]]
-            model = model.set(data)
-
-            if model.save
-              msg = "swal('success', 'updated!');"
-            else
-              abort
-              msg = "swal('error', 'Sorry, there was a problem updating');"
-            end
-          end
-
-        when "delete"
-          model = model[params[:id]]
-          if !model.blank? && model.destroy
-            msg = "swal('success', 'Record deleted!');"
-            msg += "$('#row_#{params[:id]}').slideUp();"
-          else
-            msg = "swal('error', 'Sorry, there was a problem deleting');"
+            abort
+            msg = "swal('error', 'Sorry, there was a problem updating');"
           end
         end
-      else
-        msg = "swal('error', 'not valid #{validator.errors}')"
       end
-
-      # output javascript callback msg
-      msg
-
     end
 
+    get '/post/delete(:id)' do
+      model = Post[params[:id]]
+      if !model.nil? && model.destroy
+        msg = "swal('success', 'Record deleted!');"
+        msg += "$('#row_#{params[:id]}').slideUp();"
+      else
+        msg = "swal('error', 'Sorry, there was a problem deleting');"
+      end
+    end
+    # end post routes
+
+
+    # controller helper methods
     def only_for(role)
       if session[:user].nil? || (!session[:user][:role].blank? && session[:user][:role] != role)
         redirect("/")

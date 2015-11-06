@@ -13,11 +13,10 @@
     </ol>
   </section>
 
-  <form action="/admin/user/save/<%= params[:id] %>" data-remote="true" method="POST" id="admin-form">
+
+    <% form_for :user, "/admin/user/save/#{params[:id]}", :id => 'admin-form', :remote => true do |f| %>
     <!-- Main content -->
     <section class="content col-md-6">
-
-
 
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-primary">
@@ -29,8 +28,8 @@
           <div class="field row" id="field_name">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control" name="name" value="<%= @user[:name] %>">
+                <%= f.label :name, :caption => "Name" %>
+                <%= f.text_field :name, :class => 'form-control' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -39,8 +38,8 @@
           <div class="field row" id="field_email">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="form-control" name="email" value="<%= @user[:email] %>">
+                <%= f.label :email, :caption => "Email" %>
+                <%= f.email_field :email, :class => 'form-control' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -48,21 +47,11 @@
           <div class="field row" id="field_password">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" value="">
+                <%= f.label :password, :caption => "Password" %>
+                <%= f.password_field :password, :class => 'form-control' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
-
-          <div class="field row" id="field_password_confirmation">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>Password Confirmation</label>
-                <input type="password" class="form-control" name="password_confirmation" value="">
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-
 
           <div class="row">
             <div class="col-md-12">
@@ -99,14 +88,8 @@
           <div class="field row" id="field_provider">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Provider</label>
-                <select class="form-control select2" style="width: 100%;" name="provider">
-                  <option value="email" selected="selected">Email</option>
-                  <option value="twitter">Twitter</option>
-                  <option value="instagram">Instagram</option>
-                  <option value="github">Github</option>
-                  <option value="linkedin">Linkedin</option>
-                </select>
+                <%= f.label :provider, :caption => "Provider" %>
+                <%= f.select :provider, :options => ['email','twitter','instagram','github','linkedin'], :class => 'form-control select2' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -114,11 +97,8 @@
           <div class="field row" id="field_role">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Role</label>
-                <select class="form-control select2" style="width: 100%;" name="role">
-                  <option value="admin">Admin</option>
-                  <option value="users">Users</option>
-                </select>
+                <%= f.label :role, :caption => "Role" %>
+                <%= f.select :role, :options => ['admin','users'], :class => 'form-control select2' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -128,9 +108,6 @@
       </div>
 
     </section><!-- /.content -->
-
-
-
 
 
 
@@ -148,8 +125,8 @@
           <div class="field row" id="field_username">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" name="username" value="<%= @user[:username] %>">
+                <%= f.label :username, :caption => "Username" %>
+                <%= f.text_field :username, :class => 'form-control' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -165,7 +142,7 @@
 
 
 
-  </form>
+   <% end %>
 
 </div><!-- /.content-wrapper -->
 
@@ -173,32 +150,5 @@
 <!-- Page script -->
 <script>
  $(function () {
-
-   var page = {
-
-     events: {
-       select2: function(){
-         //Initialize Select2 Elements
-         $(".select2").select2();
-       },
-       show_provider_fields: function(){
-         var provider = $('select[name=provider]').val();
-         switch(provider){
-           case "email":
-             $('#field_password').show();
-             $('#field_password_confirmation').show();
-             break;
-         }
-       }
-     },
-
-     methods: {
-     }
-
-   }
-
-   page.events.select2();
-   page.events.show_provider_fields();
-
  });
 </script>

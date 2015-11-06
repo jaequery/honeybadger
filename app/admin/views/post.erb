@@ -13,7 +13,7 @@
     </ol>
   </section>
 
-  <form action="/admin/post/save/<%= params[:id] %>" data-remote="true" method="POST" id="admin-form">
+  <% form_for :post, "/admin/post/save/#{params[:id]}", :id => 'admin-form', :remote => true do |f| %>
     <!-- Main content -->
     <section class="content col-md-12">
 
@@ -29,12 +29,8 @@
           <div class="field row" id="field_name">
             <div class="col-md-12">
               <div class="form-group">
-                <label>User</label>
-                <select name="user_id" class="form-control">
-                  <% User.all.each do |user| %>
-                    <option value="<%= user[:id] %>"><%= user[:email] %></option>
-                  <% end %>
-                </select>
+                <%= f.label :user_id, :caption => "User" %>
+                <%= f.select :user_id, :collection => User.all, :fields => [:email, :id], :class => 'form-control select2' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -43,8 +39,8 @@
           <div class="field row" id="field_email">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Title</label>
-                <input type="text" class="form-control" name="title" value="<%= @post[:title] %>">
+                <%= f.label :title, :caption => "Title" %>
+                <%= f.text_field :title, :class => 'form-control' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -52,8 +48,8 @@
           <div class="field row" id="field_password">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Content</label>
-                <textarea class="form-control"><%= @post[:content] %></textarea>
+                <%= f.label :content, :caption => "Content" %>
+                <%= f.text_area :content, :class => 'form-control wysiwyg' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -75,12 +71,7 @@
 
     </section><!-- /.content -->
 
-
-
-
-
-
-  </form>
+    <% end %>
 
 </div><!-- /.content-wrapper -->
 
@@ -88,32 +79,6 @@
 <!-- Page script -->
 <script>
  $(function () {
-
-   var page = {
-
-     events: {
-       select2: function(){
-         //Initialize Select2 Elements
-         $(".select2").select2();
-       },
-       show_provider_fields: function(){
-         var provider = $('select[name=provider]').val();
-         switch(provider){
-           case "email":
-             $('#field_password').show();
-             $('#field_password_confirmation').show();
-             break;
-         }
-       }
-     },
-
-     methods: {
-     }
-
-   }
-
-   page.events.select2();
-   page.events.show_provider_fields();
 
  });
 </script>
