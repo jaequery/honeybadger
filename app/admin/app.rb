@@ -9,6 +9,7 @@ module Honeybadger
     register Padrino::Mailer
     register Padrino::Helpers
     register WillPaginate::Sinatra
+
     enable :sessions
     enable :reload
     layout :admin
@@ -38,38 +39,54 @@ module Honeybadger
       render "user"
     end
 
-    post '/user/save/(:id)' do
+    post '/user/save/(:id)', :provides => :js do
       data = params[:user]
-      if params[:id].blank? # create
-        model = User.new(data).save
-        if model
-          msg = "swal('success', 'created!');"
-          msg += "location.href = '/admin/users';"
-        else
-          abort
-          msg = "swal('error', 'Sorry, there was a problem creating');"
-        end
-      else # update
-        model = User[params[:id]]
-        if !model.nil?
-          model = model.set(data)
-          if model.save
-            msg = "swal('success', 'updated!');"
+
+      # validate fields
+      rules = {
+        :email => {:type => 'email', :required => true},
+      }
+      validator = Honeybadger::Validator.new(data, rules)
+      if !validator.valid?
+        msg = output_validator(validator)
+      else
+
+        # create or update
+        if params[:id].blank? # create
+          model = User.new(data).save
+          if model
+            msg = "swal('Sucess!', 'Record has been created!', 'success');"
+            msg += "location.href = '/admin/users';"
           else
             abort
-            msg = "swal('error', 'Sorry, there was a problem updating');"
+            msg = "swal('Oops ...', 'Sorry, there was a problem creating', 'error');"
           end
-        end
-      end
+        else # update
+          model = User[params[:id]]
+          if !model.nil?
+            model = model.set(data)
+            if model.save
+              msg = "swal('Success!', 'Record has been updated!', 'success');"
+            else
+              abort
+              msg = "swal('Oops ...', 'Sorry, there was a problem updating', 'error');"
+            end
+          end
+        end # end save
+
+      end # end validator
+
+      msg
+
     end
 
-    get '/user/delete(:id)' do
+    post '/user/delete/(:id)', :provides => :js do
       model = User[params[:id]]
       if !model.nil? && model.destroy
-        msg = "swal('success', 'Record deleted!');"
+        msg = "swal('Success!', 'Record deleted!', 'success');"
         msg += "$('#row_#{params[:id]}').slideUp();"
       else
-        msg = "swal('error', 'Sorry, there was a problem deleting');"
+        msg = "swal('Oops ...', 'Sorry, there was a problem deleting', 'error');"
       end
     end
     # end user routes
@@ -85,38 +102,54 @@ module Honeybadger
       render "post"
     end
 
-    post '/post/save/(:id)' do
+    post '/post/save/(:id)', :provides => :js do
       data = params[:post]
-      if params[:id].blank? # create
-        model = Post.new(data).save
-        if model
-          msg = "swal('success', 'created!');"
-          msg += "location.href = '/admin/posts';"
-        else
-          abort
-          msg = "swal('error', 'Sorry, there was a problem creating');"
-        end
-      else # update
-        model = Post[params[:id]]
-        if !model.nil?
-          model = model.set(data)
-          if model.save
-            msg = "swal('success', 'updated!');"
+
+      # validate fields
+      rules = {
+        :user_id => {:type => 'numeric', :required => true},
+        :title => {:type => 'string', :min => 2, :max => 128, :required => true},
+        :content => {:type => 'string', :required => true},
+      }
+      validator = Honeybadger::Validator.new(data, rules)
+      if !validator.valid?
+        msg = output_validator(validator)
+      else
+
+        if params[:id].blank? # create
+          model = Post.new(data).save
+          if model
+            msg = "swal('Success!', 'Record has been created!', 'success');"
+            msg += "location.href = '/admin/posts';"
           else
-            abort
-            msg = "swal('error', 'Sorry, there was a problem updating');"
+            msg = "swal('Oops ...', 'Sorry, there was a problem creating', 'error');"
           end
-        end
-      end
+        else # update
+          model = Post[params[:id]]
+          if !model.nil?
+            model = model.set(data)
+            if model.save
+              msg = "swal('Success!', 'Record has been updated!', 'success');"
+            else
+              abort
+              msg = "swal('Ooops ...', 'Sorry, there was a problem updating', 'error');"
+            end
+          end
+        end # end save
+
+      end  # end validator
+
+      msg
+
     end
 
-    get '/post/delete(:id)' do
+    get '/post/delete/(:id)', :provides => :js do
       model = Post[params[:id]]
       if !model.nil? && model.destroy
         msg = "swal('success', 'Record deleted!');"
         msg += "$('#row_#{params[:id]}').slideUp();"
       else
-        msg = "swal('error', 'Sorry, there was a problem deleting');"
+        msg = "swal('Oops ...', 'Sorry, there was a problem deleting', 'error');"
       end
     end
     # end post routes
@@ -127,6 +160,38 @@ module Honeybadger
       if session[:user].nil? || (!session[:user][:role].blank? && session[:user][:role] != role)
         redirect("/")
       end
+    end
+
+    ### utility methods ###
+    def output(val)
+      case val
+      when String
+        if val.is_json?(val)
+          content_type :json
+          val.to_json
+        else
+          val
+        end
+      when Hash
+        content_type :json
+        val.to_json
+      when Array
+        content_type :json
+        val.to_json
+      when Fixnum
+        val
+      else
+        val
+      end
+    end
+
+    def output_validator(validator)
+      msg = "swal('Validation error!', '"
+      validator.errors.each do |error|
+        msg += "#{error[:name]} #{error[:error]}\\n"
+      end
+      msg += "', 'error');"
+      msg
     end
 
   end # end class

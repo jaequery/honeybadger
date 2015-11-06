@@ -137,11 +137,22 @@ module Honeybadger
       return false
     end
 
+    def check_type_email(key, value, condition)
+      if key.nil? || value.nil?
+        return false
+      end
+      valid = Util::valid_email?(value)
+      if !valid
+        has_error(key, 'invalid email address')
+      end
+      return false
+    end
+
     def check_min (key, value, condition)
       if (value.to_s.length >= condition)
         return true
       else
-        has_error(key, 'min length')
+        has_error(key, "needs a minimum of #{condition} characters")
         return false
       end
     end

@@ -133,10 +133,10 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
 
-            <li><a href="/admin"><i class="fa fa-book"></i> <span>Dashboard</span></a></li>
-            <li class="active"><a href="/admin/users"><i class="fa fa-table"></i> <span>Users</span></a></li>
-            <li class=""><a href="/admin/posts"><i class="fa fa-table"></i> <span>Posts</span></a></li>
-            <li class=""><a href="/admin/users"><i class="fa fa-table"></i> <span>Add New +</span></a></li>
+            <li class="<%= set_active_on_match(/admin$/) %>"><a href="/admin"><i class="fa fa-book"></i> <span>Dashboard</span></a></li>
+            <li class="<%= set_active_on_match(/admin\/user/) %>"><a href="/admin/users"><i class="fa fa-table"></i> <span>Users</span></a></li>
+            <li class="<%= set_active_on_match(/admin\/post/) %>"><a href="/admin/posts"><i class="fa fa-table"></i> <span>Posts</span></a></li>
+            <li class="<%= set_active_on_match(/admin\/scaffolderr/) %>"><a href="/admin/users"><i class="fa fa-table"></i> <span>Add New +</span></a></li>
 
 
             <li class="header">Administrative</li>

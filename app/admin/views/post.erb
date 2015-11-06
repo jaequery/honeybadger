@@ -40,7 +40,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <%= f.label :title, :caption => "Title" %>
-                <%= f.text_field :title, :class => 'form-control' %>
+                <%= f.text_field :title, :class => 'form-control', :required => true %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -48,7 +48,7 @@
           <div class="field row" id="field_password">
             <div class="col-md-12">
               <div class="form-group">
-                <%= f.label :content, :caption => "Content" %>
+                <%= f.label :content, :caption => "Content", :required => true %>
                 <%= f.text_area :content, :class => 'form-control wysiwyg' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
