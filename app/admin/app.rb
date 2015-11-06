@@ -44,30 +44,31 @@ module Honeybadger
 
       # validate fields
       rules = {
+        :name => {:type => 'string', :min => 2, :required => true},
         :email => {:type => 'email', :required => true},
       }
       validator = Honeybadger::Validator.new(data, rules)
       if !validator.valid?
-        msg = output_validator(validator)
+        msg = output_js_validator(validator.errors, 'user')
       else
 
         # create or update
         if params[:id].blank? # create
           model = User.new(data).save
           if model
-            msg = "swal('Sucess!', 'Record has been created!', 'success');"
+            msg = output_js_success('Record has been created!')
             msg += "location.href = '/admin/users';"
           else
-            msg = "swal('Oops ...', 'Sorry, there was a problem creating', 'error');"
+            msg = output_js_error('Sorry, there was a problem creating')
           end
         else # update
           model = User[params[:id]]
           if !model.nil?
             model = model.set(data)
             if model.save
-              msg = "swal('Success!', 'Record has been updated!', 'success');"
+              msg = output_js_success('Record has been updated!')
             else
-              msg = "swal('Oops ...', 'Sorry, there was a problem updating', 'error');"
+              msg = output_js_error('Sorry, there was a problem updating')
             end
           end
         end # end save
@@ -81,10 +82,10 @@ module Honeybadger
     get '/user/delete/(:id)', :provides => :js do
       model = User[params[:id]]
       if !model.nil? && model.destroy
-        msg = "swal('Success!', 'Record deleted!', 'success');"
+        msg = output_js_success('Record has been deleted!')
         msg += "$('#row_#{params[:id]}').slideUp();"
       else
-        msg = "swal('Oops ...', 'Sorry, there was a problem deleting', 'error');"
+        msg = output_js_success('Sorry, there was a problem deleting')
       end
     end
     # end user routes
@@ -111,25 +112,25 @@ module Honeybadger
       }
       validator = Honeybadger::Validator.new(data, rules)
       if !validator.valid?
-        msg = output_validator(validator)
+        msg = output_js_validator(validator.errors)
       else
 
         if params[:id].blank? # create
           model = Post.new(data).save
           if model
-            msg = "swal('Success!', 'Record has been created!', 'success');"
+            msg = output_js_success('Record has been created!')
             msg += "location.href = '/admin/posts';"
           else
-            msg = "swal('Oops ...', 'Sorry, there was a problem creating', 'error');"
+            msg = output_js_error('Sorry, there was a problem creating')
           end
         else # update
           model = Post[params[:id]]
           if !model.nil?
             model = model.set(data)
             if model.save
-              msg = "swal('Success!', 'Record has been updated!', 'success');"
+              msg = output_js_success('Record has been updated!')
             else
-              msg = "swal('Ooops ...', 'Sorry, there was a problem updating', 'error');"
+              msg = output_js_error('Sorry, there was a problem updating')
             end
           end
         end # end save
@@ -143,10 +144,10 @@ module Honeybadger
     get '/post/delete/(:id)', :provides => :js do
       model = Post[params[:id]]
       if !model.nil? && model.destroy
-        msg = "swal('success', 'Record deleted!');"
+        msg = output_js_success('Record deleted!')
         msg += "$('#row_#{params[:id]}').slideUp();"
       else
-        msg = "swal('Oops ...', 'Sorry, there was a problem deleting', 'error');"
+        msg = output_js_error('Sorry, there was a problem deleting')
       end
     end
     # end post routes
@@ -172,26 +173,26 @@ module Honeybadger
       }
       validator = Honeybadger::Validator.new(data, rules)
       if !validator.valid?
-        msg = output_validator(validator)
+        msg = output_js_validator(validator.errors)
       else
 
         # create or update
         if params[:id].blank? # create
           model = Config.new(data).save
           if model
-            msg = "swal('Sucess!', 'Record has been created!', 'success');"
+            msg = output_js_success('Record has been created!')
             msg += "location.href = '/admin/configs';"
           else
-            msg = "swal('Oops ...', 'Sorry, there was a problem creating', 'error');"
+            msg = output_js_error('Sorry, there was a problem creating')
           end
         else # update
           model = Config[params[:id]]
           if !model.nil?
             model = model.set(data)
             if model.save
-              msg = "swal('Success!', 'Record has been updated!', 'success');"
+              msg = output_js_success('Record has been updated!')
             else
-              msg = "swal('Oops ...', 'Sorry, there was a problem updating', 'error');"
+              msg = output_js_error('Sorry, there was a problem updating')
             end
           end
         end # end save
@@ -205,10 +206,10 @@ module Honeybadger
     get '/config/delete/(:id)', :provides => :js do
       model = Config[params[:id]]
       if !model.nil? && model.destroy
-        msg = "swal('Success!', 'Record deleted!', 'success');"
+        msg = output_js_success('Record deleted!')
         msg += "$('#row_#{params[:id]}').slideUp();"
       else
-        msg = "swal('Oops ...', 'Sorry, there was a problem deleting', 'error');"
+        msg = output_js_error('Sorry, there was a problem deleting')
       end
     end
     # end config routes
@@ -248,13 +249,35 @@ module Honeybadger
       end
     end
 
-    def output_validator(validator)
-      msg = "swal('Validation error!', '"
-      validator.errors.each do |error|
-        msg += "#{error[:name]} #{error[:error]}\\n"
+    def output_js_success(msg)
+      js = "$('.form-group').attr('class','form-group');"
+      js += "swal('Success!', '#{msg}', 'success');"
+    end
+
+    def output_js_error(msg)
+      js = "$('.form-group').attr('class','form-group');"
+      js += "swal('Ooops, there was a problem ...', '#{msg}', 'error');"
+    end
+
+    def output_js_validator(errors, form_model='')
+      js = "$('.form-group').attr('class','form-group');"
+
+      # sweet alert
+      js += "swal('Validation error!', '"
+      errors.each do |error|
+        js += "#{error[:name]} #{error[:error]}\\n"
       end
-      msg += "', 'error');"
-      msg
+      js += "', 'error');\n"
+
+      # form errors
+      if !form_model.blank?
+        errors.each do |error|
+          js += "$('##{form_model}_#{error[:name]}').closest('.form-group').attr('class', 'form-group').addClass('has-error');\n"
+        end
+      end
+
+      # return msg
+      js
     end
 
   end # end class
