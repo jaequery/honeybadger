@@ -18,7 +18,7 @@ module Honeybadger
     before do
 
       only_for("admin")
-      @title = "Honeybadger CMS"
+      @title = config('site_title') || "Honeybadger CMS"
 
     end
     ###
@@ -58,7 +58,6 @@ module Honeybadger
             msg = "swal('Sucess!', 'Record has been created!', 'success');"
             msg += "location.href = '/admin/users';"
           else
-            abort
             msg = "swal('Oops ...', 'Sorry, there was a problem creating', 'error');"
           end
         else # update
@@ -68,7 +67,6 @@ module Honeybadger
             if model.save
               msg = "swal('Success!', 'Record has been updated!', 'success');"
             else
-              abort
               msg = "swal('Oops ...', 'Sorry, there was a problem updating', 'error');"
             end
           end
@@ -80,7 +78,7 @@ module Honeybadger
 
     end
 
-    post '/user/delete/(:id)', :provides => :js do
+    get '/user/delete/(:id)', :provides => :js do
       model = User[params[:id]]
       if !model.nil? && model.destroy
         msg = "swal('Success!', 'Record deleted!', 'success');"
@@ -131,7 +129,6 @@ module Honeybadger
             if model.save
               msg = "swal('Success!', 'Record has been updated!', 'success');"
             else
-              abort
               msg = "swal('Ooops ...', 'Sorry, there was a problem updating', 'error');"
             end
           end
@@ -153,6 +150,72 @@ module Honeybadger
       end
     end
     # end post routes
+
+
+    # config routes
+    get '/configs' do
+      @configs = Config.order(:id).reverse
+      render "configs"
+    end
+
+    get '/config/(:id)' do
+      @config = Config[params[:id]]
+      render "config"
+    end
+
+    post '/config/save/(:id)', :provides => :js do
+      data = params[:config]
+
+      # validate fields
+      rules = {
+        :name => {:type => 'string', :required => true},
+      }
+      validator = Honeybadger::Validator.new(data, rules)
+      if !validator.valid?
+        msg = output_validator(validator)
+      else
+
+        # create or update
+        if params[:id].blank? # create
+          model = Config.new(data).save
+          if model
+            msg = "swal('Sucess!', 'Record has been created!', 'success');"
+            msg += "location.href = '/admin/configs';"
+          else
+            msg = "swal('Oops ...', 'Sorry, there was a problem creating', 'error');"
+          end
+        else # update
+          model = Config[params[:id]]
+          if !model.nil?
+            model = model.set(data)
+            if model.save
+              msg = "swal('Success!', 'Record has been updated!', 'success');"
+            else
+              msg = "swal('Oops ...', 'Sorry, there was a problem updating', 'error');"
+            end
+          end
+        end # end save
+
+      end # end validator
+
+      msg
+
+    end
+
+    get '/config/delete/(:id)', :provides => :js do
+      model = Config[params[:id]]
+      if !model.nil? && model.destroy
+        msg = "swal('Success!', 'Record deleted!', 'success');"
+        msg += "$('#row_#{params[:id]}').slideUp();"
+      else
+        msg = "swal('Oops ...', 'Sorry, there was a problem deleting', 'error');"
+      end
+    end
+    # end config routes
+
+
+    ### end of routes ###
+
 
 
     # controller helper methods

@@ -140,7 +140,7 @@
 
 
             <li class="header">Administrative</li>
-            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Configure</span></a></li>
+            <li class="<%= set_active_on_match(/admin\/config/) %>"><a href="/admin/configs"><i class="fa fa-circle-o text-red"></i> <span>Config</span></a></li>
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -152,7 +152,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 2.3.0
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://github.com/jaequery/honeybadger" target="_blank">Honeybadger CMS</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2015 <a href="http://github.com/jaequery/honeybadger" target="_blank"><%= config('site_name') || "Honeybadger CMS" %></a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->
@@ -374,7 +374,7 @@
     <script src="/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- - DataTables -->
     <script src="/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="/admin/plugins/datatables/dataTables.bootstrap.min.js"></script>-->
+    <script src="/admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <!-- FastClick -->
     <script src="/admin/plugins/fastclick/fastclick.min.js"></script>
     <!-- Sweetalert -->
