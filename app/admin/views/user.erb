@@ -1,154 +1,143 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      User form
-      <small></small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="/admin/users">Users</a></li>
-      <li class="active"><%= params[:id] || 'New' %></li>
-    </ol>
-  </section>
+
+  <% form_for :user, "/admin/user/save/#{params[:id]}", :id => 'admin-form', :remote => true do |f| %>
+
+      <section class="content-header">
+        <h2 class="page-header">User Profile</h2>
+        <ol class="breadcrumb">
+          <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+          <li><a href="/admin/users">Users</a></li>
+          <li class="active"><%= params[:id] || 'New' %></li>
+        </ol>
+
+        <div class="row">
+
+          <div class="col-md-3">
+
+            <!-- Widget: user widget style 1 -->
+            <div class="box box-widget widget-user-2">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+
+              <div class="box-footer no-padding">
+                <ul class="nav nav-stacked">
+                  <li class="active"><a href="#tab_1" data-toggle="tab">General Information</a></li>
+                  <li><a href="#tab_1" data-toggle="tab">Change Password</a></li>
+                  <li><a href="#tab_2" data-toggle="tab">User Role</a></li>
+                  <li><a href="#tab_3" data-toggle="tab">Linked Accounts</a></li>
+                </ul>
+
+              </div>
+            </div>
+
+            <p></p><button class="btn btn-primary btn-block"><b>Save</b></button></p>
+            <p></p><button class="btn btn-default btn-block" onclick="javascript: history.go(-1);"><b>Go Back</b></button></p>
+            <!-- /.widget-user -->
+          </div>
+          <!-- /.col -->
 
 
-    <% form_for :user, "/admin/user/save/#{params[:id]}", :id => 'admin-form', :remote => true do |f| %>
-    <!-- Main content -->
-    <section class="content col-md-6">
+          <section class="col-md-9">
 
-      <!-- SELECT2 EXAMPLE -->
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Registration</h3>
-        </div>
-        <div class="box-body">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="box box-primary">
 
-          <div class="field row" id="field_name">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :name, :caption => "Name" %>
-                <%= f.text_field :name, :class => 'form-control' %>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+              <div class="box-body">
 
+                <div class="field row" id="field_name">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <%= f.label :name, :caption => "Name" %>
+                      <%= f.text_field :name, :class => 'form-control' %>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
 
-          <div class="field row" id="field_email">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :email, :caption => "Email" %>
-                <%= f.text_field :email, :class => 'form-control' %>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+                <div class="field row" id="field_email">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <%= f.label :email, :caption => "Email" %>
+                      <%= f.text_field :email, :class => 'form-control' %>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
 
-          <div class="field row" id="field_password">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :password, :caption => "Password" %>
-                <%= f.password_field :password, :class => 'form-control' %>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <hr>
-                <button class="btn btn-primary">Save</button>
-                <button class="btn btn-default" onclick="javascript: history.go(-1);">Go back</button>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-
-        </div><!-- /.box-body -->
-
-      </div><!-- /.box -->
-
-    </section><!-- /.content -->
+                <div class="field row" id="field_password">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <%= f.label :password, :caption => "Password" %>
+                      <%= f.password_field :password, :class => 'form-control' %>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
 
 
+                <div class="field row" id="field_role">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <%= f.label :role, :caption => "Role" %>
+                      <%= f.select :role, :options => ['admin', 'users'], :class => 'form-control select2' %>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
 
 
+                <div class="field row" id="field_provider">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <%= f.label :provider, :caption => "Provider" %>
+                      <%= f.select :provider, :options => ['email', 'twitter', 'instagram', 'github', 'linkedin'], :class => 'form-control select2' %>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
+                <div class="field row" id="field_username">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <%= f.label :username, :caption => "Username" %>
+                      <%= f.text_field :username, :class => 'form-control' %>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
 
 
-    <section class="content col-md-6">
+              </div>
+              <!-- /.box-body -->
 
-      <!-- SELECT2 EXAMPLE -->
-      <div class="box box-info">
+            </div>
+            <!-- /.box -->
 
-        <div class="box-header with-border">
-          <h3 class="box-title">Settings</h3>
-        </div>
+          </section>
 
-        <div class="box-body">
-
-          <div class="field row" id="field_provider">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :provider, :caption => "Provider" %>
-                <%= f.select :provider, :options => ['email','twitter','instagram','github','linkedin'], :class => 'form-control select2' %>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-
-          <div class="field row" id="field_role">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :role, :caption => "Role" %>
-                <%= f.select :role, :options => ['admin','users'], :class => 'form-control select2' %>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /.content -->
-
-
-
-
-    <section class="content col-md-6">
-
-      <!-- SELECT2 EXAMPLE -->
-      <div class="box box-warning">
-
-        <div class="box-header with-border">
-          <h3 class="box-title">Social Media</h3>
-        </div>
-
-        <div class="box-body">
-          <div class="field row" id="field_username">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :username, :caption => "Username" %>
-                <%= f.text_field :username, :class => 'form-control' %>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
 
         </div>
+      </section>
 
-      </div>
-
-    </section><!-- /.content -->
-
-
-
-
-
-
-   <% end %>
+  <% end %>
 
 </div><!-- /.content-wrapper -->
 
 
 <!-- Page script -->
 <script>
- $(function () {
- });
+    $(function () {
+    });
 </script>

@@ -1,3 +1,9 @@
-username = 'test@test.com'
-password = 'asdfasdf'
-user = User.create(:email => username, :username => username, :password => password, :password_confirmation => password, :role => "admin", :provider => "email")
+# add default admin user
+user = User.new
+user.email = 'test@test.com'
+user.username = user.email
+user.password = 'asdfasdf'
+user.password_confirmation = user.password
+user.role = 'admin'
+user.provider = 'email'
+user.save
