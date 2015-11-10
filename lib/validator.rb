@@ -148,6 +148,15 @@ module Honeybadger
       return false
     end
 
+    def check_confirm_with(key, value, condition)
+      if (value == @params[condition])
+        return true
+      else
+        has_error(key, "password needs to match with confirmation password")
+        return false
+      end
+    end
+
     def check_min (key, value, condition)
       if (value.to_s.length >= condition)
         return true

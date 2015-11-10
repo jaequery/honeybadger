@@ -9,6 +9,7 @@ Sequel.migration do
       String :role
       String :uid
       String :provider
+      String :avatar_url
       DateTime :created_at
       DateTime :updated_at
     end

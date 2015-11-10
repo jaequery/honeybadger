@@ -13,11 +13,12 @@
     </ol>
   </section>
 
+
   <% form_for :post, "/admin/post/save/#{params[:id]}", :id => 'admin-form', :remote => true do |f| %>
     <!-- Main content -->
     <section class="content col-md-12">
 
-
+      <%= partial("partials/flash.erb") %>
 
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-primary">

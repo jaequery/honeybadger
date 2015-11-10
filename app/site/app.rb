@@ -48,7 +48,6 @@ module Honeybadger
       user = User.login_with_omniauth(auth)
 
       if user
-        session[:user] = user
         redirect("/")
       else
         output(user.values)
@@ -84,7 +83,7 @@ module Honeybadger
 
     post "/signup" do
 
-      user = User.register(params)
+      user = User.register_with_email(params)
       if user.errors.empty?
         session[:user] = user
         redirect("/")

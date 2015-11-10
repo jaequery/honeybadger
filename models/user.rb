@@ -3,31 +3,6 @@ class User < Sequel::Model
   plugin :timestamps
   plugin :secure_password, include_validations: false
 
-  def validate
-    super
-    rules = {
-      :email => {
-        :type => 'email', :min => 4
-      },
-      :role => {
-        :type => 'string', :required => true, :min => 4
-      },
-      :provider => {
-        :type => 'string', :required => true, :min => 3
-      }
-    }
-
-    if self.values[:provider] == "email"
-      # rules[:password] = {
-      #   :type => 'string', :required => true, :min => 4
-      # }
-    end
-
-    validator = Honeybadger::Validator.new(self.values, rules)
-    errors.add(:validation, validator.errors) if !validator.valid?
-
-  end
-
   def self.login(params)
     user = User.where(:email => params[:email]).first
 
@@ -40,20 +15,37 @@ class User < Sequel::Model
       end
     end
 
+    if user
+      session[:user] = user
+    end
+
     return user
   end
 
-  def self.register(params)
+  def before_save
+    if !self[:avatar_url].blank? && !self[:avatar_url][:tempfile].blank?
+      tempfile = self[:avatar_url][:tempfile]
+      path = "/uploads/" + self[:avatar_url][:filename]
+      local_dest = Dir.pwd + "/public/" + path
+      FileUtils.mv(tempfile.path, local_dest)
+      self[:avatar_url] = path
+    end
+
+    super
+  end
+
+  def self.register_with_email(params, role = "users")
     user = User.new
-    user.username = params[:email]
     user.email = params[:email]
+    user.username = params[:email]
     user.password = params[:password]
     user.password_confirmation = params[:password_confirmation]
-    user.role = 'users'
+    user.role = role
     user.provider = 'email'
 
     if user.valid?
       user.save
+      session[:user] = user
     end
 
     return user
@@ -95,6 +87,7 @@ class User < Sequel::Model
       # create user
       if user.valid?
         user.save
+        session[:user] = user
       end
 
     end

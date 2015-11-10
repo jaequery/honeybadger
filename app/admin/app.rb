@@ -46,15 +46,17 @@ module Honeybadger
       rules = {
         :name => {:type => 'string', :min => 2, :required => true},
         :email => {:type => 'email', :required => true},
+        :password => {:type => 'string', :min => 6, :confirm_with => :password_confirmation},
       }
       validator = Honeybadger::Validator.new(data, rules)
+
       if !validator.valid?
         msg = output_js_validator(validator.errors, 'user')
       else
 
         # create or update
         if params[:id].blank? # create
-          model = User.new(data).save
+          model = User.register_with_email(data, data[:role])
           if model
             msg = output_js_success('Record has been created!')
             msg += "location.href = '/admin/users';"
@@ -66,7 +68,9 @@ module Honeybadger
           if !model.nil?
             model = model.set(data)
             if model.save
+              session[:user] = model.values
               msg = output_js_success('Record has been updated!')
+              msg += "location.reload();"
             else
               msg = output_js_error('Sorry, there was a problem updating')
             end
@@ -112,7 +116,7 @@ module Honeybadger
       }
       validator = Honeybadger::Validator.new(data, rules)
       if !validator.valid?
-        msg = output_js_validator(validator.errors)
+        msg = output_js_validator(validator.errors, 'post')
       else
 
         if params[:id].blank? # create
@@ -214,17 +218,8 @@ module Honeybadger
     end
     # end config routes
 
-
     ### end of routes ###
 
-
-
-    # controller helper methods
-    def only_for(role)
-      if session[:user].nil? || (!session[:user][:role].blank? && session[:user][:role] != role)
-        redirect("/")
-      end
-    end
 
     ### utility methods ###
     def output(val)
@@ -249,36 +244,7 @@ module Honeybadger
       end
     end
 
-    def output_js_success(msg)
-      js = "$('.form-group').attr('class','form-group');"
-      js += "swal('Success!', '#{msg}', 'success');"
-    end
 
-    def output_js_error(msg)
-      js = "$('.form-group').attr('class','form-group');"
-      js += "swal('Ooops, there was a problem ...', '#{msg}', 'error');"
-    end
-
-    def output_js_validator(errors, form_model='')
-      js = "$('.form-group').attr('class','form-group');"
-
-      # sweet alert
-      js += "swal('Validation error!', '"
-      errors.each do |error|
-        js += "#{error[:name]} #{error[:error]}\\n"
-      end
-      js += "', 'error');\n"
-
-      # form errors
-      if !form_model.blank?
-        errors.each do |error|
-          js += "$('##{form_model}_#{error[:name]}').closest('.form-group').attr('class', 'form-group').addClass('has-error');\n"
-        end
-      end
-
-      # return msg
-      js
-    end
 
   end # end class
 
