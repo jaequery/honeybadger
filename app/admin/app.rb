@@ -68,9 +68,15 @@ module Honeybadger
           if !model.nil?
             model = model.set(data)
             if model.save
-              session[:user] = model.values
+
               msg = output_js_success('Record has been updated!')
-              msg += "location.reload();"
+
+              # if updating current user, refresh session and reload page
+              if session[:user][:id] == model[:id]
+                session[:user] = model.values
+                msg += "location.reload();"
+              end
+
             else
               msg = output_js_error('Sorry, there was a problem updating')
             end
