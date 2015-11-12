@@ -16,14 +16,15 @@ class User < Sequel::Model
     end
 
     if user
-      session[:user] = user
+#      session[:user] = user
     end
 
     return user
   end
 
   def before_save
-    if !self[:avatar_url].blank? && !self[:avatar_url][:tempfile].blank?
+
+    if !self[:avatar_url].blank? && self[:avatar_url].class == Hash
       tempfile = self[:avatar_url][:tempfile]
       path = "/uploads/" + self[:avatar_url][:filename]
       local_dest = Dir.pwd + "/public/" + path

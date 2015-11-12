@@ -32,15 +32,15 @@
                     <li><a href="/contact">Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                  <% if session[:user].nil? %>
+                  <% if session[:user].blank? %>
                     <li><a href="/login">Login</a></li>
                     <li><a href="/signup">Create Account</a></li>
                   <% else %>
-                    <% if session[:user].role == 'admin' %>
+                    <% if session[:user][:role] == 'admin' %>
                       <li><a href="/admin">To Admin</a></li>
                     <% end %>
 
-                    <li><a href="/logout">Logout <%= session[:user].name %></a></li>
+                    <li><a href="/logout">Logout <%= session[:user][:name] %></a></li>
                   <% end %>
                 </ul>
             </div>

@@ -35,12 +35,12 @@
 
                     <div class="field row">
                       <div class="col-md-12">
-                          <div class="form-group">
-                            <label>
-                              <%= f.check_box :twitter_enable, :class => 'minimal', :checked => true %>
-                              Enable Twitter SSO
-                            </label>
-                          </div>
+                        <div class="form-group">
+                          <label>
+                            <%= f.check_box :twitter_enable, :class => 'minimal', :checked => true %>
+                            Enable Twitter SSO
+                          </label>
+                        </div>
                       </div><!-- /.col -->
                     </div><!-- /.row -->
                     <div class="field row">
@@ -65,12 +65,12 @@
 
                     <div class="field row">
                       <div class="col-md-12">
-                          <div class="form-group">
-                            <label>
-                              <%= f.check_box :facebook_enable, :class => 'minimal', :checked => true %>
-                              Enable Facebook SSO
-                            </label>
-                          </div>
+                        <div class="form-group">
+                          <label>
+                            <%= f.check_box :facebook_enable, :class => 'minimal', :checked => true %>
+                            Enable Facebook SSO
+                          </label>
+                        </div>
                       </div><!-- /.col -->
                     </div><!-- /.row -->
                     <div class="field row">
@@ -95,12 +95,12 @@
 
                     <div class="field row">
                       <div class="col-md-12">
-                          <div class="form-group">
-                            <label>
-                              <%= f.check_box :instagram_enable, :class => 'minimal', :checked => true %>
-                              Enable Instagram SSO
-                            </label>
-                          </div>
+                        <div class="form-group">
+                          <label>
+                            <%= f.check_box :instagram_enable, :class => 'minimal', :checked => true %>
+                            Enable Instagram SSO
+                          </label>
+                        </div>
                       </div><!-- /.col -->
                     </div><!-- /.row -->
                     <div class="field row">
@@ -129,52 +129,14 @@
           <!-- - END CUSTOM TABS -->
 
 
-        </div>
+        </div><!-- /.col -->
 
+      </div><!-- /.row -->
 
-        <div class="col-md-12">
-          <div class="box">
-
-            <div class="box-header with-border pull-left">
-              <a href="/admin/config" class="btn-sm btn btn-default">Add New +</a>
-            </div>
-            <div style="clear:both;">
-              <div class="box-body">
-
-                <table class="table table-bordered table-hover datatable">
-                  <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Name</th>
-                      <th>Value</th>
-                      <th>Created</th>
-                      <th style="width: 120px">Actions</th>
-                    </tr>
-                  </thead>
-
-                  <% @configs.each do |config| %>
-                    <tr id="row_<%= config[:id] %>">
-                      <td><%= config[:id] %></td>
-                      <td><%= config[:name] %></td>
-                      <td><%= config[:value] %></td>
-                      <td><%= config[:created_at] %></td>
-                      <td>
-                        <a href="/admin/config/<%=config[:id] %>" class="btn btn-default btn-sm">Edit</a>
-                        <a href="/admin/config/delete/<%=config[:id] %>" data-remote="true" data-confirm="Are You Sure?" class="btn bg-warning btn-sm">Delete</a>
-                      </td>
-                    </tr>
-                  <% end %>
-
-                </table>
-              </div><!-- /.box-body -->
-
-            </div><!-- /.box -->
-          </div><!-- /.col -->
-
-
-        </div>
     </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
+
+  </div><!-- /.content-wrapper -->
+
 <% end %>
 <script>
  $(function(){

@@ -51,10 +51,6 @@ module Honeybadger
         end
       end
 
-      def config(name)
-        Config.where(:name => name).first[:value]
-      end
-
       def set_active_on_match(regex)
         current_url = env["REQUEST_URI"]
         if current_url.match(regex)

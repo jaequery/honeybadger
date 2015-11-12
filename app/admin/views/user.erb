@@ -1,7 +1,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
-  <% form_for :user, "/admin/user/save/#{params[:id]}", :id => 'admin-form', :remote => false do |f| %>
+  <% form_for :user, "/admin/user/save/#{params[:id]}", :id => 'admin-form', :remote => true, :multipart => true do |f| %>
 
     <section class="content-header">
       <h2 class="page-header">User Profile</h2>
