@@ -1,5 +1,242 @@
-<div class="page-header">
-  <h3>app/views/index.erb</h3>
+<div class='jumbotron'>
+  <h1>Hackathon Starter Sinatra</h1>
+  <p>A powerful, full-featured, and simple framework designed for use at Startup Weekend and hackathon style events.</p>
+  <p>
+    <a class='btn btn-primary btn-lg' href='https://github.com/qrohlf/hackathon-starter-sinatra' role='button'><span class='icon-github-3'></span> View On GitHub »</a>
+  </p>
 </div>
-<p class="lead">A boilerplate for Ruby applications.</p>
-AWESOME JAEE LEE
+<div class='row'>
+  <div class='col-md-4 col-md-push-8'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h3 class='panel-title'>About</h3>
+      </div>
+      <div class='panel-body'>
+        <div class='row'>
+          <div class='col-sm-3 col-md-12'>
+            <p>
+              <img alt='profile pic' class='img-responsive center-block img-circle img-profile' height='128' src='http://www.305global.com/wp-content/uploads/2015/04/honeybadger.jpg' style='border: 4px solid #e7e7e7;' width='128'>
+            </p>
+          </div>
+          <div class='col-sm-9 col-md-12'>
+            <p class='lead'>Hackathon Starter Ruby is brought to you by <a href="http://github.com/jaequery/honeybadger">@jaequery</a>.</p>
+            <p class='lead'><span class='icon-github-3'></span> <a href='http://github.com/jaequery/honeybadger'>GitHub</a></p>
+            <p class='lead'><span class='icon-twitter-3'></span> <a href='https://twitter.com/jaequery/'>Twitter</a></p>
+            <p class='lead'><span class='icon-feed-4'></span> <a href='http://jaequery.com/'>Website</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-8 col-md-pull-4'>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h3 class='panel-title'>Readme</h3>
+      </div>
+      <div class='panel-body readme'>
+        <h1 id="hackathon-starter-framework">Hackathon Starter Framework</h1>
+
+        <p>This project is a minimalist starter framework intended to be used for small projects when speed of development is a priority. It was created to be used at &quot;Startup Weekend&quot; style events, where a significant portion of your development team may not have experience with Ruby or Rails - and where development time is measured in hours rather than days. It is licensed under the <a href="http://choosealicense.com/licenses/mit/">MIT License</a>.</p>
+
+        <p>The project focuses on the following goals:</p>
+
+        <ul>
+          <li>produce a framework optimized for fast development with a minimal learning curve</li>
+          <li>produce a set of tutorials for &quot;how to do X&quot; that can be followed by programmers with minimal Ruby experience</li>
+        </ul>
+
+        <h1 id="prerequisites">Prerequisites</h1>
+
+        <p>To run this project locally, you will need a Unix environment like Linux or OSX with the following tools installed:</p>
+
+        <ul>
+          <li><a href="#install-ruby">Ruby Version 2.1.1</a></li>
+          <li><a href="http://bundler.io">Bundler</a></li>
+          <li><a href="http://www.sqlite.org">Sqlite</a></li>
+        </ul>
+
+        <p>Additionally, if you want to customize stylesheets, you will need a <a href="http://lesscss.org">LESS</a> compiler. Some good LESS compiler GUIs are <a href="https://incident57.com/codekit/">CodeKit</a>, <a href="http://livereload.com">LiveReload</a> or <a href="http://wearekiss.com/simpless">SimpLess</a>, or you can use the <a href="http://lesscss.org/#using-less-installation">official node.js package</a> via the command line.</p>
+
+        <h1 id="setup">Setup</h1>
+
+        <ol>
+          <li><p>download the project</p>
+
+            <pre><code>git clone git@github.com:qrohlf/hackathon-starter-sinatra.git&#x000A;cd hackathon-starter-sinatra&#x000A;</code></pre></li>
+          <li><p>install dependencies</p>
+
+            <pre><code>bundle install --without production&#x000A;</code></pre></li>
+          <li><p>setup the environment variables</p>
+
+            <pre><code>mv .env.example .env&#x000A;</code></pre></li>
+          <li><p>setup the database</p>
+
+            <pre><code>rake db:migrate&#x000A;rake db:seed&#x000A;</code></pre></li>
+          <li><p>start the development server</p>
+
+            <pre><code>shotgun&#x000A;</code></pre></li>
+          <li><p>point your web browser to <a href="http://127.0.0.1:9393/">http://127.0.0.1:9393/</a> to see the app in action.</p></li>
+        </ol>
+
+        <h1 id="features">Features</h1>
+
+        <ul>
+          <li><a href="https://github.com/janko-m/sinatra-activerecord">Sinatra-ActiveRecord</a> for database abstraction and Rake tasks</li>
+          <li><a href="https://github.com/activerecord-hackery/squeel">Squeel</a> for ActiveRecord query awesomeness</li>
+          <li><a href="http://getbootstrap.com">Bootstrap</a> for dead-easy styling</li>
+          <li>Pre-packaged with the <a href="http://bootswatch.com/lumen/">Lumen</a> <a href="http://bootswatch.com">Bootswatch</a>  theme</li>
+          <li>Include the full <a href="http://icomoon.io/#preview-free">IcoMoon Free</a> icon font</li>
+          <li><a href="https://github.com/rtomayko/shotgun">Shotgun</a> for automatically reloading the app after code changes</li>
+          <li><a href="http://guides.rubyonrails.org/active_support_core_extensions.html">ActiveSupport</a> with all core extensions loaded by default for all the bells and whistles</li>
+          <li><a href="https://stripe.com/docs/checkout">Stripe Checkout</a> for super-smooth and easy payment processing</li>
+        </ul>
+
+        <h1 id="how-do-i...">How do I...</h1>
+
+        <h2 id="install-ruby">Install Ruby</h2>
+
+        <p>There are lots of different ways to install Ruby or update your Ruby version. Most linux distributions include a ruby package in their built-in repositories; however it is unlikely that this package is kept up-to-date with the latest version of Ruby. Most Ruby developers use a seperate tool like <a href="https://rvm.io">RVM</a> or <a href="https://github.com/sstephenson/rbenv#how-rbenv-hooks-into-your-shell">rbenv</a> to manage their Ruby versions.</p>
+
+        <p>My personal preference is to use rbenv with the ruby-build and rbenv-gem-rehash plugins to install and manage Ruby versions. I&#39;ll show you how to install and use those tools here.</p>
+
+        <h3 id="osx">OSX</h3>
+
+        <p>If you&#39;re on OSX, you can install all three of these things with Homebrew (and if you don&#39;t have Homebrew yet you should go <a href="http://brew.sh">install that now</a>).</p>
+
+        <pre><code class="bash">brew install rbenv ruby-build rbenv-gem-rehash&#x000A;echo &#39;if which rbenv &gt; /dev/null; then eval &quot;$(rbenv init -)&quot;; fi&#39; &gt;&gt; ~/.bash_profile&#x000A;</code></pre>
+
+        <h3 id="linux">Linux</h3>
+
+        <p>If you&#39;re on Linux, your installation will look a bit different. Follow the GitHub checkout instructions on the <a href="https://github.com/sstephenson/rbenv#basic-github-checkout">rbenv readme</a> to install rbenv.  Make sure to pay attention to Ubuntu and Zsh-specific notes for steps 2 and 3 if you&#39;re installing on Ubuntu or use Zsh.</p>
+
+        <p>Once you&#39;ve installed rbenv, clone the ruby-build and rbenv-gem-rehash repositories to finish the install:</p>
+
+        <pre><code class="bash">git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build&#x000A;git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash&#x000A;</code></pre>
+
+        <h3 id="installing-&amp;-using-a-new-ruby-version">Installing &amp; Using a New Ruby Version</h3>
+
+        <p>Once you&#39;ve got rbenv installed, you can install a new Ruby version with a single command:</p>
+
+        <pre><code class="bash">rbenv install 2.1.1 #install Ruby 2.1.1&#x000A;</code></pre>
+
+        <p><em>note that you can see a list of all the available Ruby versions by running <code>rbenv install --list</code></em></p>
+
+        <p>You can then set your system to use the new Ruby version by default with</p>
+
+        <pre><code class="bash">rbenv global 2.1.1&#x000A;</code></pre>
+
+        <p><strong>Or</strong> specify your ruby version in a specific directory with</p>
+
+        <pre><code class="bash">cd hackathon-starter-sinatra&#x000A;rbenv local 2.1.1&#x000A;</code></pre>
+
+        <p>When using a new Ruby version for the first time, you&#39;ll probably want to install Bundler for that Ruby version:</p>
+
+        <pre><code class="bash">gem install bundler&#x000A;</code></pre>
+
+        <p>Hackathon Starter Sinatra requires you to use Ruby 2.1.1 (it doesn&#39;t matter whether you use the local or global method to set this).</p>
+
+        <h2 id="add-a-model">Add a Model</h2>
+
+        <p>If you&#39;re not familiar with ActiveRecord and  ActiveRecord database migrations, follow this guide to create a new model for your application (replace &#39;example&#39; with the name of your model, making sure to adjust for pluralization and capitalization).</p>
+
+        <p>First, create the database table where the model&#39;s data will be stored:</p>
+
+        <pre><code class="bash">rake db:create_migration NAME=create_examples&#x000A;</code></pre>
+
+        <p><em>Note that &quot;examples&quot; is plural. In ActiveRecord, the convention is that database table names are expected to be plural, while class names are singular. For more on this, see <a href="http://edgeguides.rubyonrails.org/active_record_basics.html#naming-conventions">here</a>.</em></p>
+
+        <p>Now look in your <code>db/migrate</code> directory. There should be a new file with your migration there. (It will be named something like <code>20140223171803_create_examples.rb</code>). Open it and add your model details (documentation on how to write ActiveRecord migrations is available <a href="http://edgeguides.rubyonrails.org/migrations.html">here</a>).</p>
+
+        <p>My database migration looks like this:</p>
+
+        <pre><code class="ruby">class CreateExamples &lt; ActiveRecord::Migration&#x000A;  def change&#x000A;    create_table :examples do |t|&#x000A;        t.string :name&#x000A;        t.text :description&#x000A;&#x000A;        t.timestamps&#x000A;    end&#x000A;  end&#x000A;end&#x000A;</code></pre>
+
+        <p>Now you need to create your model class. Create a new file in <code>models/</code> called <code>Example.rb</code> (note that the class name is singular and captialized). Open it and declare a subclass of <code>ActiveRecord::Base</code> like so:</p>
+
+        <pre><code class="ruby">class Example &lt; ActiveRecord::Base&#x000A;end&#x000A;</code></pre>
+
+        <p>That&#39;s all the code you need. (For documentation on some fancier things you can do with ActiveRecord like validations and associations, see <a href="http://edgeguides.rubyonrails.org/active_record_basics.html">this guide</a>).</p>
+
+        <p>Now, open a terminal and run your database migration:</p>
+
+        <pre><code class="bash">rake db:migrate&#x000A;</code></pre>
+
+        <p>This will create a table in your database called <code>examples</code> with the columns <code>name</code>, <code>description</code>, <code>created_at</code>, and <code>updated_at</code> . It will also update <code>db/schema.rb</code> with your app&#39;s updated database schema.</p>
+
+        <p>You can now create, read, update, and delete instances of your new model within your app. For example, </p>
+
+        <pre><code class="ruby">Example.create(name: &#39;foo&#39;, description: &#39;bar&#39;)&#x000A;</code></pre>
+
+        <p>will create a new <code>Example</code> class and add it to the <code>examples</code> database.</p>
+
+        <h2 id="process-payments">Process Payments</h2>
+
+        <p>This project provides an easy and robust way to securely process payments through integration with <a href="https://stripe.com/checkout">Stripe Checkout</a>. To use Stripe for payment processing, you&#39;ll need an account (sign up <a href="https://manage.stripe.com/register">here</a>) and a set of API keys. </p>
+
+        <p>To get your stripe API keys, head over to the API keys section of your account settings (<a href="https://manage.stripe.com/account/apikeys">https://manage.stripe.com/account/apikeys</a>) and copy the secret and publishable keys into the <code>STRIPE_KEY_SECRET</code> and <code>STRIPE_KEY_PUBLIC</code> of your <code>.env</code> file. I suggest copying the testing keys first so that you can make sure everything is working properly, then switch to the development keys when you&#39;re ready to deploy.</p>
+
+        <p>Your <code>.env</code> file should have something like this:</p>
+
+        <pre><code class="bash"># Stripe secret key for server-side use&#x000A;STRIPE_KEY_SECRET=&#39;sk_test_ZBLAOTn26WEjvscp0euLTmlB&#39;&#x000A;&#x000A;# Stripe publishable key for client-side use&#x000A;STRIPE_KEY_PUBLIC=&#39;pk_test_OWXc7nzt4IqPBFsQexpjs4vW&#39;&#x000A;</code></pre>
+
+        <p><em>(these are not actual API keys)</em></p>
+
+        <p>Next, you&#39;ll want to look at the <code>checkout_button</code> helper provided in <code>app.rb</code>. You can pass this helper an amount (in cents) and an options hash and it will output a fully-functional Stripe checkout button. The following option keys are supported (all values should be strings):</p>
+
+        <table><thead>
+          <tr>
+            <th>key</th>
+            <th>value</th>
+          </tr>
+        </thead><tbody>
+          <tr>
+            <td>:name</td>
+            <td>What the charge is for</td>
+          </tr>
+          <tr>
+            <td>:description</td>
+            <td>Additional details about the charge</td>
+          </tr>
+          <tr>
+            <td>:image</td>
+            <td>URL for a 128x128 image to display for the charge</td>
+          </tr>
+          <tr>
+            <td>:item</td>
+            <td>A url-safe string to pass to the charge callback</td>
+          </tr>
+        </tbody></table>
+
+        <p>A sample call to the <code>checkout_button</code> helper might look like this:</p>
+
+        <pre><code class="ruby">checkout_button 500, {name: &#39;Example Charge Name&#39;, description: &#39;Pretty slick, eh?&#39;, item: &#39;example_charge&#39;}&#x000A;</code></pre>
+
+        <p>This creates a basic charge button for a $5 fee. When the user completes checkout with Stripe, a POST request will be issued to <code>/charge/example_charge</code> with a <code>stripeToken</code> parameter that can be used to charge the customer&#39;s card. The customer&#39;s card <em>will not</em> be charged until you explicity do so on the server.</p>
+
+        <p>Here is an example implementation of how to actually process the charge in the charge callback (taken straight from <code>app.rb</code>):</p>
+
+        <pre><code class="ruby"># process a charge for something&#x000A;# see https://stripe.com/docs/tutorials/charges for details&#x000A;post &#39;/charge/:item&#39; do &#x000A;    # Get the credit card details submitted by the form&#x000A;    token = params[:stripeToken]&#x000A;&#x000A;    # The cost of your item should probably be stored in your model &#x000A;    # or something. Everything is specified in cents&#x000A;    charge_amounts = {&#39;example_charge&#39; =&gt; 500, &#39;something_else&#39; =&gt; 200}; &#x000A;&#x000A;    # Create the charge on Stripe&#39;s servers - this will charge the user&#39;s card&#x000A;    begin&#x000A;        charge = Stripe::Charge.create(&#x000A;            :amount =&gt; charge_amounts[params[:item]], # amount in cents. &#x000A;            :currency =&gt; &quot;usd&quot;,&#x000A;            :card =&gt; token,&#x000A;            :description =&gt; &quot;description for this charge&quot; # this shows up in receipts&#x000A;            )&#x000A;        title &#39;Payment Complete&#39;&#x000A;    rescue Stripe::CardError =&gt; e&#x000A;        title &#39;Card Declined&#39;&#x000A;        flash.now[:warning] = &#39;Your card was declined&#39;&#x000A;        # The card has been declined&#x000A;        puts &quot;CardError&quot;&#x000A;    rescue Stripe::InvalidRequestError =&gt; e&#x000A;        title &#39;Invalid Request&#39;&#x000A;        flash.now[:warning] = &#39;Something went wrong with the transaction. Did you hit refresh? Don\&#39;t do that.&#39;&#x000A;    rescue =&gt; e&#x000A;        puts e&#x000A;    end&#x000A;&#x000A;    haml :charge&#x000A;end&#x000A;</code></pre>
+
+        <p>For documentation on Stripe&#39;s Ruby API, see <a href="https://stripe.com/docs/api?lang=ruby">here</a>. Also, make sure to update your environment variables on the server when you deploy, since your <code>.env</code> file should not be checked in to git.</p>
+
+        <h1 id="rationale">Rationale</h1>
+
+        <h2 id="why-sinatra-and-not-rails?">Why Sinatra and not Rails?</h2>
+
+        <p>Rails is a great tool for speeding up development - if your whole team knows Rails. Otherwise, Sinatra is better.</p>
+
+        <p>For most hackathon-style micro applications, the full Rails framework introduces too much friction to the development process. It&#39;s got a deeply nested directory structure, lots of distracting boilerplate files, and too much implicit &quot;magic&quot; that can also trip up team members. Sinatra with ActiveRecord gives you the convenience of a Rails project with a flatter structure, less boilerplate to wade through, and more explicit code that is easier for people without Rails experience to follow.</p>
+
+        <h2 id="why-no-social-logins?">Why no social logins?</h2>
+
+        <p>Social logins are convenient, but can alienate privacy-minded users and require additional logic to handle the case when a user attempts to log in with multiple services. For the sake of simplicity, this project has opted to use a traditional email/password login system.</p>
+
+        <p>If your app needs social permissions, check out the excellent and well-documented <a href="http://intridea.github.io/omniauth/">OmniAuth</a> project, which includes implementation examples for Sinatra.</p>
+
+        <h2 id="why-no-tests?">Why no tests?</h2>
+
+        <p>This is for a hackathon. TDD is great for longer-term projects, but it&#39;s unnecessary overhead when time is of the essence and bugs aren&#39;t a huge deal.</p>
+      </div>
+    </div>
+  </div>
+</div>

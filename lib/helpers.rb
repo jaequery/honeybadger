@@ -4,7 +4,7 @@ def config(name, value = nil)
   if value.nil?
 
     # do lookup
-    row = Config.where(:name => name).first[:value]
+    row = Setting.where(:name => name).first[:value]
 
     # if not found, get settings from config/apps.rb
     if row.nil?
@@ -18,18 +18,18 @@ def config(name, value = nil)
   elsif
 
     if value == ""
-      Config.where(:name => name).destroy
+      Setting.where(:name => name).destroy
     end
 
   else
-    row = Config.where(:name => name)
+    row = Setting.where(:name => name)
 
     if value.class == Hash
       value = value.to_s
     end
 
     if row.count == 0
-      Config.new(:name => name, :value => value).save
+      Setting.new(:name => name, :value => value).save
     else
       row.update(:name => name, :value => value)
     end

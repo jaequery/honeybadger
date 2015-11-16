@@ -67,6 +67,7 @@ module Honeybadger
           model = User[params[:id]]
           if !model.nil?
             model = model.set(data)
+
             if model.save
 
               msg = output_js_success('Record has been updated!')
@@ -163,66 +164,20 @@ module Honeybadger
     # end post routes
 
 
-    # config routes
-    get '/configs' do
-      @configs = Config.order(:id).reverse
-      render "configs"
+    # settings routes
+    get '/settings' do
+      @settings = Setting.order(:id).reverse.all
+      @settings = Setting[1]
+      render "settings"
     end
 
-    get '/config/(:id)' do
-      @config = Config[params[:id]]
-      render "config"
-    end
-
-    post '/config/save/(:id)', :provides => :js do
-      data = params[:config]
-
-      # validate fields
-      rules = {
-        :name => {:type => 'string', :required => true},
-      }
-      validator = Honeybadger::Validator.new(data, rules)
-      if !validator.valid?
-        msg = output_js_validator(validator.errors)
-      else
-
-        # create or update
-        if params[:id].blank? # create
-          model = Config.new(data).save
-          if model
-            msg = output_js_success('Record has been created!')
-            msg += "location.href = '/admin/configs';"
-          else
-            msg = output_js_error('Sorry, there was a problem creating')
-          end
-        else # update
-          model = Config[params[:id]]
-          if !model.nil?
-            model = model.set(data)
-            if model.save
-              msg = output_js_success('Record has been updated!')
-            else
-              msg = output_js_error('Sorry, there was a problem updating')
-            end
-          end
-        end # end save
-
-      end # end validator
+    post '/settings/save', :provides => :js do
+      data = params
+      abort
 
       msg
-
     end
-
-    get '/config/delete/(:id)', :provides => :js do
-      model = Config[params[:id]]
-      if !model.nil? && model.destroy
-        msg = output_js_success('Record deleted!')
-        msg += "$('#row_#{params[:id]}').slideUp();"
-      else
-        msg = output_js_error('Sorry, there was a problem deleting')
-      end
-    end
-    # end config routes
+    # end setting routes
 
     ### end of routes ###
 
