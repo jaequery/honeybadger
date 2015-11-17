@@ -11,12 +11,12 @@
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="/bower_components/sweetalert/dist/sweetalert.css" />
-    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css" />
 
     <!-- styles -->
     <link rel="stylesheet" href="/site/style.min.css" />
-
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap-social/bootstrap-social.css">
+    <link rel="stylesheet" href="/bower_components/sweetalert/dist/sweetalert.css" />
 
     <!-- honeybadger required js -->
     <script src="/vendor/honeybadger/jquery-ujs.js"></script>
@@ -51,7 +51,9 @@
             </div>
         </div>
     </div>
+
     <div class="container">
+      <%= partial("partials/flash.erb", :locals => {:flash => flash}) %>
         <%= yield %>
         <hr>
     </div>
