@@ -6,6 +6,8 @@ app:
  environment:
  - VIRTUAL_HOST=honeybadger.app,honeybadger.jaequery.com
  restart: always
+ volumes:
+ - .:/app
 db:
  image: postgres
  environment:
