@@ -10,3 +10,4 @@ db/*.db
 *.bak
 *.3000.pid*
 .idea
+public/uploads/*

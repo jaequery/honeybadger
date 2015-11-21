@@ -1,0 +1,35 @@
+<%
+if !flash.keys[0].blank?
+
+  type = flash.keys[0].to_s
+  msg = flash[type.to_sym][0].capitalize
+
+  if type == "notice"
+    alert_class = "alert-warning"
+      alert_title = "Warning"
+    elsif type == "error"
+      alert_class = "alert-danger"
+        alert_title = "Error"
+      elsif type == "success"
+        alert_class = "alert-success"
+          alert_title = "Success"
+        else
+          alert_class = "alert-info"
+            alert_title = "Info"
+          end
+
+%>
+<!-- flash messages -->
+<div id="flash" class="row flash">
+  <div class="col-md-12">
+
+    <div class="alert <%= alert_class %> alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-ban"></i> <span class="flash_title"><%= alert_title %></span></h4>
+      <div class="flash_message"><%= msg %></div>
+    </div>
+  </div>
+
+</div>
+<!-- /.flash messages -->
+<% end %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,58 +21,58 @@
     <!-- honeybadger required js -->
     <script src="/vendor/honeybadger/jquery-ujs.js"></script>
 
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="navbar navbar-default  navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                </button><a href="/" class="navbar-brand"><i class="fa fa-cube"></i> Project name</a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/example">Example Page</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                  <% if session[:user].blank? %>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/signup">Create Account</a></li>
-                  <% else %>
-                    <% if session[:user][:role] == 'admin' %>
-                      <li><a href="/admin">To Admin</a></li>
-                    <% end %>
-
-                    <li><a href="/logout">Logout <%= session[:user][:name] %></a></li>
-                  <% end %>
-                </ul>
-            </div>
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button><a href="/" class="navbar-brand"><i class="fa fa-cube"></i> Project name</a>
         </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/example">Example</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/blog">Blog</a></li>
+            <% if session[:user].blank? %>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/signup">Create Account</a></li>
+            <% else %>
+              <% if session[:user][:role] == 'admin' %>
+                <li><a href="/admin">To Admin</a></li>
+              <% end %>
+
+              <li><a href="/logout">Logout <%= session[:user][:name] %></a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <div class="container">
       <%= partial("partials/flash.erb", :locals => {:flash => flash}) %>
-        <%= yield %>
-        <hr>
+      <%= yield %>
+      <hr>
     </div>
-
 
     <div id='footer'>
       <div class='container'>
         <div class='row'>
-            <p class="pull-left">© 2015 Company, Inc. All Rights Reserved</p>
-            <ul class="pull-right list-inline">
-                <li><a href="https://github.com/jaequery/honeybadger">GitHub Project</a>
-                </li>
-            </ul>
+          <p class="pull-left">© 2015 Company, Inc. All Rights Reserved</p>
+          <ul class="pull-right list-inline">
+            <li><a href="https://github.com/jaequery/honeybadger">GitHub Project</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
 
     <!-- site related javascripts -->
     <script src="/site/main.js"></script>
-</body>
+  </body>
 
 </html>

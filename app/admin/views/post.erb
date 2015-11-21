@@ -13,7 +13,6 @@
     </ol>
   </section>
 
-
   <% form_for :post, "/admin/post/save/#{params[:id]}", :id => 'admin-form', :remote => true do |f| %>
     <!-- Main content -->
     <section class="content col-md-12">
@@ -50,7 +49,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <%= f.label :content, :caption => "Content", :required => true %>
-                <%= f.text_area :content, :class => 'form-control wysiwyg' %>
+                <%= f.text_area :content, :class => 'form-control wysiwyg', :style => 'height: 240px;' %>
               </div><!-- /.form-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->

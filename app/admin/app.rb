@@ -118,7 +118,7 @@ module Honeybadger
       # validate fields
       rules = {
         :user_id => {:type => 'numeric', :required => true},
-        :title => {:type => 'string', :min => 2, :max => 128, :required => true},
+        :title => {:type => 'string', :min => 2, :max => 256, :required => true},
         :content => {:type => 'string', :required => true},
       }
       validator = Honeybadger::Validator.new(data, rules)

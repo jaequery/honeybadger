@@ -153,14 +153,7 @@
                         <%= f.label :avatar_url, :caption => "Profile pic" %>
                         <%= f.file_field :avatar_url, :class => 'form-control' %>
                       </div>
-                      <!-- /.form-group -->
-                    </div>
-                    <!-- /.col -->
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <img src="<%= @user[:avatar_url] %>">
-                      </div>
+                      <img src="<%= @user[:avatar_url] %>" class="col-md-12">
                       <!-- /.form-group -->
                     </div>
                     <!-- /.col -->

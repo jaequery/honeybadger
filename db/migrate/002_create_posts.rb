@@ -3,7 +3,7 @@ Sequel.migration do
     create_table :posts do
       primary_key :id
       Fixnum :user_id
-      String :title, :size => 64
+      String :title, :size => 256
       String :content
       DateTime :created_at
       DateTime :updated_at
