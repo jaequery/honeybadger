@@ -26,7 +26,7 @@ module Honeybadger
           error_messages << "#{error[:name]} #{error[:error]}"
         end
 
-        # show sweet alert
+        # show sweet alert (use below instead)
         #js += "swal('Validation error!', '#{error_messages.join("\\n")}', 'error');\n"
 
         # show input form errors

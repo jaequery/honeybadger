@@ -16,19 +16,29 @@ module Honeybadger
     ### this runs before all routes ###
     before do
       @title = "Honeybadger CMS"
+
+      # pagination
+      @page = 1
+      if !params[:page].blank?
+        @page = params[:page].to_i
+      end
+      @per_page = 15
+
     end
 
 
-    ### put your routes here ###
+    ### list page ###
     get :index do
       @posts = Post.all.reverse
       render "index"
     end
 
+    ### view page ###
     get :index, :with => [:title, :id] do
       @post = Post[params[:id]]
       render "view"
     end
+
 
   end
 

@@ -12,13 +12,13 @@
 
   <link rel="shortcut icon" href="/favicon.ico">
 
-  <link rel="stylesheet" type="text/css" href="/blog/style.css" />
+  <link rel="stylesheet" type="text/css" href="/blog/css/style.css" />
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 </head>
-<body class="author-template author-adam-west">
+<body class="author-template">
 
 <header class="main-header author-head no-cover">
   <nav class="main-nav overlay clearfix">
@@ -29,9 +29,9 @@
 <section class="author-profile inner">
 
   <figure class="author-image">
-      <a href="<%= url_for(:index) %>"><div class="img" style="background-image: url(http://i0.wp.com/www.informafrica.com/wp-content/uploads/2012/01/honeybadger-ratel.jpg)"></div></a>
+      <a href="<%= url_for(:index) %>"><div class="img" style="background-image: url(/blog/img/logo.jpg)"></div></a>
   </figure>
-  <h1 class="author-title">Honeybadger</h1>
+  <h1 class="author-title" style="cursor: pointer;" onclick="location.href='<%= url_for(:index) %>';">Honeybadger</h1>
   <h2 class="author-bio"></h2>
   <div class="author-meta">
     <span class="author-stats">A Sinatra-based Starter Framework</span>
@@ -46,7 +46,7 @@
 </main>
 
 <footer class="site-footer clearfix">
-  <section class="copyright"><a href="http://blog.codebasehq.com">The Honeybadger Blog</a> &copy; 2015</section>
+  <section class="copyright"><a href="<%= url_for(:index) %>">The Honeybadger Blog</a> &copy; 2015</section>
   <section class="poweredby">Proudly published with <a href="https://github.com/jaequery/honeybadger">Honeybadger</a></section>
 </footer>
 

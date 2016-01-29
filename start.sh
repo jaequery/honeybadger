@@ -1,2 +1,2 @@
 #!/bin/bash
-padrino s
+passenger start

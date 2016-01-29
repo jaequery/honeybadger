@@ -24,6 +24,8 @@ gem 'sequel'
 #gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 #gem 'roda-will_paginate'
+gem 'forme'
+#gem 'forme/erb'
 
 # Test requirements
 gem 'rspec', :group => 'test'

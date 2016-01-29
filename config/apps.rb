@@ -13,10 +13,6 @@ Padrino.configure_apps do
         :instagram => {:key => 'key', :secret => 'secret'}
       }
 
-  set :defaults, {
-        :avatar_url => "http://images.mentalfloss.com/sites/default/files/styles/insert_main_wide_image/public/600honeybadger_plush.jpg"
-      }
-
 end
 
 # Mounts the core application for this project

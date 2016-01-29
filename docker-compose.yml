@@ -5,11 +5,11 @@ app:
  command: /init_container.sh
  environment:
  - VIRTUAL_HOST=honeybadger.app,honeybadger.jaequery.com
- restart: always
+# restart: always
  volumes:
  - .:/app
 db:
  image: postgres
  environment:
  - POSTGRES_PASSWORD=j
- restart: always
+# restart: always

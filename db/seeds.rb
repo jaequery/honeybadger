@@ -1,7 +1,8 @@
 # add default admin user
 user = User.new
 user.email = 'test@test.com'
-user.username = user.email
+user.name = 'Honeybadger'
+user.username = 'admin'
 user.password = 'asdfasdf'
 user.password_confirmation = user.password
 user.role = 'admin'

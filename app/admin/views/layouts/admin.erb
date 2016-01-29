@@ -80,13 +80,13 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<%= session[:user][:avatar_url] || settings.defaults[:avatar_url] %>" class="user-image" alt="User Image">
+                  <img src="<%= session[:user][:avatar_url] %>" class="user-image" alt="User Image">
                   <span class="hidden-xs"><%= session[:user][:email]%></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="<%= session[:user][:avatar_url] || settings.defaults[:avatar_url] %>" class="img-circle" alt="User Image">
+                    <img src="<%= session[:user][:avatar_url] %>" class="img-circle" alt="User Image">
                     <p>
                       <%= session[:user][:email] %> - <%= session[:user][:role] %>
                       <small>Member since <%= session[:user][:created_at].strftime('%F') %></small>
@@ -118,7 +118,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="<%= session[:user][:avatar_url] || settings.defaults[:avatar_url] %>" class="img-circle" alt="User Image" style="width: 50px; height: 50px;">
+              <img src="<%= session[:user][:avatar_url] %>" class="img-circle" alt="User Image" style="width: 50px; height: 50px;">
             </div>
             <div class="pull-left info">
               <p><%= session[:user][:email] %></p>
