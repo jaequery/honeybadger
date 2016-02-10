@@ -30,6 +30,7 @@ if Padrino.env == :development
   Padrino::Application.use BetterErrors::Middleware
   BetterErrors.application_root = PADRINO_ROOT
   BetterErrors.logger = Padrino.logger
+  BetterErrors::Middleware.allow_ip! '0.0.0.0/0'
 end
 
 Padrino.load!
