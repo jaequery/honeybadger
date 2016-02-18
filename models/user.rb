@@ -82,7 +82,7 @@ class User < Sequel::Model
       # instagram
       if auth["provider"] == "instagram"
         user.name = auth["info"]["name"]
-        user.username = auth["info"]["username"]
+        user.username = auth["info"]["nickname"]
       end
 
       # create user

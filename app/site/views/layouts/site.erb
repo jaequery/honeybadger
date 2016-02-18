@@ -13,7 +13,13 @@
   <body>
     <nav style="">
       <a href="/about">About</a>
+
+      <% if session[:user].nil? %>
       <a href="/user/login">Login</a>
+      <% else %>
+      <a href="/admin">Admin</a>
+       <a href="/user/logout">Logout</a>
+      <% end %>
       <a href="/debug">Debug</a>
       <a href="https://github.com/jaequery/honeybadger" target="_blank">Github</a>
     </nav>

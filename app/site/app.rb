@@ -22,15 +22,21 @@ module Honeybadger
     auth_keys = settings.auth # @todo: settings is not available in Builder
 
     use OmniAuth::Builder do
+
+      # /auth/twitter
       provider :twitter,  auth_keys[:twitter][:key], auth_keys[:twitter][:secret]
+
+      # /auth/instagram
       provider :instagram,  auth_keys[:instagram][:key], auth_keys[:instagram][:secret]
+
     end
 
-    get '/user/:name/callback' do
+    get '/auth/:name/callback' do
       auth    = request.env["omniauth.auth"]
       user = User.login_with_omniauth(auth)
 
       if user
+        session[:user] = user
         redirect("/")
       else
         output(user.values)
