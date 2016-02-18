@@ -6,22 +6,36 @@
     <title>
     <%=@title%>
     </title>
-    <link rel="stylesheet" href="/admin/bootstrap/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/site/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    
   </head>
   <body>
-    <nav style="">
+    <nav>
       <a href="/about">About</a>
-
-      <% if session[:user].nil? %>
-      <a href="/user/login">Login</a>
-      <% else %>
-      <a href="/admin">Admin</a>
-       <a href="/user/logout">Logout</a>
-      <% end %>
-      <a href="/debug">Debug</a>
       <a href="https://github.com/jaequery/honeybadger" target="_blank">Github</a>
+
+      <% if !session[:user].nil? %>
+      <div class="btn-group">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <%=session[:user][:username]%> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <% if session[:user][:role] == "admin" %>
+            <li><a href="/admin">Admin</a></li>
+          <% end %>
+          <li><a href="/user/account">My Account</a></li>
+          <li><a href="/user/logout">Logout</a></li>
+        </ul>
+      </div>
+      <% else %>
+      <a href="/user/login">Login</a>
+      <% end %>
+      
     </nav>
     <br style="clear: both;">
     <div class="container content">
@@ -52,8 +66,14 @@
         </small>
       </footer>
     </div>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script src="http://static.jsbin.com/js/embed.min.js?3.34.0"></script>
+
+    <script>
+    (function(){
+      $('.dropdown-toggle').dropdown();
+    });
+    </script>
   </body>
 </html>

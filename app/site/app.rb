@@ -37,10 +37,25 @@ module Honeybadger
 
       if user
         session[:user] = user
+
+        if user.email.nil?
+          redirect("/user/account", :notice => 'Please fill in required informations')
+        end
+
         redirect("/")
       else
         output(user.values)
       end
+    end
+
+    get "/user/account" do
+      render "account"
+    end
+
+    post "/user/account" do
+      session["user"].set(params)
+      session["user"].save
+      redirect("/user/account")
     end
 
     get "/user/login" do

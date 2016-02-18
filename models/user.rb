@@ -24,6 +24,10 @@ class User < Sequel::Model
 
   def before_save
 
+    if self[:provider] == "email" && !self[:email].nil? && self[:refid].nil?
+      self[:refid] = self[:email]
+    end
+
     if !self[:avatar_url].blank? && self[:avatar_url].class == Hash
       tempfile = self[:avatar_url][:tempfile]
       path = "/uploads/" + self[:avatar_url][:filename]
@@ -37,8 +41,16 @@ class User < Sequel::Model
 
   def self.register_with_email(params, role = "users")
     user = User.new
+    user.name = params[:name]
+    user.address = params[:address]
+    user.address2 = params[:address2]
+    user.city = params[:city]
+    user.state = params[:state]
+    user.zip = params[:zip]
+    user.country = params[:country]
     user.email = params[:email]
     user.username = params[:email]
+    user.refid = params[:email]
     user.password = params[:password]
     user.password_confirmation = params[:password_confirmation]
     user.role = role
@@ -46,7 +58,6 @@ class User < Sequel::Model
 
     if user.valid?
       user.save
-      #session[:user] = user
     end
 
     return user
@@ -63,7 +74,8 @@ class User < Sequel::Model
       user = User.new
       user.provider = auth["provider"]
       user.uid = auth["uid"]
-      user.name = auth["name"]
+      user.first_name = auth["name"].split(" ").first if !auth["name"].nil?
+      user.last_name = auth["name"].split(" ").last if !auth["name"].nil?
       user.username = auth["username"]
       user.email = auth["email"]
       user.role = "users"
@@ -75,20 +87,23 @@ class User < Sequel::Model
 
       # twitter
       if auth["provider"] == "twitter"
-        user.name = auth["info"]["name"]
+        user.first_name = auth["info"]["name"].split(" ").first
+        user.last_name = auth["info"]["name"].split(" ").last
         user.username = auth["info"]["username"]
       end
 
       # instagram
       if auth["provider"] == "instagram"
-        user.name = auth["info"]["name"]
+        user.first_name = auth["info"]["name"].split(" ").first
+        user.last_name = auth["info"]["name"].split(" ").last
         user.username = auth["info"]["nickname"]
+        user.refid = auth["uid"]
+        user.avatar_url = auth["info"]["image"]
       end
 
       # create user
       if user.valid?
         user.save
-        #session[:user] = user
       end
 
     end

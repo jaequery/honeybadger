@@ -1,7 +1,8 @@
 # add default admin user
 user = User.new
 user.email = 'test@test.com'
-user.name = 'Honeybadger'
+user.first_name = 'Jae'
+user.last_name = 'Lee'
 user.username = 'admin'
 user.password = 'asdfasdf'
 user.password_confirmation = user.password
@@ -14,6 +15,7 @@ user.save
 post = Post.new
 post.user_id = 1
 post.title = "Why I created Honeybadger"
+post.teaser = ""
 post.content = "Because I wanted a simple and lightweight blogging / CMS framework for Ruby and I just could not find one that I liked."
 post.created_at = Time.now
 post.save
