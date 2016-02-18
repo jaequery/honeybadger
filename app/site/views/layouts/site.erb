@@ -1,78 +1,53 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= @title %></title>
-
-    <!-- libraries -->
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script>
-
-    <!-- styles -->
-    <link rel="stylesheet" href="/site/style.min.css" />
-    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/bower_components/bootstrap-social/bootstrap-social.css">
-    <link rel="stylesheet" href="/bower_components/sweetalert/dist/sweetalert.css" />
-
-    <!-- honeybadger required js -->
-    <script src="/vendor/honeybadger/jquery-ujs.js"></script>
-
+    <title>
+    <%=@title%>
+    </title>
+    <link rel="stylesheet" href="/admin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/site/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
-
   <body>
-    <div class="navbar navbar-default  navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-          </button><a href="/" class="navbar-brand"><i class="fa fa-cube"></i> Project name</a>
+    <nav style="">
+      <a href="/about">About</a>
+      <a href="/user/login">Login</a>
+      <a href="/debug">Debug</a>
+      <a href="https://github.com/jaequery/honeybadger" target="_blank">Github</a>
+    </nav>
+    <br style="clear: both;">
+    <div class="container content">
+      
+      <header class="masthead">
+        <h3 class="masthead-title">
+        <div class="post-page__logo-wrapper">
+          <a href="/" title="Home">
+            <img src="/site/img/logo.svg" alt="React" class="post-page__logo">
+            Honeybadger
+          </a>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/example">Example</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/blog">Blog</a></li>
-            <% if session[:user].blank? %>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/signup">Create Account</a></li>
-            <% else %>
-              <% if session[:user][:role] == 'admin' %>
-                <li><a href="/admin">To Admin</a></li>
-              <% end %>
+        </h3>
+      </header>
+      <main>
 
-              <li><a href="/logout">Logout <%= session[:user][:name] %></a></li>
-            <% end %>
-          </ul>
+        <% if !flash[:notice].nil? %>
+        <div class="message">
+          <%= flash[:notice] %>
         </div>
-      </div>
-    </div>
+        <% end %>
 
-    <div class="container">
-      <%= partial("partials/flash.erb", :locals => {:flash => flash}) %>
-      <%= yield %>
-      <hr>
+        <%=yield%>      
+      </main>
+      <footer class="footer">
+        <small>
+        &copy; Honeybadger <time>2016</time>. All rights reserved.
+        </small>
+      </footer>
     </div>
-
-    <div id='footer'>
-      <div class='container'>
-        <div class='row'>
-          <p class="pull-left">© 2015 Company, Inc. All Rights Reserved</p>
-          <ul class="pull-right list-inline">
-            <li><a href="https://github.com/jaequery/honeybadger">GitHub Project</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- site related javascripts -->
-    <script src="/site/main.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="http://static.jsbin.com/js/embed.min.js?3.34.0"></script>
   </body>
-
 </html>

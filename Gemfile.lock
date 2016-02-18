@@ -225,4 +225,5 @@ DEPENDENCIES
   sequel
   sequel_secure_password
   sinatra-contrib
+  will_paginate
   will_paginate-bootstrap

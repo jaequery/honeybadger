@@ -13,6 +13,7 @@ user.save
 # add blog post
 post = Post.new
 post.user_id = 1
-post.title = "test blog"
-post.content = "testing content"
+post.title = "Why I created Honeybadger"
+post.content = "Because I wanted a simple and lightweight blogging / CMS framework for Ruby and I just could not find one that I liked."
 post.created_at = Time.now
+post.save

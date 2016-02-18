@@ -3,7 +3,7 @@
 
 module Honeybadger
 
-  class Site < Padrino::Application
+  class SiteApp < Padrino::Application
 
     register Padrino::Mailer
     register Padrino::Helpers
@@ -18,32 +18,15 @@ module Honeybadger
       @title = "Honeybadger CMS"
     end
 
-
-    ### put your routes here ###
-    get "/" do
-      render "index"
-    end
-
-    get "/example" do
-      render "example"
-    end
-
-    get "/contact" do
-      render "contact"
-    end
-
-    post "/contact" do
-      output(params)
-    end
-
-
     ### authentication routes ###
     auth_keys = settings.auth # @todo: settings is not available in Builder
+
     use OmniAuth::Builder do
       provider :twitter,  auth_keys[:twitter][:key], auth_keys[:twitter][:secret]
+      provider :instagram,  auth_keys[:instagram][:key], auth_keys[:instagram][:secret]
     end
 
-    get '/auth/:name/callback' do
+    get '/user/:name/callback' do
       auth    = request.env["omniauth.auth"]
       user = User.login_with_omniauth(auth)
 
@@ -52,36 +35,35 @@ module Honeybadger
       else
         output(user.values)
       end
-
     end
 
-    get "/login" do
+    get "/user/login" do
       render "login"
     end
 
-    post "/login" do
-
+    post "/user/login" do
       user = User.login(params)
       if user.errors.empty?
         session[:user] = user
+        flash[:notice] = "You are now logged in"
         redirect("/")
       else
         flash[:notice] = user.errors[:validation]
-        redirect("/login")
+        redirect("/user/login")
       end
 
     end
 
-    get "/logout" do
+    get "/user/logout" do
       session.delete(:user)
       redirect("/")
     end
 
-    get "/signup" do
-      render "signup"
+    get "/user/register" do
+      render "register"
     end
 
-    post "/signup" do
+    post "/user/register" do
 
       user = User.register_with_email(params)
       if user.errors.empty?
@@ -89,33 +71,42 @@ module Honeybadger
         redirect("/")
       else
         flash[:notice] = "Please try again"
-        redirect("/signup")
+        redirect("/user/register")
       end
 
     end
 
-    # utility
-    def output(val)
-      case val
-      when String
-        if val.is_json?(val)
-          content_type :json
-          val.to_json
-        else
-          val
-        end
-      when Hash
-        content_type :json
-        val.to_json
-      when Array
-        content_type :json
-        val.to_s.to_json
-      when Fixnum
-        val
-      else
-        val
-      end
+
+    ### put your routes here ###
+    get :index do
+      @title = "Honeybadger CMS"
+      @posts = Post.all.reverse
+      render "posts"
     end
+
+    get '/debug' do
+      abort
+    end
+
+    ### view page ###
+    get :index, :with => [:title, :id] do
+      @post = Post[params[:id]]
+      render "post"
+    end
+
+    get :about do
+      render "about"
+    end
+
+
+
+
+
+
+    
+
+
+
 
 
   end

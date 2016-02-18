@@ -1,12 +1,9 @@
-<div class="page-header">
-  <h3>app/views/login.erb</h3>
-</div>
 
 <div class="row">
 
-  <div class="col-md-5">
-    <h5><strong>Sign in with email</strong></h5>
-    <form role="form" method="POST" class="form-horizontal" action="/login">
+  <div class="col-md-8">
+    <p class="lead">Sign in with email</p>
+    <form role="form" method="POST" class="form-horizontal" action="/user/login">
 
       <div class="form-group">
         <label for="email" class="col-sm-2 control-label">Email</label>
@@ -24,33 +21,40 @@
 
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-8">
-          <button type="submit" class="btn btn-primary"><i class="fa btn-xs fa-envelope"></i> Send</button>
+          <button type="submit" class="btn btn-primary"><i class="fa btn-xs fa-lock"></i> Login</button>
         </div>
       </div>
+      
     </form>
+
+    <p class="lead">If you don't have an account click here to <a href="/user/signup">Sign Up</a></p>
+
   </div>
 
-  <div class="col-md-2">
-    <h3>Or</h3>
-  </div>
-
-  <div class="col-md-5">
-    <h5><strong>Sign in with social media</strong></h5>
-    <a class="btn btn-block btn-social btn-twitter" href="/auth/twitter">
+  <div class="col-md-4" style="text-align: left;">
+    <p class="lead">Or sign in with ...</p>
+    <a class="btn btn-block btn-social btn-twitter" href="/user/twitter">
       <i class="fa btn-xs fa-twitter"></i> Sign in with Twitter
     </a>
-    <a class="btn btn-block btn-social btn-instagram" href="/auth/instagram">
+    <a class="btn btn-block btn-social btn-instagram" href="/user/instagram">
       <i class="fa btn-xs fa-instagram"></i> Sign in with Instagram
     </a>
-    <a class="btn btn-block btn-social btn-facebook" href="/auth/facebook">
+    <a class="btn btn-block btn-social btn-facebook" href="/user/facebook">
       <i class="fa btn-xs fa-facebook"></i> Sign in with Facebook
     </a>
-    <a class="btn btn-block btn-social btn-github" href="/auth/github">
+    <a class="btn btn-block btn-social btn-github" href="/user/github">
       <i class="fa btn-xs fa-github"></i> Sign in with Github
     </a>
-    <a class="btn btn-block btn-social btn-linkedin" href="/auth/linkedin">
+    <a class="btn btn-block btn-social btn-linkedin" href="/user/linkedin">
       <i class="fa btn-xs fa-linkedin"></i> Sign in with Linkedin
     </a>
   </div>
+
+<div class="page-header">
+<br>
+</div>
+
+
+
 
 </div>

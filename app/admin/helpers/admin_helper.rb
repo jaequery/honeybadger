@@ -1,7 +1,7 @@
 # Helper methods defined here can be accessed in any controller or view in the application
 
 module Honeybadger
-  class Admin
+  class AdminApp
     module AdminHelper
 
       def output_js_success(msg)

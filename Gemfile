@@ -21,7 +21,7 @@ gem 'pg'
 gem 'sequel'
 
 # Application requirements
-#gem 'will_paginate'
+gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 #gem 'roda-will_paginate'
 gem 'forme'

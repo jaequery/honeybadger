@@ -46,7 +46,7 @@ class User < Sequel::Model
 
     if user.valid?
       user.save
-      session[:user] = user
+      #session[:user] = user
     end
 
     return user
@@ -88,7 +88,7 @@ class User < Sequel::Model
       # create user
       if user.valid?
         user.save
-        session[:user] = user
+        #session[:user] = user
       end
 
     end

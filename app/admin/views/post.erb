@@ -45,7 +45,16 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
 
-          <div class="field row" id="field_password">
+          <div class="field row" id="field_teaser">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= f.label :teaser, :caption => "Teaser", :required => true %>
+                <%= f.text_area :teaser, :class => 'form-control', :style => '' %>
+              </div><!-- /.form-group -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+
+          <div class="field row" id="field_content">
             <div class="col-md-12">
               <div class="form-group">
                 <%= f.label :content, :caption => "Content", :required => true %>

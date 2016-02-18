@@ -3,7 +3,7 @@
 
 module Honeybadger
 
-  class Admin < Padrino::Application
+  class AdminApp < Padrino::Application
 
     register Sinatra::MultiRoute
     register Padrino::Mailer
