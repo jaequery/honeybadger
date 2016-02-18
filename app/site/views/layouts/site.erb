@@ -52,11 +52,9 @@
       </header>
       <main>
 
-        <% if !flash[:notice].nil? %>
-        <div class="message">
-          <%= flash[:notice] %>
-        </div>
-        <% end %>
+        <%= flash_tag(:notice, :class => 'alert alert-warning') %>
+        <%= flash_tag(:error, :class => 'alert alert-error') %>
+        <%= flash_tag(:success, :class => 'alert alert-success') %>
 
         <%=yield%>      
       </main>

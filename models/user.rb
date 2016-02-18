@@ -41,7 +41,8 @@ class User < Sequel::Model
 
   def self.register_with_email(params, role = "users")
     user = User.new
-    user.name = params[:name]
+    user.first_name = params[:first_name]
+    user.last_name = params[:last_name]
     user.address = params[:address]
     user.address2 = params[:address2]
     user.city = params[:city]

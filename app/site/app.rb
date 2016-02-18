@@ -38,7 +38,7 @@ module Honeybadger
       if user
         session[:user] = user
 
-        if user.email.nil?
+        if user.email.blank?
           redirect("/user/account", :notice => 'Please fill in required informations')
         end
 
@@ -49,13 +49,33 @@ module Honeybadger
     end
 
     get "/user/account" do
+      @user = session[:user]
+      
       render "account"
     end
 
     post "/user/account" do
-      session["user"].set(params)
-      session["user"].save
-      redirect("/user/account")
+
+      rules = {
+        :email => {:type => 'email', :required => true},
+        :first_name => {:type => 'string', :required => true},
+        :last_name => {:type => 'string', :required => true},
+      }
+      validator = Honeybadger::Validator.new(params, rules)
+
+      @user = session[:user]
+      @user.email = params[:email]
+      @user.first_name = params[:first_name]
+      @user.last_name = params[:last_name]
+
+      if !validator.valid?
+        flash.now[:notice] = validator.errors[0][:error]
+        render "account"
+      else
+        @user.save_changes
+        redirect("/user/account", :success => 'Account information updated!')
+      end
+
     end
 
     get "/user/login" do
@@ -63,15 +83,28 @@ module Honeybadger
     end
 
     post "/user/login" do
-      user = User.login(params)
-      if user.errors.empty?
-        session[:user] = user
-        flash[:notice] = "You are now logged in"
-        redirect("/")
+
+      rules = {
+        :email => {:type => 'email', :required => true},
+        :password => {:type => 'string', :required => true},
+      }
+      validator = Honeybadger::Validator.new(params, rules)
+      if !validator.valid?
+        flash.now[:notice] = validator.errors[0][:error]
+        render "login"
       else
-        flash[:notice] = user.errors[:validation]
-        redirect("/user/login")
+        user = User.login(params)
+        if user.errors.empty?
+          session[:user] = user
+          flash[:success] = "You are now logged in"
+          redirect("/")
+        else
+          flash.now[:notice] = user.errors[:validation][0]
+          render "login"
+        end        
       end
+
+      
 
     end
 
@@ -89,7 +122,7 @@ module Honeybadger
       user = User.register_with_email(params)
       if user.errors.empty?
         session[:user] = user
-        redirect("/")
+        redirect("/user/account")
       else
         flash[:notice] = "Please try again"
         redirect("/user/register")

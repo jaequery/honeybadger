@@ -1,7 +1,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
-  <% #form_for @settings, "/admin/settings/save", :id => 'admin-form', :remote => false, :multipart => true do |f| %>
+  <% form_for @settings, "/admin/settings/save", :id => 'admin-form', :remote => false, :multipart => true do |f| %>
     <form>
 
     <section class="content-header">
@@ -184,7 +184,7 @@
 
   </div><!-- /.content-wrapper -->
 
-<% #end %>
+<% end %>
 <script>
  $(function(){
 

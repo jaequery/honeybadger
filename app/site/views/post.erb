@@ -8,7 +8,9 @@
   </header>
 
   <section class="post-content">
-    <% puts @post.teaser + "<br><br>" unless @post.teaser.nil? %>
+    <% if !@post.teaser.blank? %>
+      <%= @post.teaser %><br><br>
+    <% end %>
     <%==@post.content%>
   </section>
 

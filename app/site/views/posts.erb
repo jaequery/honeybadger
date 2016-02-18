@@ -1,7 +1,7 @@
 <% @posts.each do |post| %>
 <article class="post">
   <h2 class="post-title"><a href="<%=url_for(:index, :title => post.title.to_slug, :id => post.id )%>"><%=post.title%></a></h1>
-  <time datetime="<%=post.created_at.strftime("%d %B %Y")%>" class="post-date"><%=post.created_at.strftime("%d %B %Y")%></time>
+  <time datetime="<%=post.created_at.strftime("%d %B %Y")%>" class="post-date"><%=post.created_at.strftime("%d %B %Y")%> by <%=post.user.username%></time>
   <%==post.teaser || "" %>
 </article>
 <% end %>

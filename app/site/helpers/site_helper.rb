@@ -20,6 +20,18 @@ module Honeybadger
         end
       end
 
+
+      def flash_messages(flash)
+        html = ''
+        if !flash[:notice].nil?
+          html += '<div class="message">'
+          html += flash[:notice]
+          html += '</div>'
+        end
+        html
+      end
+
+
     end
 
     helpers SiteHelper
