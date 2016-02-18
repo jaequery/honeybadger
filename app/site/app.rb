@@ -119,13 +119,27 @@ module Honeybadger
 
     post "/user/register" do
 
-      user = User.register_with_email(params)
-      if user.errors.empty?
-        session[:user] = user
-        redirect("/user/account")
+      rules = {
+        :first_name => {:type => 'string', :required => true},
+        :last_name => {:type => 'string', :required => true},
+        :email => {:type => 'email', :required => true},
+        :password => {:type => 'string', :required => true},
+      }
+      validator = Honeybadger::Validator.new(params, rules)
+      if !validator.valid?
+        flash.now[:notice] = validator.errors[0][:error]
+        render "register"
       else
-        flash[:notice] = "Please try again"
-        redirect("/user/register")
+
+        user = User.register_with_email(params)
+        if user.errors.empty?
+          session[:user] = user
+          redirect("/user/account")
+        else
+          flash.now[:notice] = user.errors[:validation][0]
+          render "register"
+        end
+
       end
 
     end
