@@ -68,7 +68,7 @@ module Honeybadger
         if params[:id].blank? # create
           @user = User.register_with_email(data, data[:role])
           if @user
-            flash.now[:success] = 'Record has been created!'
+            redirect("/admin/users", :success => 'Record has been created!')
           else
             flash.now[:error] = 'Sorry, there was a problem creating'
           end
@@ -98,13 +98,12 @@ module Honeybadger
 
     end
 
-    get '/user/delete/(:id)', :provides => :js do
+    get '/user/delete/(:id)' do
       model = User[params[:id]]
       if !model.nil? && model.destroy
-        msg = output_js_success('Record has been deleted!')
-        msg += "$('#row_#{params[:id]}').slideUp();"
+        redirect("/admin/users", :success => 'Record has been deleted!')
       else
-        msg = output_js_success('Sorry, there was a problem deleting')
+        redirect("/admin/users", :success => 'Sorry, there was a problem deleting!')
       end
     end
     # end user routes
@@ -120,7 +119,7 @@ module Honeybadger
       render "post"
     end
 
-    post '/post/save/(:id)', :provides => :js do
+    post '/post/save/(:id)' do
       data = params[:post]
 
       # validate fields
@@ -130,43 +129,49 @@ module Honeybadger
         :content => {:type => 'string', :required => true},
       }
       validator = Honeybadger::Validator.new(data, rules)
+
       if !validator.valid?
-        msg = output_js_validator(validator.errors, 'post')
+        msg = validator.errors
+        flash.now[:error] = msg[0][:error]
+        if params[:id].blank?
+          @post = Post.create(data)
+        else
+          @post = Post[params[:id]].set(data)
+        end
       else
 
+        # create or update
         if params[:id].blank? # create
-          model = Post.new(data).save
-          if model
-            msg = output_js_success('Record has been created!')
-            msg += "location.href = '/admin/posts';"
+          @post = Post.create(data)
+          if @post
+            redirect("/admin/posts", :success => 'Record has been created!')
           else
-            msg = output_js_error('Sorry, there was a problem creating')
+            flash.now[:error] = 'Sorry, there was a problem creating'
           end
         else # update
-          model = Post[params[:id]]
-          if !model.nil?
-            model = model.set(data)
-            if model.save
-              msg = output_js_success('Record has been updated!')
+          @post = Post[params[:id]]
+          if !@post.nil?
+            @post = @post.set(data)
+            if @post.save
+              flash.now[:success] = 'Record has been updated!'
             else
-              msg = output_js_error('Sorry, there was a problem updating')
+              flash.now[:error] = 'Sorry, there was a problem updating'
             end
           end
         end # end save
 
-      end  # end validator
+      end # end validator
 
-      msg
+      render "post"
 
     end
 
-    get '/post/delete/(:id)', :provides => :js do
+    get '/post/delete/(:id)' do
       model = Post[params[:id]]
       if !model.nil? && model.destroy
-        msg = output_js_success('Record deleted!')
-        msg += "$('#row_#{params[:id]}').slideUp();"
+        redirect("/admin/posts", :success => 'Record has been deleted!')
       else
-        msg = output_js_error('Sorry, there was a problem deleting')
+        redirect("/admin/posts", :success => 'Sorry, there was a problem deleting!')
       end
     end
     # end post routes

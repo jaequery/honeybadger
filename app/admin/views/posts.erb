@@ -1,75 +1,82 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      Posts
-      <!-- <small>add, modify, or delete posts</small> -->
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="/admin/posts">Posts</a></li>
-    </ol>
-  </section>
-
-  <!-- Main content -->
-  <section class="content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="box">
-          <div class="box-header with-border pull-left">
-            <a href="/admin/post" class="btn-sm btn btn-default">Add New +</a>
-          </div><!-- /.box-header -->
-          <div style="clear:both;">
-          <div class="box-body">
-
-            <table class="table table-bordered table-hover datatable">
-              <thead>
-                <tr>
-                  <th style="width: 10px">#</th>
-                  <th>User</th>
-                  <th>Title</th>
-                  <th>Created</th>
-                  <th style="width: 120px">Actions</th>
-                </tr>
-              </thead>
-
-              <% @posts.each do |post| %>
-              <tr id="row_<%= post[:id] %>">
-                <td><%= post[:id] %></td>
-                <td><%= post.user[:email] %></td>
-                <td><%= post[:title] %></td>
-                <td><%= post[:created_at] %></td>
-                <td>
-                  <a href="/admin/post/<%=post[:id] %>" class="btn btn-default btn-sm">Edit</a>
-                  <a href="/admin/post/delete/<%=post[:id] %>" data-remote="true" data-confirm="Are You Sure?" class="btn bg-warning btn-sm">Delete</a>
-                </td>
-              </tr>
-              <% end %>
-
-            </table>
-          </div><!-- /.box-body -->
-
-        </div><!-- /.box -->
-      </div><!-- /.col -->
-
-
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">Posts</h2>
+  </div>
+  <div class="btn-toolbar dashhead-toolbar">
+    
+  </div>
+</div>
+<hr class="m-t">
+<div class="flextable table-actions">
+  <div class="flextable-item flextable-primary">
+    <div class="btn-toolbar-item input-with-icon">
+      <input type="text" class="form-control input-block" placeholder="Search posts">
+      <span class="icon icon-magnifying-glass"></span>
     </div>
-  </section><!-- /.content -->
-</div><!-- /.content-wrapper -->
-
-<script>
- $(function(){
-
-   $('.datatable').DataTable({
-     "paging": true,
-     "lengthChange": true,
-     "searching": true,
-     "ordering": true,
-     "order": [[ 0, "desc" ]],
-     "info": true,
-     "autoWidth": true
-   });
-
- });
+  </div>
+  <div class="flextable-item">
+    <div class="btn-group">
+      <a href="/admin/post" type="button" class="btn btn-primary-outline">
+      Add <span class="icon icon-plus"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="table-full">
+  <div class="table-responsive">
+    <table class="table" data-sort="table">
+      <thead>
+        <tr>
+          <th><input type="checkbox" class="select-all" id="selectAll"></th>
+          <th>Post #</th>
+          <th>User</th>
+          <th>Title</th>
+          <th>Created</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+        <tr>
+          <td><input type="checkbox" class="select-row"></td>
+          <td><%= post[:id] %></td>
+          <td><%= post.user[:username] %></td>
+          <td><%= post[:title] %></td>
+          <td><%= post[:created_at].strftime("%m/%d/%y") %></td>
+          <td>
+            <a href="/admin/post/<%=post[:id] %>" class="btn btn-primary-outline btn-sm">Edit <span class="icon icon-pencil"></span></a>
+            <a href="/admin/post/delete/<%=post[:id] %>" data-remote="true" data-confirm="Are You Sure?" class="btn btn-primary-outline btn-sm">Delete <span class="icon icon-erase"></span></a>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="text-center">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<script type="text/javascript">
+(function(){
+$('table.table .header').on('click', function(e){
+alert('hi');
+})
+})
 </script>

@@ -4,10 +4,10 @@
     <h2 class="dashhead-title">Users</h2>
   </div>
   <div class="btn-toolbar dashhead-toolbar">
-    <div class="btn-toolbar-item input-with-icon">
+    <!-- <div class="btn-toolbar-item input-with-icon">
       <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
       <span class="icon icon-calendar"></span>
-    </div>
+    </div> -->
   </div>
 </div>
 <hr class="m-t">
@@ -20,9 +20,9 @@
   </div>
   <div class="flextable-item">
     <div class="btn-group">
-      <button type="button" class="btn btn-primary-outline">
+      <a href="/admin/user" type="button" class="btn btn-primary-outline">
       Add <span class="icon icon-plus"></span>
-      </button>
+      </a>
     </div>
   </div>
 </div>
@@ -31,9 +31,9 @@
     <table class="table" data-sort="table">
       <thead>
         <tr>
-          <th><input type="checkbox" class="select-all" id="selectAll"></th>
-          <th>User ID</th>
-          <th>User name</th>
+          <td><input type="checkbox" class="select-all" id="selectAll"></td>
+          <th>UserID</th>
+          <th>Username</th>
           <th>Email</th>
           <th>Role</th>
           <th>Created</th>
@@ -44,11 +44,11 @@
         <% @users.each do |user| %>
         <tr>
           <td><input type="checkbox" class="select-row"></td>
-          <td><a href="#"><%= user[:id] %></a></td>
+          <td><%= user[:id] %></td>
           <td><%= user[:username] %></td>
           <td><%= user[:email] %></td>
           <td><%= user[:role] %></td>
-          <td><%= user[:created_at] %></td>
+          <td><%= user[:created_at].strftime("%m/%d/%y") %></td>
           <td>
             <a href="/admin/user/<%=user[:id] %>" class="btn btn-primary-outline btn-sm">Edit <span class="icon icon-pencil"></span></a>
             <a href="/admin/user/delete/<%=user[:id] %>" data-remote="true" data-confirm="Are You Sure?" class="btn btn-primary-outline btn-sm">Delete <span class="icon icon-erase"></span></a>
@@ -78,3 +78,11 @@
     </li>
   </ul>
 </div>
+
+<script type="text/javascript">
+(function(){
+  $('table.table .header').on('click', function(e){
+    alert('hi');
+  })
+})
+</script>

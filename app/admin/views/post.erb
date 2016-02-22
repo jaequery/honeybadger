@@ -1,93 +1,64 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      Post form
-      <small></small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="/admin/posts">Posts</a></li>
-      <li class="active"><%= params[:id] || 'New' %></li>
-    </ol>
-  </section>
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">Posts</h2>
+  </div>
+  <div class="btn-toolbar dashhead-toolbar">
+    
+  </div>
+</div>
+<hr class="m-t">
+<% form_for :post, "/admin/post/save/#{params[:id]}", :id => 'admin-form', :multipart => true do |f| %>
+<section class="content-header">
+  
+  <div class="field row" id="field_name">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :user_id, :caption => "User", :required => true %>
+        <%= f.select :user_id, :collection => User.all, :fields => [:email, :id], :class => 'form-control select2', :required => true %>
+      </div><!-- /.form-group -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
 
-  <% form_for :post, "/admin/post/save/#{params[:id]}", :id => 'admin-form', :remote => true do |f| %>
-    <!-- Main content -->
-    <section class="content col-md-12">
+  <div class="field row" id="field_email">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :title, :caption => "Title", :required => true %>
+        <%= f.text_field :title, :class => 'form-control', :required => true %>
+      </div><!-- /.form-group -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
 
-      <%= partial("partials/flash.erb") %>
+  <div class="field row" id="field_teaser">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :teaser, :caption => "Teaser" %>
+        <%= f.text_area :teaser, :class => 'form-control', :style => '' %>
+      </div><!-- /.form-group -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
 
-      <!-- SELECT2 EXAMPLE -->
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Detail</h3>
-        </div>
-        <div class="box-body">
-
-          <div class="field row" id="field_name">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :user_id, :caption => "User" %>
-                <%= f.select :user_id, :collection => User.all, :fields => [:email, :id], :class => 'form-control select2' %>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-
-
-          <div class="field row" id="field_email">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :title, :caption => "Title" %>
-                <%= f.text_field :title, :class => 'form-control', :required => true %>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-
-          <div class="field row" id="field_teaser">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :teaser, :caption => "Teaser", :required => true %>
-                <%= f.text_area :teaser, :class => 'form-control', :style => '' %>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-
-          <div class="field row" id="field_content">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.label :content, :caption => "Content", :required => true %>
-                <%= f.text_area :content, :class => 'form-control wysiwyg', :style => 'height: 240px;' %>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+  <div class="field row" id="field_content">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :content, :caption => "Content", :required => true %>
+        <%= f.text_area :content, :class => 'form-control wysiwyg', :style => 'height: 240px;', :required => true %>
+      </div><!-- /.form-group -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
 
 
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <hr>
-                <button class="btn btn-primary">Save</button>
-                <button class="btn btn-default" onclick="javascript: history.go(-1);">Go back</button>
-              </div><!-- /.form-group -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-
-        </div><!-- /.box-body -->
-
-      </div><!-- /.box -->
-
-    </section><!-- /.content -->
-
-    <% end %>
-
-</div><!-- /.content-wrapper -->
 
 
-<!-- Page script -->
-<script>
- $(function () {
+  <!-- /.box -->
+</section>
+<div class="col-md-12">
+  <hr>
+  <button class="btn  btn-primary-outline"><b>Save Post</b></button>
+</div>
+<% end %>
 
- });
-</script>
+
+
+
+

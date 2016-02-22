@@ -29,6 +29,18 @@
   </head>
   <body>
     <div class="container">
+
+      <% if !flash.nil? %>
+      <div class="row">
+        <div class="col-md-12">
+          <%= flash_tag(:notice, :class => 'alert alert-info', :role => 'alert') %>
+          <%= flash_tag(:notice, :class => 'alert alert-warning', :role => 'alert') %>
+          <%= flash_tag(:error, :class => 'alert alert-danger', :role => 'alert') %>
+          <%= flash_tag(:success, :class => 'alert alert-success', :role => 'alert') %>
+        </div>
+      </div>
+      <% end %>
+      
       <div class="row">
         <div class="col-sm-3 sidebar">
           <nav class="sidebar-nav">
@@ -49,20 +61,23 @@
               </form>
               <ul class="nav nav-pills nav-stacked">
                 <li class="nav-header">Dashboards</li>
-                <li class="active">
+                <li class="<%= set_active_on_match(/admin$/) %>">
                   <a href="/admin">Overview</a>
                 </li>
-                <li >
+                <li class="<%= set_active_on_match(/admin\/user/) %>">
                   <a href="/admin/users">Users</a>
                 </li>
-                <li >
-                  <a href="fluid/index.html">Posts</a>
+                <li class="<%= set_active_on_match(/admin\/post/) %>">
+                  <a href="/admin/posts">Posts</a>
                 </li>
                 <br>
                 <ul class="nav nav-pills nav-stacked">
                   <li class="nav-header">Administrative</li>
-                  <li >
-                    <a href="../index.html">Settings</a>
+                  <li class="<%= set_active_on_match(/admin\/setting/) %>">
+                    <a href="/admin/settings">Settings</a>
+                  </li>
+                  <li>
+                    <a href="/user/logout">Logout</a>
                   </li>
                 </ul>
                 <hr class="visible-xs m-t">
@@ -70,13 +85,7 @@
             </nav>
           </div>
           <div class="col-sm-9 content">
-
-<% if !flash.nil? %>
-            <%= flash_tag(:notice, :class => 'alert alert-info', :role => 'alert') %>
-            <%= flash_tag(:notice, :class => 'alert alert-warning', :role => 'alert') %>
-            <%= flash_tag(:error, :class => 'alert alert-danger', :role => 'alert') %>
-            <%= flash_tag(:success, :class => 'alert alert-success', :role => 'alert') %>
-<% end %>
+            
             <%=yield%>
           </div>
         </div>
