@@ -6,7 +6,9 @@
     <h2 class="dashhead-title">Posts</h2>
   </div>
   <div class="btn-toolbar dashhead-toolbar">
+    <% if !@post.nil? %>
     <a href="/<%=@post.title.to_slug%>/<%=@post.id%>" class="btn btn-success-outline">View Post</a>
+    <% end %>
     <button class="btn btn-primary-outline">Save Post</button>
   </div>
 </div>
