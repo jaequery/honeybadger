@@ -43,54 +43,58 @@ module Honeybadger
       render "test"
     end
 
-    post '/user/save/(:id)', :provides => :js do
+    post '/user/save/(:id)' do
       data = params[:user]
 
       # validate fields
-      rules = {
-        :name => {:type => 'string', :min => 2, :required => true},
+      rules = {        
+        :first_name => {:type => 'string', :required => true},        
         :email => {:type => 'email', :required => true},
         :password => {:type => 'string', :min => 6, :confirm_with => :password_confirmation},
       }
       validator = Honeybadger::Validator.new(data, rules)
 
       if !validator.valid?
-        msg = output_js_validator(validator.errors, 'user')
+        msg = validator.errors
+        flash.now[:error] = msg[0][:error]
+        if params[:id].blank?
+          @user = User.create(data)
+        else
+          @user = User[params[:id]].set(data)
+        end
       else
 
         # create or update
         if params[:id].blank? # create
-          model = User.register_with_email(data, data[:role])
-          if model
-            msg = output_js_success('Record has been created!')
-            msg += "location.href = '/admin/users';"
+          @user = User.register_with_email(data, data[:role])
+          if @user
+            flash.now[:success] = 'Record has been created!'
           else
-            msg = output_js_error('Sorry, there was a problem creating')
+            flash.now[:error] = 'Sorry, there was a problem creating'
           end
         else # update
-          model = User[params[:id]]
-          if !model.nil?
-            model = model.set(data)
+          @user = User[params[:id]]
+          if !@user.nil?
+            @user = @user.set(data)
 
-            if model.save
+            if @user.save
 
-              msg = output_js_success('Record has been updated!')
+              flash.now[:success] = 'Record has been updated!'
 
               # if updating current user, refresh session and reload page
-              if session[:user][:id] == model[:id]
-                session[:user] = model.values
-                msg += "location.reload();"
+              if session[:user][:id] == @user[:id]
+                session[:user] = @user.values
               end
 
             else
-              msg = output_js_error('Sorry, there was a problem updating')
+              flash.now[:error] = 'Sorry, there was a problem updating'
             end
           end
         end # end save
 
       end # end validator
 
-      msg
+      render "user"
 
     end
 

@@ -1,446 +1,296 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-Dashboard
-      <small>Control panel</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Dashboard</li>
-    </ol>
-  </section>
 
-  <!-- Main content -->
-  <section class="content">
-    <!-- Small boxes (Stat box) -->
-    <div class="row">
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-aqua">
-          <div class="inner">
-            <h3>150</h3>
-            <p>New Orders</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-bag"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div><!-- ./col -->
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-green">
-          <div class="inner">
-            <h3>53<sup style="font-size: 20px">%</sup></h3>
-            <p>Bounce Rate</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-stats-bars"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div><!-- ./col -->
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-yellow">
-          <div class="inner">
-            <h3>44</h3>
-            <p>User Registrations</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-person-add"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div><!-- ./col -->
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-red">
-          <div class="inner">
-            <h3>65</h3>
-            <p>Unique Visitors</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-pie-graph"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div><!-- ./col -->
-    </div><!-- /.row -->
-    <!-- Main row -->
-    <div class="row">
-      <!-- Left col -->
-      <section class="col-lg-7 connectedSortable">
-        <!-- Custom tabs (Charts with tabs)-->
-        <div class="nav-tabs-custom">
-          <!-- Tabs within a box -->
-          <ul class="nav nav-tabs pull-right">
-            <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-            <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-            <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-          </ul>
-          <div class="tab-content no-padding">
-            <!-- Morris chart - Sales -->
-            <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-          </div>
-        </div><!-- /.nav-tabs-custom -->
 
-        <!-- Chat box -->
-        <div class="box box-success">
-          <div class="box-header">
-            <i class="fa fa-comments-o"></i>
-            <h3 class="box-title">Chat</h3>
-            <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-              <div class="btn-group" data-toggle="btn-toggle" >
-                <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+            <div class="dashhead">
+              <div class="dashhead-titles">
+                <h6 class="dashhead-subtitle">Dashboards</h6>
+                <h2 class="dashhead-title">Overview</h2>
               </div>
             </div>
-          </div>
-          <div class="box-body chat" id="chat-box">
-            <!-- chat item -->
-            <div class="item">
-              <img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
-              <p class="message">
-                <a href="#" class="name">
-                  <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                  Mike Doe
-                </a>
-                I would like to meet you to discuss the latest news about
-                the arrival of the new theme. They say it is going to be one the
-                best themes on the market
-              </p>
-              <div class="attachment">
-                <h4>Attachments:</h4>
-                <p class="filename">
-                  Theme-thumbnail-image.jpg
-                </p>
-                <div class="pull-right">
-                  <button class="btn btn-primary btn-sm btn-flat">Open</button>
+
+            <hr class="m-t">
+            <div class="row text-center m-t-lg">
+              <div class="col-sm-4 m-b-md">
+                <div class="w-lg m-x-auto">
+                  <canvas
+                  class="ex-graph"
+                  width="200" height="200"
+                  data-chart="doughnut"
+                  data-value="[{ value: 230, color: '#1ca8dd', label: 'Returning' }, { value: 130, color: '#1bc98e', label: 'New' }]"
+                  data-segment-stroke-color="#252830">
+                  </canvas>
                 </div>
-              </div><!-- /.attachment -->
-            </div><!-- /.item -->
-            <!-- chat item -->
-            <div class="item">
-              <img src="dist/img/user3-128x128.jpg" alt="user image" class="offline">
-              <p class="message">
-                <a href="#" class="name">
-                  <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                  Alexander Pierce
-                </a>
-                I would like to meet you to discuss the latest news about
-                the arrival of the new theme. They say it is going to be one the
-                best themes on the market
-              </p>
-            </div><!-- /.item -->
-            <!-- chat item -->
-            <div class="item">
-              <img src="dist/img/user2-160x160.jpg" alt="user image" class="offline">
-              <p class="message">
-                <a href="#" class="name">
-                  <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-                  Susan Doe
-                </a>
-                I would like to meet you to discuss the latest news about
-                the arrival of the new theme. They say it is going to be one the
-                best themes on the market
-              </p>
-            </div><!-- /.item -->
-          </div><!-- /.chat -->
-          <div class="box-footer">
-            <div class="input-group">
-              <input class="form-control" placeholder="Type message...">
-              <div class="input-group-btn">
-                <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+                <strong class="text-muted">Traffic</strong>
+                <h3>New vs Returning</h3>
+              </div>
+              <div class="col-sm-4 m-b-md">
+                <div class="w-lg m-x-auto">
+                  <canvas
+                  class="ex-graph"
+                  width="200" height="200"
+                  data-chart="doughnut"
+                  data-value="[{ value: 330, color: '#1ca8dd', label: 'Recurring' }, { value: 30, color: '#1bc98e', label: 'New' }]"
+                  data-segment-stroke-color="#252830">
+                  </canvas>
+                </div>
+                <strong class="text-muted">Revenue</strong>
+                <h3>New vs Recurring</h3>
+              </div>
+              <div class="col-sm-4 m-b-md">
+                <div class="w-lg m-x-auto">
+                  <canvas
+                  class="ex-graph"
+                  width="200" height="200"
+                  data-chart="doughnut"
+                  data-value="[{ value: 100, color: '#1ca8dd', label: 'Referrals' }, { value: 260, color: '#1bc98e', label: 'Direct' }]"
+                  data-segment-stroke-color="#252830">
+                  </canvas>
+                </div>
+                <strong class="text-muted">Traffic</strong>
+                <h3>Direct vs Referrals</h3>
               </div>
             </div>
-          </div>
-        </div><!-- /.box (chat box) -->
-
-        <!-- TO DO List -->
-        <div class="box box-primary">
-          <div class="box-header">
-            <i class="ion ion-clipboard"></i>
-            <h3 class="box-title">To Do List</h3>
-            <div class="box-tools pull-right">
-              <ul class="pagination pagination-sm inline">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
+            <div class="hr-divider m-t-md m-b">
+              <h3 class="hr-divider-content hr-divider-heading">Quick stats</h3>
             </div>
-          </div><!-- /.box-header -->
-          <div class="box-body">
-            <ul class="todo-list">
-              <li>
-                <!-- drag handle -->
-                <span class="handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <!-- checkbox -->
-                <input type="checkbox" value="" name="">
-                <!-- todo text -->
-                <span class="text">Design a nice theme</span>
-                <!-- Emphasis label -->
-                <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                <!-- General tools such as edit or delete-->
-                <div class="tools">
-                  <i class="fa fa-edit"></i>
-                  <i class="fa fa-trash-o"></i>
+            <div class="row statcards">
+              <div class="col-sm-6 col-lg-3 m-b">
+                <div class="statcard statcard-success">
+                  <div class="p-a">
+                    <span class="statcard-desc">Page views</span>
+                    <h2 class="statcard-number">
+                    12,938
+                    <small class="delta-indicator delta-positive">5%</small>
+                    </h2>
+                    <hr class="statcard-hr m-b-0">
+                  </div>
+                  <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[28,68,41,43,96,45,100]}]" data-labels="['a','b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
                 </div>
-              </li>
-              <li>
-                <span class="handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input type="checkbox" value="" name="">
-                <span class="text">Make the theme responsive</span>
-                <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                <div class="tools">
-                  <i class="fa fa-edit"></i>
-                  <i class="fa fa-trash-o"></i>
-                </div>
-              </li>
-              <li>
-                <span class="handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input type="checkbox" value="" name="">
-                <span class="text">Let theme shine like a star</span>
-                <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                <div class="tools">
-                  <i class="fa fa-edit"></i>
-                  <i class="fa fa-trash-o"></i>
-                </div>
-              </li>
-              <li>
-                <span class="handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input type="checkbox" value="" name="">
-                <span class="text">Let theme shine like a star</span>
-                <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                <div class="tools">
-                  <i class="fa fa-edit"></i>
-                  <i class="fa fa-trash-o"></i>
-                </div>
-              </li>
-              <li>
-                <span class="handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input type="checkbox" value="" name="">
-                <span class="text">Check your messages and notifications</span>
-                <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                <div class="tools">
-                  <i class="fa fa-edit"></i>
-                  <i class="fa fa-trash-o"></i>
-                </div>
-              </li>
-              <li>
-                <span class="handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input type="checkbox" value="" name="">
-                <span class="text">Let theme shine like a star</span>
-                <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                <div class="tools">
-                  <i class="fa fa-edit"></i>
-                  <i class="fa fa-trash-o"></i>
-                </div>
-              </li>
-            </ul>
-          </div><!-- /.box-body -->
-          <div class="box-footer clearfix no-border">
-            <button class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-          </div>
-        </div><!-- /.box -->
-
-        <!-- quick email widget -->
-        <div class="box box-info">
-          <div class="box-header">
-            <i class="fa fa-envelope"></i>
-            <h3 class="box-title">Quick Email</h3>
-            <!-- tools box -->
-            <div class="pull-right box-tools">
-              <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-            </div><!-- /. tools -->
-          </div>
-          <div class="box-body">
-            <form action="#" method="post">
-              <div class="form-group">
-                <input type="email" class="form-control" name="emailto" placeholder="Email to:">
               </div>
-              <div class="form-group">
-                <input type="text" class="form-control" name="subject" placeholder="Subject">
+              <div class="col-sm-6 col-lg-3 m-b">
+                <div class="statcard statcard-danger">
+                  <div class="p-a">
+                    <span class="statcard-desc">Downloads</span>
+                    <h2 class="statcard-number">
+                    758
+                    <small class="delta-indicator delta-negative">1.3%</small>
+                    </h2>
+                    <hr class="statcard-hr m-b-0">
+                  </div>
+                  <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[4,34,64,27,96,50,80]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+                </div>
               </div>
-              <div>
-                <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              <div class="col-sm-6 col-lg-3 m-b">
+                <div class="statcard statcard-info">
+                  <div class="p-a">
+                    <span class="statcard-desc">Sign-ups</span>
+                    <h2 class="statcard-number">
+                    1,293
+                    <small class="delta-indicator delta-positive">6.75%</small>
+                    </h2>
+                    <hr class="statcard-hr m-b-0">
+                  </div>
+                  <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[12,38,32,60,36,54,68]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+                </div>
               </div>
-            </form>
-          </div>
-          <div class="box-footer clearfix">
-            <button class="pull-right btn btn-default" id="sendEmail">Send <i class="fa fa-arrow-circle-right"></i></button>
-          </div>
-        </div>
-
-      </section><!-- /.Left col -->
-      <!-- right col (We are only adding the ID to make the widgets sortable)-->
-      <section class="col-lg-5 connectedSortable">
-
-        <!-- Map box -->
-        <div class="box box-solid bg-light-blue-gradient">
-          <div class="box-header">
-            <!-- tools box -->
-            <div class="pull-right box-tools">
-              <button class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
-              <button class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
-            </div><!-- /. tools -->
-
-            <i class="fa fa-map-marker"></i>
-            <h3 class="box-title">
-              Visitors
-            </h3>
-          </div>
-          <div class="box-body">
-            <div id="world-map" style="height: 250px; width: 100%;"></div>
-          </div><!-- /.box-body-->
-          <div class="box-footer no-border">
+              <div class="col-sm-6 col-lg-3 m-b">
+                <div class="statcard statcard-warning">
+                  <div class="p-a">
+                    <span class="statcard-desc">Downloads</span>
+                    <h2 class="statcard-number">
+                    758
+                    <small class="delta-indicator delta-negative">1.3%</small>
+                    </h2>
+                    <hr class="statcard-hr m-b-0">
+                  </div>
+                  <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[43,48,52,58,50,95,100]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+                </div>
+              </div>
+            </div>
+            <hr class="m-t">
             <div class="row">
-              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                <div id="sparkline-1"></div>
-                <div class="knob-label">Visitors</div>
-              </div><!-- ./col -->
-              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                <div id="sparkline-2"></div>
-                <div class="knob-label">Online</div>
-              </div><!-- ./col -->
-              <div class="col-xs-4 text-center">
-                <div id="sparkline-3"></div>
-                <div class="knob-label">Exists</div>
-              </div><!-- ./col -->
-            </div><!-- /.row -->
-          </div>
-        </div>
-        <!-- /.box -->
-
-        <!-- solid sales graph -->
-        <div class="box box-solid bg-teal-gradient">
-          <div class="box-header">
-            <i class="fa fa-th"></i>
-            <h3 class="box-title">Sales Graph</h3>
-            <div class="box-tools pull-right">
-              <button class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-          </div>
-          <div class="box-body border-radius-none">
-            <div class="chart" id="line-chart" style="height: 250px;"></div>
-          </div><!-- /.box-body -->
-          <div class="box-footer no-border">
-            <div class="row">
-              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
-                <div class="knob-label">Mail-Orders</div>
-              </div><!-- ./col -->
-              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
-                <div class="knob-label">Online</div>
-              </div><!-- ./col -->
-              <div class="col-xs-4 text-center">
-                <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
-                <div class="knob-label">In-Store</div>
-              </div><!-- ./col -->
-            </div><!-- /.row -->
-          </div><!-- /.box-footer -->
-        </div><!-- /.box -->
-
-        <!-- Calendar -->
-        <div class="box box-solid bg-green-gradient">
-          <div class="box-header">
-            <i class="fa fa-calendar"></i>
-            <h3 class="box-title">Calendar</h3>
-            <!-- tools box -->
-            <div class="pull-right box-tools">
-              <!-- button with a dropdown -->
-              <div class="btn-group">
-                <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-                <ul class="dropdown-menu pull-right" role="menu">
-                  <li><a href="#">Add new event</a></li>
-                  <li><a href="#">Clear events</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">View calendar</a></li>
-                </ul>
+              <div class="col-md-6 m-b-md">
+                <div class="list-group">
+                  <h4 class="list-group-header">
+                  Countries
+                  </h4>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="list-group-progress" style="width: 62.4%;"></span>
+                    <span class="pull-right text-muted">62.4%</span>
+                    United States
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="list-group-progress" style="width: 15.0%;"></span>
+                    <span class="pull-right text-muted">15.0%</span>
+                    India
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="list-group-progress" style="width: 5.0%;"></span>
+                    <span class="pull-right text-muted">5.0%</span>
+                    United Kingdom
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="list-group-progress" style="width: 5.0%;"></span>
+                    <span class="pull-right text-muted">5.0%</span>
+                    Canada
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="list-group-progress" style="width: 4.5%;"></span>
+                    <span class="pull-right text-muted">4.5%</span>
+                    Russia
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="list-group-progress" style="width: 2.3%;"></span>
+                    <span class="pull-right text-muted">2.3%</span>
+                    Mexico
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="list-group-progress" style="width: 1.7%;"></span>
+                    <span class="pull-right text-muted">1.7%</span>
+                    Spain
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="list-group-progress" style="width: 1.5%;"></span>
+                    <span class="pull-right text-muted">1.5%</span>
+                    France
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="list-group-progress" style="width: 1.4%;"></span>
+                    <span class="pull-right text-muted">1.4%</span>
+                    South Africa
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="list-group-progress" style="width: 1.2%;"></span>
+                    <span class="pull-right text-muted">1.2%</span>
+                    Japan
+                  </a>
+                  
+                </div>
+                <a href="#" class="btn btn-primary-outline p-x">All countries</a>
               </div>
-              <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div><!-- /. tools -->
-          </div><!-- /.box-header -->
-          <div class="box-body no-padding">
-            <!--The calendar -->
-            <div id="calendar" style="width: 100%"></div>
-          </div><!-- /.box-body -->
-          <div class="box-footer text-black">
-            <div class="row">
-              <div class="col-sm-6">
-                <!-- Progress bars -->
-                <div class="clearfix">
-                  <span class="pull-left">Task #1</span>
-                  <small class="pull-right">90%</small>
+              <div class="col-md-6 m-b-md">
+                <div class="list-group">
+                  <h4 class="list-group-header">
+                  Most visited pages
+                  </h4>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="pull-right text-muted">3,929,481</span>
+                    / (Logged out)
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="pull-right text-muted">1,143,393</span>
+                    / (Logged in)
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="pull-right text-muted">938,287</span>
+                    /tour
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="pull-right text-muted">749,393</span>
+                    /features/something
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="pull-right text-muted">695,912</span>
+                    /features/another-thing
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="pull-right text-muted">501,938</span>
+                    /users/username
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="pull-right text-muted">392,842</span>
+                    /page-title
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="pull-right text-muted">298,183</span>
+                    /some/page-slug
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="pull-right text-muted">193,129</span>
+                    /another/directory/and/page-title
+                  </a>
+                  
+                  <a class="list-group-item" href="#">
+                    <span class="pull-right text-muted">93,382</span>
+                    /one-more/page/directory/file-name
+                  </a>
+                  
                 </div>
-                <div class="progress xs">
-                  <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                </div>
-
-                <div class="clearfix">
-                  <span class="pull-left">Task #2</span>
-                  <small class="pull-right">70%</small>
-                </div>
-                <div class="progress xs">
-                  <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                </div>
-              </div><!-- /.col -->
-              <div class="col-sm-6">
-                <div class="clearfix">
-                  <span class="pull-left">Task #3</span>
-                  <small class="pull-right">60%</small>
-                </div>
-                <div class="progress xs">
-                  <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                </div>
-
-                <div class="clearfix">
-                  <span class="pull-left">Task #4</span>
-                  <small class="pull-right">40%</small>
-                </div>
-                <div class="progress xs">
-                  <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                </div>
-              </div><!-- /.col -->
-            </div><!-- /.row -->
-          </div>
-        </div><!-- /.box -->
-
-      </section><!-- right col -->
-    </div><!-- /.row (main row) -->
-
-  </section><!-- /.content -->
-</div><!-- /.content-wrapper -->
-
-
-
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/admin/dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="/admin/dist/js/demo.js"></script>
+                <a href="#" class="btn btn-primary-outline p-x">View all pages</a>
+              </div>
+            </div>
+            <div class="list-group">
+              <h4 class="list-group-header">
+              Devices and resolutions
+              </h4>
+              
+              <a class="list-group-item" href="#">
+                <span class="pull-right text-muted">3,929,481</span>
+                Desktop (1920x1080)
+              </a>
+              
+              <a class="list-group-item" href="#">
+                <span class="pull-right text-muted">1,143,393</span>
+                Desktop (1366x768)
+              </a>
+              
+              <a class="list-group-item" href="#">
+                <span class="pull-right text-muted">938,287</span>
+                Desktop (1440x900)
+              </a>
+              
+              <a class="list-group-item" href="#">
+                <span class="pull-right text-muted">749,393</span>
+                Desktop (1280x800)
+              </a>
+              
+              <a class="list-group-item" href="#">
+                <span class="pull-right text-muted">695,912</span>
+                Tablet (1024x768)
+              </a>
+              
+              <a class="list-group-item" href="#">
+                <span class="pull-right text-muted">501,938</span>
+                Tablet (768x1024)
+              </a>
+              
+              <a class="list-group-item" href="#">
+                <span class="pull-right text-muted">392,842</span>
+                Phone (320x480)
+              </a>
+              
+              <a class="list-group-item" href="#">
+                <span class="pull-right text-muted">298,183</span>
+                Phone (720x450)
+              </a>
+              
+              <a class="list-group-item" href="#">
+                <span class="pull-right text-muted">193,129</span>
+                Desktop (2560x1080)
+              </a>
+              
+              <a class="list-group-item" href="#">
+                <span class="pull-right text-muted">93,382</span>
+                Desktop (2560x1600)
+              </a>
+              
+            </div>
+            <a href="#" class="btn btn-primary-outline p-x">View all devices</a>

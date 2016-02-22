@@ -13,16 +13,16 @@
 
     <title>
       
-        Overview &middot; 
+        Light UI &middot; 
       
     </title>
 
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
     
-      <link href="assets/css/toolkit-light.css" rel="stylesheet">
+      <link href="../assets/css/toolkit-light.css" rel="stylesheet">
     
     
-    <link href="assets/css/application.css" rel="stylesheet">
+    <link href="../assets/css/application.css" rel="stylesheet">
 
     <style>
       /* note: this is a hack for ios iframe for bootstrap themes shopify page */
@@ -45,7 +45,7 @@
             <button class="nav-toggler nav-toggler-sm sidebar-toggler" type="button" data-toggle="collapse" data-target="#nav-toggleable-sm">
               <span class="sr-only">Toggle nav</span>
             </button>
-            <a class="sidebar-brand img-responsive" href="index.html">
+            <a class="sidebar-brand img-responsive" href="../index.html">
               <span class="icon icon-leaf sidebar-brand-icon"></span>
             </a>
           </div>
@@ -59,20 +59,37 @@
             </form>
             <ul class="nav nav-pills nav-stacked">
               <li class="nav-header">Dashboards</li>
+              <li >
+                <a href="../index.html">Overview</a>
+              </li>
+              <li >
+                <a href="../order-history/index.html">Order history</a>
+              </li>
+              <li >
+                <a href="../fluid/index.html">Fluid layout</a>
+              </li>
+              <li >
+                <a href="../icon-nav/index.html">Icon nav</a>
+              </li>
+
+              <li class="nav-header">More</li>
+              <li >
+                <a href="../docs/index.html">
+                  Toolkit docs
+                </a>
+              </li>
+              <li>
+                <a href="http://getbootstrap.com" target="blank">
+                  Bootstrap docs
+                </a>
+              </li>
               <li class="active">
-                <a href="index.html">Overview</a>
+                <a href="../light/index.html">Light UI</a>
               </li>
-              <li >
-                <a href="users/index.html">Users</a>
-              </li>
-              <li >
-                <a href="fluid/index.html">Posts</a>
-              </li>
-              <br>
-             <ul class="nav nav-pills nav-stacked">
-              <li class="nav-header">Administrative</li>
-              <li >
-                <a href="../index.html">Settings</a>
+              <li>
+                <a href="#docsModal" data-toggle="modal">
+                  Example modal
+                </a>
               </li>
             </ul>
             <hr class="visible-xs m-t">
@@ -104,7 +121,8 @@
         width="200" height="200"
         data-chart="doughnut"
         data-value="[{ value: 230, color: '#1ca8dd', label: 'Returning' }, { value: 130, color: '#1bc98e', label: 'New' }]"
-        data-segment-stroke-color="#252830">
+        data-segment-stroke-color="#fff"
+        data-options="{ percentageInnerCutout: '20' }">
       </canvas>
     </div>
     <strong class="text-muted">Traffic</strong>
@@ -117,7 +135,7 @@
         width="200" height="200"
         data-chart="doughnut"
         data-value="[{ value: 330, color: '#1ca8dd', label: 'Recurring' }, { value: 30, color: '#1bc98e', label: 'New' }]"
-        data-segment-stroke-color="#252830">
+        data-segment-stroke-color="#fff">
       </canvas>
     </div>
     <strong class="text-muted">Revenue</strong>
@@ -130,7 +148,7 @@
         width="200" height="200"
         data-chart="doughnut"
         data-value="[{ value: 100, color: '#1ca8dd', label: 'Referrals' }, { value: 260, color: '#1bc98e', label: 'Direct' }]"
-        data-segment-stroke-color="#252830">
+        data-segment-stroke-color="#fff">
       </canvas>
     </div>
     <strong class="text-muted">Traffic</strong>
@@ -143,7 +161,7 @@
 </div>
 
 <div class="row statcards">
-  <div class="col-sm-6 col-lg-3 m-b">
+  <div class="col-sm-3 m-b">
     <div class="statcard statcard-success">
       <div class="p-a">
         <span class="statcard-desc">Page views</span>
@@ -153,10 +171,10 @@
         </h2>
         <hr class="statcard-hr m-b-0">
       </div>
-      <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[28,68,41,43,96,45,100]}]" data-labels="['a','b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+      <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[28,68,41,43,96,45,100]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-3 m-b">
+  <div class="col-sm-3 m-b">
     <div class="statcard statcard-danger">
       <div class="p-a">
         <span class="statcard-desc">Downloads</span>
@@ -169,7 +187,7 @@
       <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[4,34,64,27,96,50,80]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-3 m-b">
+  <div class="col-sm-3 m-b">
     <div class="statcard statcard-info">
       <div class="p-a">
         <span class="statcard-desc">Sign-ups</span>
@@ -179,10 +197,10 @@
         </h2>
         <hr class="statcard-hr m-b-0">
       </div>
-      <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[12,38,32,60,36,54,68]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
+      <canvas id="sparkline1" width="378" height="94" class="sparkline" data-chart="spark-line" data-value="[{data:[12,38,32,94,36,54,68]}]" data-labels="['a', 'b','c','d','e','f','g']" style="width: 189px; height: 47px;"></canvas>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-3 m-b">
+  <div class="col-sm-3 m-b">
     <div class="statcard statcard-warning">
       <div class="p-a">
         <span class="statcard-desc">Downloads</span>
@@ -267,7 +285,7 @@
         </a>
       
     </div>
-    <a href="#" class="btn btn-primary-outline p-x">All countries</a>
+    <a href="#" class="btn btn-primary-outline">All countries</a>
   </div>
   <div class="col-md-6 m-b-md">
     <div class="list-group">
@@ -326,7 +344,7 @@
         </a>
       
     </div>
-    <a href="#" class="btn btn-primary-outline p-x">View all pages</a>
+    <a href="#" class="btn btn-primary-outline">View all pages</a>
   </div>
 </div>
 
@@ -386,7 +404,7 @@
     </a>
   
 </div>
-<a href="#" class="btn btn-primary-outline p-x">View all devices</a>
+<a href="#" class="btn btn-primary-outline">View all devices</a>
 
       </div>
     </div>
@@ -411,11 +429,11 @@
 </div>
 
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/chart.js"></script>
-    <script src="assets/js/tablesorter.min.js"></script>
-    <script src="assets/js/toolkit.js"></script>
-    <script src="assets/js/application.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/chart.js"></script>
+    <script src="../assets/js/tablesorter.min.js"></script>
+    <script src="../assets/js/toolkit.js"></script>
+    <script src="../assets/js/application.js"></script>
     <script>
       // execute/clear BS loaders for docs
       $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})

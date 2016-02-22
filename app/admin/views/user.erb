@@ -1,194 +1,120 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-
-  <% form_for :user, "/admin/user/save/#{params[:id]}", :id => 'admin-form', :remote => true, :multipart => true do |f| %>
-
-    <section class="content-header">
-      <h2 class="page-header">User Profile</h2>
-      <ol class="breadcrumb">
-        <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="/admin/users">Users</a></li>
-        <li class="active"><%= params[:id] || 'New' %></li>
-      </ol>
-
-      <%= partial("partials/flash.erb") %>
-
-      <div class="row">
-
-        <div class="col-md-3">
-
-          <!-- Widget: user widget style 1 -->
-          <div class="box box-widget widget-user-2">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-
-            <div class="box-footer no-padding">
-              <ul class="nav nav-stacked">
-                <li class="active"><a href="#general" data-toggle="tab">General Information</a></li>
-                <li><a href="#change_password" data-toggle="tab">Change Password</a></li>
-                <li><a href="#change_avatar_url" data-toggle="tab">Change Avatar</a></li>
-              </ul>
-
-            </div>
-          </div>
-
-          <p></p><button class="btn btn-primary btn-block"><b>Save</b></button></p>
-          <p></p><button class="btn btn-default btn-block" onclick="javascript: history.go(-1);"><b>Go Back</b></button></p>
-          <!-- /.widget-user -->
-        </div>
-        <!-- /.col -->
-
-
-        <section class="col-md-9">
-
-          <!-- SELECT2 EXAMPLE -->
-          <div class="box box-primary">
-
-            <div class="box-body">
-
-              <div class="tab-content">
-
-                <div role="tabpanel" class="tab-pane active" id="general">
-
-                  <div class="field row" id="field_name">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <%= f.label :name, :caption => "Name" %>
-                        <%= f.text_field :name, :class => 'form-control' %>
-                      </div>
-                      <!-- /.form-group -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                  <div class="field row" id="field_email">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <%= f.label :email, :caption => "Email" %>
-                        <%= f.text_field :email, :class => 'form-control' %>
-                      </div>
-                      <!-- /.form-group -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-
-                  <div class="field row" id="field_username">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <%= f.label :username, :caption => "Username" %>
-                        <%= f.text_field :username, :class => 'form-control' %>
-                      </div>
-                      <!-- /.form-group -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                  <div class="field row" id="field_role">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <%= f.label :role, :caption => "Role" %>
-                        <%= f.select :role, :options => ['admin', 'users'], :class => 'form-control select2' %>
-                      </div>
-                      <!-- /.form-group -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                  <div class="field row" id="field_provider">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <%= f.label :provider, :caption => "Provider" %>
-                        <%= f.select :provider, :options => ['email', 'twitter', 'instagram', 'github', 'linkedin'], :class => 'form-control select2' %>
-                      </div>
-                      <!-- /.form-group -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                </div> <!-- /.tab -->
-
-
-                <!-- tab -->
-                <div role="tabpanel" class="tab-pane" id="change_password">
-
-                  <div class="field row" id="field_password">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <%= f.label :password, :caption => "Password" %>
-                        <%= f.password_field :password, :class => 'form-control' %>
-                      </div>
-                      <!-- /.form-group -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                  <div class="field row" id="field_password_confirmation">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <%= f.label :password_confirmation, :caption => "Password Confirmation" %>
-                        <%= f.password_field :password_confirmation, :class => 'form-control' %>
-                      </div>
-                      <!-- /.form-group -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                </div> <!-- /.tab -->
-
-
-
-                <!-- tab -->
-                <div role="tabpanel" class="tab-pane" id="change_avatar_url">
-
-                  <div class="field row" id="field_avatar_url">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <%= f.label :avatar_url, :caption => "Profile pic" %>
-                        <%= f.file_field :avatar_url, :class => 'form-control' %>
-                      </div>
-                      <img src="<%= @user[:avatar_url] %>" class="col-md-12">
-                      <!-- /.form-group -->
-                    </div>
-                    <!-- /.col -->
-
-                  </div>
-                  <!-- /.row -->
-
-                </div> <!-- /.tab -->
-
-
-
-
-              </div> <!-- /.tab-content -->
-
-
-            </div>
-            <!-- /.box-body -->
-
-          </div>
-          <!-- /.box -->
-
-        </section>
-
-      </div> <!-- /.row -->
-
-
-    </section>
-
-  <% end %>
-
-</div><!-- /.content-wrapper -->
-
-
-<!-- Page script -->
-<script>
- $(function () {
- });
-</script>
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">Users</h2>
+  </div>
+  <div class="btn-toolbar dashhead-toolbar">
+    <div class="btn-toolbar-item input-with-icon">
+      <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
+      <span class="icon icon-calendar"></span>
+    </div>
+  </div>
+</div>
+<hr class="m-t">
+<% form_for :user, "/admin/user/save/#{params[:id]}", :id => 'admin-form', :multipart => true do |f| %>
+<section class="content-header">
+  
+  <div class="field row" id="field_name">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :first_name, :caption => "First Name" %>
+        <%= f.text_field :first_name, :class => 'form-control' %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :last_name, :caption => "Last Name" %>
+        <%= f.text_field :last_name, :class => 'form-control' %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_email">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :email, :caption => "Email" %>
+        <%= f.text_field :email, :class => 'form-control' %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_username">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :username, :caption => "Username" %>
+        <%= f.text_field :username, :class => 'form-control' %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_role">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :role, :caption => "Role" %>
+        <%= f.select :role, :options => ['admin', 'users'], :class => 'form-control select2' %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_provider">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :provider, :caption => "Provider" %>
+        <%= f.select :provider, :options => ['email', 'twitter', 'instagram', 'github', 'linkedin'], :class => 'form-control select2' %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_password">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :password, :caption => "Change Password (optional)" %>
+        <%= f.password_field :password, :class => 'form-control', :placeholder => "" %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_password_confirmation">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :password_confirmation, :caption => "Password Confirmation" %>
+        <%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => "" %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_avatar_url">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :avatar_url, :caption => "Profile pic" %>
+        <%= f.file_field :avatar_url, :class => 'form-control' %>
+      </div>
+      <img src="<%= @user[:avatar_url] %>" class="col-md-12">
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <!-- /.box -->
+</section>
+<div class="col-md-12">
+  <hr>
+  <button class="btn btn-primary"><b>Save</b></button>
+  
+</div>
+<% end %>
