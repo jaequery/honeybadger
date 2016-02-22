@@ -28,6 +28,7 @@
     </style>
   </head>
   <body>
+    
     <div class="container">
 
       <% if !flash.nil? %>
@@ -73,8 +74,8 @@
                 <br>
                 <ul class="nav nav-pills nav-stacked">
                   <li class="nav-header">Administrative</li>
-                  <li class="<%= set_active_on_match(/admin\/setting/) %>">
-                    <a href="/admin/settings">Settings</a>
+                  <li class="<%= set_active_on_match(/admin\/myaccount/) %>">
+                    <a href="/admin/myaccount">My Account</a>
                   </li>
                   <li>
                     <a href="/user/logout">Logout</a>

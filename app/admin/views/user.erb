@@ -1,9 +1,13 @@
+<% form_for :user, "/admin/user/save/#{params[:id]}", :id => 'admin-form', :multipart => true do |f| %>
+
 <div class="dashhead">
   <div class="dashhead-titles">
     <h6 class="dashhead-subtitle">Dashboards</h6>
     <h2 class="dashhead-title">Users</h2>
   </div>
   <div class="btn-toolbar dashhead-toolbar">
+
+    <button class="btn btn-primary-outline"><b>Save User</b></button>
     <!-- <div class="btn-toolbar-item input-with-icon">
       <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
       <span class="icon icon-calendar"></span>
@@ -11,7 +15,6 @@
   </div>
 </div>
 <hr class="m-t">
-<% form_for :user, "/admin/user/save/#{params[:id]}", :id => 'admin-form', :multipart => true do |f| %>
 <section class="content-header">
   
   <div class="field row" id="field_name">
@@ -112,9 +115,4 @@
   <!-- /.row -->
   <!-- /.box -->
 </section>
-<div class="col-md-12">
-  <hr>
-  <button class="btn btn-primary"><b>Save User</b></button>
-  
-</div>
 <% end %>

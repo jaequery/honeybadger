@@ -16,10 +16,10 @@ module Honeybadger
 
     ### this runs before all routes ###
     before do
-
       only_for("admin")
       @title = config('site_title') || "Honeybadger CMS"
-
+      @page = (params[:page] || 1).to_i
+      @per_page = params[:per_page] || 25
     end
     ###
 
@@ -30,11 +30,17 @@ module Honeybadger
 
     # user routes
     get '/users' do
-      @users = User.order(:id).reverse
+      @users = User.order(:id).paginate(1, 5).reverse
       render "users"
     end
 
     get '/user/(:id)' do
+      @user = User[params[:id]]
+      render "user"
+    end
+
+    get '/myaccount' do
+      params[:id] = session[:user][:id]
       @user = User[params[:id]]
       render "user"
     end
@@ -110,7 +116,7 @@ module Honeybadger
 
     # post routes
     get '/posts' do
-      @posts = Post.order(:id).reverse
+      @posts = Post.order(:id).paginate(@page, @per_page).reverse
       render "posts"
     end
 

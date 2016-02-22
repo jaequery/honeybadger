@@ -1,14 +1,15 @@
+<% form_for :post, "/admin/post/save/#{params[:id]}", :id => 'admin-form', :multipart => true do |f| %>
+
 <div class="dashhead">
   <div class="dashhead-titles">
     <h6 class="dashhead-subtitle">Dashboards</h6>
     <h2 class="dashhead-title">Posts</h2>
   </div>
   <div class="btn-toolbar dashhead-toolbar">
-    
+      <button class="btn btn-primary-outline"><b>Save Post</b></button>
   </div>
 </div>
 <hr class="m-t">
-<% form_for :post, "/admin/post/save/#{params[:id]}", :id => 'admin-form', :multipart => true do |f| %>
 <section class="content-header">
   
   <div class="field row" id="field_name">
@@ -52,10 +53,6 @@
 
   <!-- /.box -->
 </section>
-<div class="col-md-12">
-  <hr>
-  <button class="btn  btn-primary-outline"><b>Save Post</b></button>
-</div>
 <% end %>
 
 

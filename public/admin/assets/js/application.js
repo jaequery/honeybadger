@@ -119,13 +119,7 @@ var App = {
   },
 
   _tableSorters: function () {
-    $('[data-sort="table"]').tablesorter( {sortList: [[1,0]]} )
-    // assign the sortStart event
-    .bind("sortStart",function(e, t){
-      start = e.timeStamp;
-      alert('hi');
-      //$("#display").append('<li>Sort Started</li>').find('li:first').remove();
-    })
+    $('[data-sort="table"]').tablesorter()
   }
 }
 

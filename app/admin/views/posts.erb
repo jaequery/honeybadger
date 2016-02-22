@@ -4,7 +4,11 @@
     <h2 class="dashhead-title">Posts</h2>
   </div>
   <div class="btn-toolbar dashhead-toolbar">
-    
+    <div class="btn-group">
+      <a href="/admin/user" type="button" class="btn btn-primary-outline">
+      Create New <span class="icon icon-plus"></span>
+      </a>
+    </div>
   </div>
 </div>
 <hr class="m-t">
@@ -17,9 +21,9 @@
   </div>
   <div class="flextable-item">
     <div class="btn-group">
-      <a href="/admin/post" type="button" class="btn btn-primary-outline">
+      <!-- <a href="/admin/post" type="button" class="btn btn-primary-outline">
       Add <span class="icon icon-plus"></span>
-      </a>
+      </a> -->
     </div>
   </div>
 </div>
@@ -29,7 +33,7 @@
       <thead>
         <tr>
           <th><input type="checkbox" class="select-all" id="selectAll"></th>
-          <th>Post #</th>
+          <th class="headerSortUp">Post #</th>
           <th>User</th>
           <th>Title</th>
           <th>Created</th>
@@ -55,28 +59,7 @@
   </div>
 </div>
 <div class="text-center">
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="active"><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+
+  <%= will_paginate @posts, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+  
 </div>
-<script type="text/javascript">
-(function(){
-$('table.table .header').on('click', function(e){
-alert('hi');
-})
-})
-</script>

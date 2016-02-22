@@ -4,10 +4,11 @@
     <h2 class="dashhead-title">Users</h2>
   </div>
   <div class="btn-toolbar dashhead-toolbar">
-    <!-- <div class="btn-toolbar-item input-with-icon">
-      <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
-      <span class="icon icon-calendar"></span>
-    </div> -->
+    <div class="btn-group">
+      <a href="/admin/user" type="button" class="btn btn-primary-outline">
+      Create New <span class="icon icon-plus"></span>
+      </a>
+    </div>
   </div>
 </div>
 <hr class="m-t">
@@ -19,11 +20,7 @@
     </div>
   </div>
   <div class="flextable-item">
-    <div class="btn-group">
-      <a href="/admin/user" type="button" class="btn btn-primary-outline">
-      Add <span class="icon icon-plus"></span>
-      </a>
-    </div>
+    
   </div>
 </div>
 <div class="table-full">
@@ -32,7 +29,7 @@
       <thead>
         <tr>
           <td><input type="checkbox" class="select-all" id="selectAll"></td>
-          <th>UserID</th>
+          <th class="headerSortUp">User #</th>
           <th>Username</th>
           <th>Email</th>
           <th>Role</th>
@@ -60,23 +57,7 @@
   </div>
 </div>
 <div class="text-center">
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="active"><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+  <%= will_paginate @users, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;' %>
 </div>
 
 <script type="text/javascript">
