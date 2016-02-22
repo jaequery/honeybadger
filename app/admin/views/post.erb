@@ -6,7 +6,8 @@
     <h2 class="dashhead-title">Posts</h2>
   </div>
   <div class="btn-toolbar dashhead-toolbar">
-      <button class="btn btn-primary-outline"><b>Save Post</b></button>
+    <a href="/<%=@post.title.to_slug%>/<%=@post.id%>" class="btn btn-success-outline">View Post</a>
+    <button class="btn btn-primary-outline">Save Post</button>
   </div>
 </div>
 <hr class="m-t">
