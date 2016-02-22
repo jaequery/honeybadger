@@ -45,10 +45,6 @@ module Honeybadger
       render "user"
     end
 
-    get '/test' do
-      render "test"
-    end
-
     post '/user/save/(:id)' do
       data = params[:user]
 
