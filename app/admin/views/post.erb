@@ -1,5 +1,7 @@
 <% form_for :post, "/admin/post/save/#{params[:id]}", :id => 'admin-form', :multipart => true do |f| %>
 
+
+
 <div class="dashhead">
   <div class="dashhead-titles">
     <h6 class="dashhead-subtitle">Dashboards</h6>
@@ -12,7 +14,9 @@
     <button class="btn btn-primary-outline">Save Post</button>
   </div>
 </div>
-<hr class="m-t">
+
+<div class="bd-example" data-example-id="">
+
 <section class="content-header">
   
   <div class="field row" id="field_name">
@@ -62,3 +66,4 @@
 
 
 
+</div>

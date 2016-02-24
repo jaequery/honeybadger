@@ -16,6 +16,8 @@ module Honeybadger
     ### this runs before all routes ###
     before do
       @title = "Honeybadger CMS"
+      @page = (params[:page] || 1).to_i
+      @per_page = params[:per_page] || 5
     end
 
     ### authentication routes ###
@@ -148,7 +150,7 @@ module Honeybadger
     ### put your routes here ###
     get :index do
       @title = "Honeybadger CMS"
-      @posts = Post.all.reverse
+      @posts = Post.order(:id).paginate(@page, @per_page).reverse
       render "posts"
     end
 

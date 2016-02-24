@@ -5,3 +5,7 @@
   <%==post.teaser || "" %>
 </article>
 <% end %>
+
+<div class="text-center">
+  <%= will_paginate @posts, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+</div>

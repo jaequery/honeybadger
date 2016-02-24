@@ -26,3 +26,7 @@ hr {
 .navbar-static-top {
   border-bottom: 0;
 }
+
+.bd-example {
+  padding: 36px;
+}
