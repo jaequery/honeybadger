@@ -144,7 +144,7 @@ module Util
   end
 
   def self.ip_to_country_alpha2(ip)
-    c = GeoIP.new('db/geoip/GeoIP.dat').country(ip)
+    c = GeoIP.new('lib/geoip/GeoIP.dat').country(ip)
     return c[:country_code2]
   end
 

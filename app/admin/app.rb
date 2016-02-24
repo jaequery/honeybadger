@@ -54,7 +54,7 @@ module Honeybadger
         :email => {:type => 'email', :required => true},
         :password => {:type => 'string', :min => 6, :confirm_with => :password_confirmation},
       }
-      validator = Honeybadger::Validator.new(data, rules)
+      validator = Validator.new(data, rules)
 
       if !validator.valid?
         msg = validator.errors
@@ -130,7 +130,7 @@ module Honeybadger
         :title => {:type => 'string', :min => 2, :max => 256, :required => true},
         :content => {:type => 'string', :required => true},
       }
-      validator = Honeybadger::Validator.new(data, rules)
+      validator = Validator.new(data, rules)
 
       if !validator.valid?
         msg = validator.errors

@@ -11,6 +11,10 @@ set :auth, {
 :instagram => {:key => 'caa3d31debb44b11b9d5d6f171358899', :secret => 'ab4913bc59364bd8bf60f7172dfd0243'}
 }
 end
+
+#ip = request.ip
+Hit.create(:ip => 7, :created_at => Time.now)
+
 # Mounts the core application for this project
 Padrino.mount('Honeybadger::AdminApp', :app_file => Padrino.root('app/admin/app.rb')).to('/admin')
 Padrino.mount('Honeybadger::SiteApp', :app_file => Padrino.root('app/site/app.rb')).to('/')

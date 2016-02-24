@@ -1,4 +1,4 @@
-module Honeybadger
+#module Honeybadger
 
   class Validator
 
@@ -178,4 +178,4 @@ module Honeybadger
   end # end class
 
 
-end
+#end
