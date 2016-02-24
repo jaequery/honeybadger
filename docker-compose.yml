@@ -1,15 +1,17 @@
 app:
- image: jaequery/honeybadger
+ image: ruby:2.1-onbuild
  links:
  - db:honeybadger-postgres
- command: /init_container.sh
+ command: Docker/init_container.sh
  environment:
- - VIRTUAL_HOST=honeybadger.app,honeybadger.jaequery.com
-# restart: always
+ - VIRTUAL_HOST=honeybadger.app
+ ports: 
+ - "3000"
  volumes:
- - .:/app
+ - .:/usr/src/app
+ tty: true
 db:
  image: postgres
  environment:
  - POSTGRES_PASSWORD=j
-# restart: always
+

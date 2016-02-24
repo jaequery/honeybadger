@@ -13,7 +13,7 @@ set :auth, {
 end
 
 #ip = request.ip
-Hit.create(:ip => 7, :created_at => Time.now)
+#Hit.create(:ip => 7, :created_at => Time.now)
 
 # Mounts the core application for this project
 Padrino.mount('Honeybadger::AdminApp', :app_file => Padrino.root('app/admin/app.rb')).to('/admin')
