@@ -63,7 +63,7 @@ module Honeybadger
         :first_name => {:type => 'string', :required => true},
         :last_name => {:type => 'string', :required => true},
       }
-      validator = Honeybadger::Validator.new(params, rules)
+      validator = Validator.new(params, rules)
 
       @user = session[:user]
       @user.email = params[:email]
@@ -90,7 +90,7 @@ module Honeybadger
         :email => {:type => 'email', :required => true},
         :password => {:type => 'string', :required => true},
       }
-      validator = Honeybadger::Validator.new(params, rules)
+      validator = Validator.new(params, rules)
       if !validator.valid?
         flash.now[:notice] = validator.errors[0][:error]
         render "login"
@@ -127,7 +127,7 @@ module Honeybadger
         :email => {:type => 'email', :required => true},
         :password => {:type => 'string', :required => true},
       }
-      validator = Honeybadger::Validator.new(params, rules)
+      validator = Validator.new(params, rules)
       if !validator.valid?
         flash.now[:notice] = validator.errors[0][:error]
         render "register"
