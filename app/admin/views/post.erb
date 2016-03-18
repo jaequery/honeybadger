@@ -37,18 +37,10 @@
     </div><!-- /.col -->
   </div><!-- /.row -->
 
-  <div class="field row" id="field_teaser">
-    <div class="col-md-12">
-      <div class="form-group">
-        <%= f.label :teaser, :caption => "Teaser" %>
-        <%= f.text_area :teaser, :class => 'form-control', :style => '' %>
-      </div><!-- /.form-group -->
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-
   <div class="field row" id="field_content">
     <div class="col-md-12">
       <div class="form-group">
+        <div id='editor'></div>
         <%= f.label :content, :caption => "Content", :required => true %>
         <%= f.text_area :content, :class => 'form-control wysiwyg', :style => 'height: 240px;', :required => true %>
       </div><!-- /.form-group -->

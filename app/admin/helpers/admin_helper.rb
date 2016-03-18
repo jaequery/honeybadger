@@ -4,45 +4,8 @@ module Honeybadger
   class AdminApp
     module AdminHelper
 
-      def output_js_success(msg)
-        js = "$('#flash').hide();"
-        js += "$('.form-group').attr('class','form-group');"
-        js += "swal('Success!', '#{msg}', 'success');"
-      end
-
-      def output_js_error(msg)
-        js = "$('#flash').hide();"
-        js += "$('.form-group').attr('class','form-group');"
-        js += "swal('Ooops, there was a problem ...', '#{msg}', 'error');"
-      end
-
-      def output_js_validator(errors, form_model='')
-        js = "$('#flash').hide();"
-        js += "$('.form-group').attr('class','form-group');"
-
-        # get error messages
-        error_messages = []
-        errors.each do |error|
-          error_messages << "#{error[:name]} #{error[:error]}"
-        end
-
-        # show sweet alert (use below instead)
-        #js += "swal('Validation error!', '#{error_messages.join("\\n")}', 'error');\n"
-
-        # show input form errors
-        if !form_model.blank?
-          errors.each do |error|
-            js += "$('##{form_model}_#{error[:name]}').closest('.form-group').attr('class', 'form-group').addClass('has-error');\n"
-          end
-        end
-
-        # show flash message
-        js += "$('#flash').show();"
-        js += "$('#flash .flash_title').text('Validation Error');"
-        js += "$('#flash .flash_message').html('#{error_messages.join("<br>")}');"
-
-        # return msg
-        js
+      def paginate(model)
+        will_paginate model, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;'
       end
 
       def only_for(role)

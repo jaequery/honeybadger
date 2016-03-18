@@ -19,6 +19,7 @@ gem 'bcrypt'
 gem 'erubis', '~> 2.7.0'
 gem 'pg'
 gem 'sequel'
+gem 'sequel_pg', :require=>'sequel'
 
 # Application requirements
 gem 'will_paginate'

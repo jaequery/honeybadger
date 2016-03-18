@@ -57,13 +57,6 @@
   </div>
 </div>
 <div class="text-center">
-  <%= will_paginate @users, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+  <%= paginate(@users) %>
 </div>
 
-<script type="text/javascript">
-(function(){
-  $('table.table .header').on('click', function(e){
-    alert('hi');
-  })
-})
-</script>

@@ -6,19 +6,12 @@
   <div class="btn-toolbar dashhead-toolbar">
     <div class="btn-group">
       <a href="/admin/post" type="button" class="btn btn-primary-outline">
-      Create New <span class="icon icon-plus"></span>
+        Create New <span class="icon icon-plus"></span>
       </a>
     </div>
   </div>
 </div>
-
-
-
-
-
-<div class="bd-example" data-example-id="">
-
-
+<hr class="m-t">
 <div class="flextable table-actions">
   <div class="flextable-item flextable-primary">
     <div class="btn-toolbar-item input-with-icon">
@@ -29,7 +22,7 @@
   <div class="flextable-item">
     <div class="btn-group">
       <!-- <a href="/admin/post" type="button" class="btn btn-primary-outline">
-      Add <span class="icon icon-plus"></span>
+        Add <span class="icon icon-plus"></span>
       </a> -->
     </div>
   </div>
@@ -64,11 +57,7 @@
       </tbody>
     </table>
   </div>
-</div>
-<div class="text-center">
-
-  <%= will_paginate @posts, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;' %>
-  
-</div>
-
+  <div class="text-center">
+    <%= paginate(@posts) %>
+  </div>
 </div>

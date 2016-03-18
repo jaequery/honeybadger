@@ -20,6 +20,22 @@ module Honeybadger
       @per_page = params[:per_page] || 5
     end
 
+    ### put your routes here ###
+    get '/' do
+      @posts = Post.order(:id).paginate(@page, @per_page).reverse
+      render "posts"
+    end
+
+    ### view page ###
+    get '/:title/:id' do
+      @post = Post[params[:id]]
+      render "post"
+    end
+
+    get '/about' do
+      render "about"
+    end    
+
     ### authentication routes ###
     auth_keys = settings.auth # @todo: settings is not available in Builder
 
@@ -63,7 +79,7 @@ module Honeybadger
         :first_name => {:type => 'string', :required => true},
         :last_name => {:type => 'string', :required => true},
       }
-      validator = Honeybadger::Validator.new(params, rules)
+      validator = Validator.new(params, rules)
 
       @user = session[:user]
       @user.email = params[:email]
@@ -90,7 +106,7 @@ module Honeybadger
         :email => {:type => 'email', :required => true},
         :password => {:type => 'string', :required => true},
       }
-      validator = Honeybadger::Validator.new(params, rules)
+      validator = Validator.new(params, rules)
       if !validator.valid?
         flash.now[:notice] = validator.errors[0][:error]
         render "login"
@@ -125,7 +141,7 @@ module Honeybadger
         :email => {:type => 'email', :required => true},
         :password => {:type => 'string', :required => true},
       }
-      validator = Honeybadger::Validator.new(params, rules)
+      validator = Validator.new(params, rules)
       if !validator.valid?
         flash.now[:notice] = validator.errors[0][:error]
         render "register"
@@ -144,26 +160,6 @@ module Honeybadger
 
     end
 
-    ### put your routes here ###
-    get :index do
-      @title = "Honeybadger CMS"
-      @posts = Post.order(:id).paginate(@page, @per_page).reverse
-      render "posts"
-    end
-
-    get '/debug' do
-      abort
-    end
-
-    ### view page ###
-    get :index, :with => [:title, :id] do
-      @post = Post[params[:id]]
-      render "post"
-    end
-
-    get :about do
-      render "about"
-    end
 
   end
 

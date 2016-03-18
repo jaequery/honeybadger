@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <title>
     
-    Overview &middot;
+    <%= @title %>
     
     </title>
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
@@ -111,9 +111,13 @@
         <script src="/admin/assets/js/tablesorter.min.js"></script>
         <script src="/admin/assets/js/toolkit.js"></script>
         <script src="/admin/assets/js/application.js"></script>
+        <script src="/bower_components/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
         <script>
         // execute/clear BS loaders for docs
-        $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
+        $(function(){
+          $('#editor').wysiwyg();
+          while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}
+        })
         </script>
       </body>
     </html>

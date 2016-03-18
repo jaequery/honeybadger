@@ -4,16 +4,9 @@ module Honeybadger
   class SiteApp
     module SiteHelper
 
-      def flash_messages(flash)
-        html = ''
-        if !flash[:notice].nil?
-          html += '<div class="message">'
-          html += flash[:notice]
-          html += '</div>'
-        end
-        html
+      def paginate(model)
+        will_paginate @posts, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;'
       end
-
 
     end
 
