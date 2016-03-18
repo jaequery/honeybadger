@@ -2,4 +2,6 @@
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 parentdir="$(dirname "$dir")"
 app=${parentdir##*/}
-docker exec -it ${app}_app_1 bash
+cd ../../
+cmd=$1
+vagrant ssh -c "cd /vagrant/$app && bin/docker/run.sh '$1'"
