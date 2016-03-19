@@ -11,3 +11,4 @@ db/*.db
 *.3000.pid*
 .idea
 public/uploads/*
+.vagrant
