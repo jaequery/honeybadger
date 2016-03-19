@@ -1,41 +1,11 @@
-<div class='jumbotron'>
-  <h1>Honeybadger CMS</h1>
-  <p>A bare-minimal starter framework in Padrino (Ruby/Sinatra) with an admin interface to kickstart your next projects!</p>
-  <p>
-    <a class='btn btn-primary btn-lg' href='https://github.com/jaequery/honeybadger' target="_blank" role='button'><span class='icon-github-3'></span> View On GitHub »</a>
-  </p>
-</div>
-<div class='row'>
-  <div class='col-md-4 col-md-push-8'>
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h3 class='panel-title'>About</h3>
-      </div>
-      <div class='panel-body'>
-        <div class='row'>
-          <div class='col-sm-3 col-md-12'>
-            <p>
-              <img alt='profile pic' class='img-responsive center-block img-circle img-profile' height='128' src='http://www.305global.com/wp-content/uploads/2015/04/honeybadger.jpg' style='border: 4px solid #e7e7e7;' width='128'>
-            </p>
-          </div>
-          <div class='col-sm-9 col-md-12'>
-            <p class='lead'>Hackathon Starter Ruby is brought to you by <a href="http://twitter.com/jaequery">@jaequery</a>.</p>
-            <p class='lead'><span class='icon-github-3'></span> <a href='http://github.com/jaequery/honeybadger'>GitHub</a></p>
-            <p class='lead'><span class='icon-twitter-3'></span> <a href='https://twitter.com/jaequery/'>Twitter</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class='col-md-8 col-md-pull-4'>
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h3 class='panel-title'>Readme</h3>
-      </div>
-      <div class='panel-body readme'>
+<% @posts.each do |post| %>
+<article class="post">
+  <h2 class="post-title"><a href="/<%=post[:title].parameterize("-")%>/<%=post[:id]%>"><%=post[:title]%></a></h1>
+  <time datetime="<%=post[:created_at].strftime("%d %B %Y")%>" class="post-date"><%=post[:created_at].strftime("%d %B %Y")%> by <%=post.user[:username]%></time>
+  <%==post[:content]%>
+</article>
+<% end %>
 
-        <p>This CMS was created because I couldn't find a barebone framework but still had an admin interface and user management.</p>
-      </div>
-    </div>
-  </div>
+<div class="text-center">
+  <%= paginate(@posts) %>
 </div>

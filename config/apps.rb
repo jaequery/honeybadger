@@ -8,7 +8,7 @@ set :protection, :except => :path_traversal
 # single sign on credentials
 set :auth, {
 :twitter => {:key => '', :secret => ''},
-:instagram => {:key => 'caa3d31debb44b11b9d5d6f171358899', :secret => 'ab4913bc59364bd8bf60f7172dfd0243'}
+:instagram => {:key => '', :secret => ''}
 }
 end
 

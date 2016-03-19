@@ -18,23 +18,7 @@ module Honeybadger
       @title = "Honeybadger CMS"
       @page = (params[:page] || 1).to_i
       @per_page = params[:per_page] || 5
-    end
-
-    ### put your routes here ###
-    get '/' do
-      @posts = Post.order(:id).paginate(@page, @per_page).reverse
-      render "posts"
-    end
-
-    ### view page ###
-    get '/:title/:id' do
-      @post = Post[params[:id]]
-      render "post"
-    end
-
-    get '/about' do
-      render "about"
-    end    
+    end      
 
     ### authentication routes ###
     auth_keys = settings.auth # @todo: settings is not available in Builder
@@ -158,6 +142,23 @@ module Honeybadger
 
       end
 
+    end
+
+
+    ### put your routes here ###
+    get '/' do
+      @posts = Post.order(:id).paginate(@page, @per_page).reverse
+      render "posts"
+    end
+
+    ### view page ###
+    get '/:title/:id' do
+      @post = Post[params[:id]]
+      render "post"
+    end
+
+    get '/about' do
+      render "about"
     end
 
 
