@@ -148,7 +148,7 @@ module Honeybadger
     ### put your routes here ###
     get '/' do
       @posts = Post.order(:id).paginate(@page, @per_page).reverse
-      render "posts"
+      render "index"
     end
 
     ### view page ###
