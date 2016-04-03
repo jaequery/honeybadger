@@ -1,3 +1,5 @@
+begin
+
 # add default admin user
 user = User.new
 user.email = 'test@test.com'
@@ -22,3 +24,7 @@ post.content = "I wanted a simple and lightweight blogging / CMS framework for R
 post.created_at = Time.now
 post.save
 #end
+
+rescue Exception => e
+    puts "seeds already ran"
+end
