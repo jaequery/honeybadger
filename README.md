@@ -16,7 +16,9 @@ The code is freely available on https://github.com/jaequery/honeybadger for you 
 git clone git@github.com:jaequery/honeybadger.git
 ```
 
-2. Run docker compose
+2. Update VIRTUAL_HOST property with your desired hostname (eg: honeybadger.dev) on docker-compose.yml
+
+3. Run docker compose
 
 ```
 cd honeybadger
