@@ -41,13 +41,11 @@
     <div class="col-md-12">
       <div class="form-group">
         <div id='editor'></div>
-        <%= f.label :content, :caption => "Content", :required => true %>
+        <%= f.label :content, :caption => "Content (Markdown)", :required => true %>
         <%= f.text_area :content, :class => 'form-control wysiwyg', :style => 'height: 240px;', :required => true %>
       </div><!-- /.form-group -->
     </div><!-- /.col -->
   </div><!-- /.row -->
-
-
 
 
   <!-- /.box -->
@@ -55,7 +53,10 @@
 <% end %>
 
 
-
-
-
 </div>
+
+<script>
+$(function(){
+  autosize($('textarea'));
+})
+</script>

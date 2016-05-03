@@ -13,6 +13,7 @@ gem 'sequel_pg', :require=>'sequel'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'redcarpet'
+gem 'coderay'
 
 # authentication
 gem 'omniauth'
