@@ -2,7 +2,7 @@
 <article class="post">
   <h2 class="post-title"><a href="/<%=post[:title].parameterize("-")%>/<%=post[:id]%>"><%=post[:title]%></a></h1>
   <time datetime="<%=post[:created_at].strftime("%d %B %Y")%>" class="post-date"><%=post[:created_at].strftime("%d %B %Y")%> by <%=post.user[:username]%></time>
-  <%==post[:content]%>
+  <%==post[:content].nl2br %>
 </article>
 <% end %>
 

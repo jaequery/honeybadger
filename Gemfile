@@ -12,6 +12,7 @@ gem 'sequel'
 gem 'sequel_pg', :require=>'sequel'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'redcarpet'
 
 # authentication
 gem 'omniauth'
@@ -22,12 +23,6 @@ gem 'omniauth-github'
 gem 'omniauth-linkedin'
 gem 'sequel_secure_password'
 gem 'bcrypt'
-
-# Application requirements
-# gem 'stripe'
-# gem 'curb'
-# gem 'plaid'
-#gem 'forme'
 
 # Webserver
 gem 'passenger'

@@ -31,6 +31,14 @@ end
 
 class String
 
+  def sanitize
+    self.gsub(/(<.*?>)/, '')
+  end
+
+  def nl2br
+    self.sanitize.gsub(/\n/, '<br />').html_safe
+  end
+
   def to_slug
     #strip the string
     ret = self.strip

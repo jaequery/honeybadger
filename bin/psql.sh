@@ -2,6 +2,4 @@
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 parentdir="$(dirname "$dir")"
 app=${parentdir##*/}
-cd ../../
-cmd=$1
-vagrant ssh -c "cd /vagrant/$app && bin/docker/run.sh '$1'"
+docker exec -it ${app}_app_1 psql --host=honeybadger-postgres --user=postgres

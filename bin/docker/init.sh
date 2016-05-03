@@ -1,13 +1,14 @@
 #!/bin/bash
-
 bundle
 
-if [ ! -f /tmp/initialized ]
+if [ ! -f /app/tmp/initialized ]
 then
-rake sq:create
-rake sq:migrate
-rake db:seed
-touch /tmp/initialized
+padrino rake db:reset
+padrino rake db:seed
+padrino rake db:migrate
+touch /app/tmp/initialized
+else    
+padrino rake db:migrate
 fi
-
-padrino s -h 0.0.0.0
+passenger start -d
+tail -f /app/log/passenger.3000.log

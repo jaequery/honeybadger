@@ -4,7 +4,7 @@ app:
  - db:honeybadger-postgres
  command: /app/bin/docker/init.sh
  environment:
- - VIRTUAL_HOST=honeybadger.app
+ - VIRTUAL_HOST=honeybadger.docker
 # restart: always
  volumes:
  - .:/app
