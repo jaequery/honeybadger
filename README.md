@@ -2,6 +2,8 @@
 
 [![Join the chat at https://gitter.im/jaequery/honeybadger](https://badges.gitter.im/jaequery/honeybadger.svg)](https://gitter.im/jaequery/honeybadger?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+[DemoUp](https://img.shields.io/badge/style-flat--squared-green.svg?style=flat-square)
+
 Creating Honeybadger, an opensource Ruby/Sinatra based CMS that helps you kickstart projects. It provides a boiler-plate code with the goal of being an extremely simple CMS alternative to Wordpress, Drupa, and etc.
 
 I love simplicity because to me less code, less methods, and the less syntaxes the better.
