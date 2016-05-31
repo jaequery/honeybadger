@@ -12,7 +12,7 @@ db:
  image: postgres
  environment:
  - POSTGRES_PASSWORD=j
- volumes:
- - pgdata:/var/lib/postgresql/data 
+ #volumes:
+ #- pgdata:/var/lib/postgresql/data 
  tty: true
 # restart: always
