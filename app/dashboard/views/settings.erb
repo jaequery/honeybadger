@@ -1,0 +1,53 @@
+<style>
+section h3 { padding-bottom: 10px;}
+</style>
+
+<form action="/dashboard/settings/save" method="POST" id="settings_form">
+    <div class="dashhead">
+        <div class="dashhead-titles">
+            <h6 class="dashhead-subtitle">Dashboards</h6>
+            <h2 class="dashhead-title">Settings</h2>
+        </div>
+        <div class="btn-toolbar dashhead-toolbar">
+            <button class="btn btn-primary-outline">Save Settings</button>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <section class="content-header bd-example">
+
+            <h3>Site</h3>
+            <div class="col-md-12">
+
+                <div class="field row">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="site_title" value="<%= @settings[:site_title] %>" class="form-control" placeholder="Company | Make Money" />
+                    </div>
+                </div>
+
+                <div class="field row">
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input type="text" name="site_name" value="<%= @settings[:site_name] %>" class="form-control" placeholder="Some Company" />
+                    </div>
+                </div>
+
+                <div class="field row">
+                    <div class="form-group">
+                        <label>Host</label>
+                        <input type="text" name="site_host" value="<%= @settings[:site_host] %>" class="form-control" placeholder="company.com" />
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </div>
+</form>
+
+
+

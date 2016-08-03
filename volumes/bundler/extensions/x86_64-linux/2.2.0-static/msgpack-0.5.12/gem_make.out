@@ -1,0 +1,42 @@
+current directory: /app/volumes/bundler/gems/msgpack-0.5.12/ext/msgpack
+/usr/local/bin/ruby -r ./siteconf20160703-22-2t0lrq.rb extconf.rb
+checking for ruby/st.h... yes
+checking for st.h... yes
+checking for rb_str_replace() in ruby.h... yes
+checking for rb_intern_str() in ruby.h... yes
+checking for rb_sym2str() in ruby.h... yes
+checking for rb_str_intern() in ruby.h... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /app/volumes/bundler/extensions/x86_64-linux/2.2.0-static/msgpack-0.5.12/mkmf.log
+
+current directory: /app/volumes/bundler/gems/msgpack-0.5.12/ext/msgpack
+make "DESTDIR=" clean
+make: Warning: File 'Makefile' has modification time 724828 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /app/volumes/bundler/gems/msgpack-0.5.12/ext/msgpack
+make "DESTDIR="
+make: Warning: File 'Makefile' has modification time 724828 s in the future
+compiling buffer.c
+compiling buffer_class.c
+compiling core_ext.c
+compiling packer.c
+compiling packer_class.c
+compiling rbinit.c
+compiling rmem.c
+compiling unpacker.c
+compiling unpacker_class.c
+unpacker_class.c:197:14: warning: 'Unpacker_peek_next_type' defined but not used [-Wunused-function]
+ static VALUE Unpacker_peek_next_type(VALUE self)
+              ^
+linking shared-object msgpack/msgpack.so
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /app/volumes/bundler/gems/msgpack-0.5.12/ext/msgpack
+make "DESTDIR=" install
+make: Warning: File 'Makefile' has modification time 724825 s in the future
+/usr/bin/install -c -m 0755 msgpack.so ./.gem.20160703-22-12ow49a/msgpack
+make: warning:  Clock skew detected.  Your build may be incomplete.

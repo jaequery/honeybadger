@@ -1,0 +1,33 @@
+/usr/local/bin/ruby -r ./siteconf20160703-22-h1bxj0.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+make: Warning: File 'Makefile' has modification time 724828 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+make "DESTDIR="
+make: Warning: File 'Makefile' has modification time 724828 s in the future
+compiling bcrypt_ext.c
+bcrypt_ext.c: In function 'bcrypt_wrapper':
+bcrypt_ext.c:27:5: warning: implicit declaration of function 'ruby_bcrypt' [-Wimplicit-function-declaration]
+     return (VALUE)ruby_bcrypt(args->output, args->key, args->salt);
+     ^
+bcrypt_ext.c: At top level:
+bcrypt_ext.c:25:14: warning: 'bcrypt_wrapper' defined but not used [-Wunused-function]
+ static VALUE bcrypt_wrapper(void *_args) {
+              ^
+compiling crypt.c
+compiling crypt_blowfish.c
+compiling crypt_gensalt.c
+compiling wrapper.c
+In file included from wrapper.c:27:0:
+/usr/local/include/ruby-2.2.0/ruby/backward/util.h:2:2: warning: #warning use "ruby/util.h" instead of bare "util.h" [-Wcpp]
+ #warning use "ruby/util.h" instead of bare "util.h"
+  ^
+linking shared-object bcrypt_ext.so
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+make "DESTDIR=" install
+make: Warning: File 'Makefile' has modification time 724827 s in the future
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20160703-22-dfma8q
+make: warning:  Clock skew detected.  Your build may be incomplete.

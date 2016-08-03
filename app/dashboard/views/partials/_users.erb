@@ -1,0 +1,50 @@
+<div id="data_table">
+  <div class="table-full">
+    <div class="table-responsive">
+
+      <table class="table" data-sort="table">
+        <thead>
+          <tr>
+            <td><input type="checkbox" class="select-all" id="selectAll"></td>
+            <th class="headerSortUp">User #</th>
+            <th>User</th>
+            <th>Balance</th>          
+            <th>Role</th>
+            <th>Created</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td><input type="checkbox" class="select-row"></td>
+            <td><%= user[:id] %></td>
+            <td>
+              <p><%= user[:first_name] %> <%= user[:last_name] %></p>
+              <p><%= user[:email] %></p>
+              <p><%= user[:phone] %></p>
+              <p><%= user[:city] %> <%= user[:state] %></p>
+            </td>
+            <td><%= number_to_currency(Transaction.where(:user_id => user[:id]).sum(:amount)) %></td>
+            <td>
+              <%= user[:role] %>
+              <% if !user[:beta_request].nil? %>
+              *
+              <% end %>
+            </td>
+            <td><%= user[:created_at].strftime("%m/%d/%y") %></td>
+            <td>
+              <a href="/dashboard/user/<%=user[:id] %>" class="btn btn-primary-outline btn-sm">Edit <span class="icon icon-pencil"></span></a>
+              <a href="/dashboard/user/delete/<%=user[:id] %>" data-remote="true" data-confirm="Are You Sure?" class="btn btn-primary-outline btn-sm">Delete <span class="icon icon-erase"></span></a>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <div class="text-center">
+    <%= will_paginate @users, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+  </div>
+</div>

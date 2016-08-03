@@ -1,12 +1,17 @@
 <article class="post">
 
   <header class="post-header">
-    <h2 class="post-title"><a href="/<%=@post[:title].parameterize("-")%>/<%=@post[:id]%>"><%=@post[:title]%></a></h2>
+    <h1 class="post-title"><a href="<%=url_for(:post, :title => @post[:title].parameterize("-"), :id => @post[:id]) %>"><%=@post[:title]%></a></h1>
+    <header class="post-meta" style='margin-bottom:60px;'>
       <p class="post-date" datetime="<%=@post[:created_at].strftime("%d %B %Y")%>"><%=@post[:created_at].strftime("%d %B %Y")%> by <%=@post.user[:username]%></p>
+    </header>
   </header>
 
   <section class="post-content">
-    <%==markdown(@post[:content])%>
+    <% if !@post[:teaser].blank? %>
+      <%= @post[:teaser] %><br><br>
+    <% end %>
+    <%==@post[:content]%>
   </section>
 
 </article>

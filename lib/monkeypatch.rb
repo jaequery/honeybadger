@@ -31,14 +31,6 @@ end
 
 class String
 
-  def sanitize
-    self.gsub(/(<.*?>)/, '')
-  end
-
-  def nl2br
-    self.sanitize.gsub(/\n/, '<br />').html_safe
-  end
-
   def to_slug
     #strip the string
     ret = self.strip
@@ -117,4 +109,10 @@ class BigDecimal
   define_method :to_s do |param='F'|
     old_to_s.bind(self).(param)
   end
+
+  def to_currency
+    res = number_to_currency(self)
+    res
+  end
+
 end

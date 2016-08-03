@@ -1,0 +1,29 @@
+/usr/local/bin/ruby -r ./siteconf20160327-8-19l5hh8.rb extconf.rb
+checking for main() in -lpq... yes
+checking for libpq-fe.h... yes
+checking for PQsetSingleRowMode()... yes
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling sequel_pg.c
+sequel_pg.c: In function 'parse_pg_array':
+sequel_pg.c:246:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+   char *word = RSTRING_PTR(buf);
+   ^
+sequel_pg.c: In function 'spg_yield_hash_rows':
+sequel_pg.c:649:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+   int enc_index;
+   ^
+sequel_pg.c: In function 'spg__yield_each_row':
+sequel_pg.c:920:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+   int enc_index;
+   ^
+sequel_pg.c:897:11: warning: variable 'conn' set but not used [-Wunused-but-set-variable]
+   PGconn *conn;
+           ^
+linking shared-object sequel_pg.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 sequel_pg.so ./.gem.20160327-8-17zpnzn

@@ -1,0 +1,23 @@
+current directory: /app/volumes/bundler/gems/passenger-5.0.29/src/helper-scripts/download_binaries
+/usr/local/bin/ruby -r ./siteconf20160703-22-iu7mjy.rb extconf.rb
+Attempting to download https://oss-binaries.phusionpassenger.com/binaries/passenger/by_release/5.0.29/rubyext-ruby-2.2.3-x86_64-linux.tar.gz into /app/volumes/bundler/gems/passenger-5.0.29/download_cache
+Attempting to download https://oss-binaries.phusionpassenger.com/binaries/passenger/by_release/5.0.29/nginx-1.10.1-x86_64-linux.tar.gz into /app/volumes/bundler/gems/passenger-5.0.29/download_cache
+Attempting to download https://oss-binaries.phusionpassenger.com/binaries/passenger/by_release/5.0.29/agent-x86_64-linux.tar.gz into /app/volumes/bundler/gems/passenger-5.0.29/download_cache
+
+current directory: /app/volumes/bundler/gems/passenger-5.0.29/src/helper-scripts/download_binaries
+make "DESTDIR=" clean
+make: Warning: File 'Makefile' has modification time 724820 s in the future
+true
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /app/volumes/bundler/gems/passenger-5.0.29/src/helper-scripts/download_binaries
+make "DESTDIR="
+make: Warning: File 'Makefile' has modification time 724820 s in the future
+true
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /app/volumes/bundler/gems/passenger-5.0.29/src/helper-scripts/download_binaries
+make "DESTDIR=" install
+make: Warning: File 'Makefile' has modification time 724820 s in the future
+true
+make: warning:  Clock skew detected.  Your build may be incomplete.

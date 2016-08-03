@@ -1,6 +1,8 @@
 # coding: utf-8
 module Util
 
+  include Padrino::Helpers::NumberHelpers
+  
   def self.to_currency (value)
     number_to_currency(value)
   end

@@ -683,3 +683,9 @@ nav a:hover {
 label { font-weight: normal; font-size: 16px; }
 
 footer{ text-align: center; }
+
+
+/* Stlying */
+
+
+.nowrap {white-space: nowrap ; }

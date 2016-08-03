@@ -18,6 +18,9 @@ Sequel.migration do
       String :provider
       String :refid
       String :avatar_url
+
+      Fixnum :referral_user_id
+
       DateTime :created_at
       DateTime :updated_at
       unique [:provider, :refid]

@@ -1,0 +1,40 @@
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">Users</h2>
+  </div>
+  <div class="btn-toolbar dashhead-toolbar">
+    <div class="btn-group">
+      <a href="/dashboard/user" type="button" class="btn btn-primary-outline">
+      Create New <span class="icon icon-plus"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<hr class="m-t">
+<div class="flextable table-actions">
+  <div class="flextable-item flextable-primary">
+    <div class="btn-toolbar-item input-with-icon">
+      <input id="search" type="text" class="form-control input-block" placeholder="Search users">
+      <span class="icon icon-magnifying-glass"></span>      
+    </div>
+  </div>
+  <div class="flextable-item">    
+  </div>
+</div>
+
+
+<%= partial("partials/users") %>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $('#search').keyup(function(){
+    var search = $(this).val();
+    $.get("/dashboard/users/ajax", {search: search}, function(res){
+      $('#data_table').html(res);
+    });
+  });
+});
+</script>

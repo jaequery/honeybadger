@@ -1,0 +1,11 @@
+<% @posts.each do |post| %>
+<article class="post">
+  <h2 class="post-title"><a href="<%=url_for(:post, :title => post[:title].parameterize("-"), :id => post[:id] )%>"><%=post[:title]%></a></h1>
+  <time datetime="<%=post[:created_at].strftime("%d %B %Y")%>" class="post-date"><%=post[:created_at].strftime("%d %B %Y")%> by <%=post.user[:username]%></time>
+  <%==post[:teaser] || "" %>
+</article>
+<% end %>
+
+<div class="text-center">
+  <%= will_paginate @posts, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+</div>

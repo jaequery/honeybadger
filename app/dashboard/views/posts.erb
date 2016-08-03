@@ -1,0 +1,72 @@
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">Posts</h2>
+  </div>
+  <div class="btn-toolbar dashhead-toolbar">
+    <div class="btn-group">
+      <a href="/dashboard/post" type="button" class="btn btn-primary-outline">
+      Create New <span class="icon icon-plus"></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<hr class="m-t">
+
+
+
+<div class="flextable table-actions">
+  <div class="flextable-item flextable-primary">
+    <div class="btn-toolbar-item input-with-icon">
+      <input type="text" class="form-control input-block" placeholder="Search posts">
+      <span class="icon icon-magnifying-glass"></span>
+    </div>
+  </div>
+  <div class="flextable-item">
+    <div class="btn-group">
+      <!-- <a href="/dashboard/post" type="button" class="btn btn-primary-outline">
+      Add <span class="icon icon-plus"></span>
+      </a> -->
+    </div>
+  </div>
+</div>
+<div class="table-full">
+  <div class="table-responsive">
+    <table class="table" data-sort="table">
+      <thead>
+        <tr>
+          <th><input type="checkbox" class="select-all" id="selectAll"></th>
+          <th class="headerSortUp">Post #</th>
+          <th>User</th>
+          <th>Title</th>
+          <th>Created</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+        <tr>
+          <td><input type="checkbox" class="select-row"></td>
+          <td><%= post[:id] %></td>
+          <td><%= post.user[:username] %></td>
+          <td><%= post[:title] %></td>
+          <td><%= post[:created_at].strftime("%m/%d/%y") %></td>
+          <td>
+            <a href="/dashboard/post/<%=post[:id] %>" class="btn btn-primary-outline btn-sm">Edit <span class="icon icon-pencil"></span></a>
+            <a href="/dashboard/post/delete/<%=post[:id] %>" data-remote="true" data-confirm="Are You Sure?" class="btn btn-primary-outline btn-sm">Delete <span class="icon icon-erase"></span></a>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="text-center">
+
+  <%= will_paginate @posts, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+  
+</div>
+

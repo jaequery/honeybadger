@@ -1,0 +1,21 @@
+/usr/local/bin/ruby -r ./siteconf20160419-5-34yd8o.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling native.c
+In file included from native.c:21:0:
+native-endian.h:144:17: warning: '__bson_uint32_swap_slow' defined but not used [-Wunused-function]
+ static uint32_t __bson_uint32_swap_slow(uint32_t v)
+                 ^
+native-endian.h:168:17: warning: '__bson_uint64_swap_slow' defined but not used [-Wunused-function]
+ static uint64_t __bson_uint64_swap_slow(uint64_t v)
+                 ^
+native-endian.h:195:15: warning: '__bson_double_swap_slow' defined but not used [-Wunused-function]
+ static double __bson_double_swap_slow(double v)
+               ^
+linking shared-object native.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 native.so ./.gem.20160419-5-1s38gqn

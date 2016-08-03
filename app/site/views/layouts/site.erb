@@ -7,18 +7,18 @@
     <%=@title%>
     </title>
 
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/assets/js/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/assets/bootstrap/bootstrap.min.js"></script>
+    <link href="/assets/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/site/css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="about:blank">
     
   </head>
   <body>
     <nav>
-      <a href="/about">About</a>
-      <a href="https://github.com/jaequery/honeybadger" target="_blank">Github</a>
-
+      <!-- <a href="/about">About</a> -->
+      <!-- <a href="/companies">Companies</a> -->
       <% if !session[:user].nil? %>
       <div class="btn-group">
         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,8 +44,8 @@
         <h3 class="masthead-title">
         <div class="post-page__logo-wrapper">
           <a href="/" title="Home">
-            <img src="/site/img/logo.svg" alt="React" class="post-page__logo">
-            Honeybadger
+            <img src="/site/img/logo_only.png" alt="React" class="post-page__logo">
+            Company
           </a>
         </div>
         </h3>
@@ -56,22 +56,21 @@
         <%= flash_tag(:error, :class => 'alert alert-error') %>
         <%= flash_tag(:success, :class => 'alert alert-success') %>
 
-        <%=yield%>      
+        <%=yield%>
       </main>
       <footer class="footer">
         <small>
-        &copy; Honeybadger <time>2016</time>. All rights reserved.
+        &copy; Bambee<code>BETA</code> <time>2016</time>. All rights reserved.
+        <br>
         </small>
       </footer>
-    </div>
+    </div>    
     
-    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <script src="http://static.jsbin.com/js/embed.min.js?3.34.0"></script>
-
     <script>
     (function(){
       $('.dropdown-toggle').dropdown();
     });
     </script>
+
   </body>
 </html>

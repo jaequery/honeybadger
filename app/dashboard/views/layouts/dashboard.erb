@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title><%= @title %></title>
+
+    <link rel="shortcut icon" href="about:blank">
+    <% if Padrino.env == "production" %>
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+    <% end %>
+    <link href="/dashboard/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard/assets/css/toolkit-light.css" rel="stylesheet">
+    <link href="/dashboard/assets/css/application.css" rel="stylesheet">
+
+    <script src="/dashboard/assets/js/jquery.min.js"></script>
+    <script src="/dashboard/assets/js/chart.js"></script>
+    <script src="/dashboard/assets/js/tablesorter.min.js"></script>
+    <script src="/dashboard/assets/js/toolkit.js"></script>
+    <script src="/dashboard/assets/js/application.js"></script>
+
+    <script src="/bower_components/toastr/toastr.min.js"></script>
+    <link href="/bower_components/toastr/toastr.min.css" rel="stylesheet">
+
+    <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script> 
+    <link rel="stylesheet" type="text/css" href="/bower_components/sweetalert/dist/sweetalert.css">
+    
+    
+    
+  </head>
+  <body>
+    
+    <div class="container">    
+
+      <% if !flash.nil? %>
+  
+        <% if !flash[:success].nil? %>
+          <script>            
+            toastr.success("<%=flash[:success]%>"); 
+          </script>
+        <% end %>
+
+        <% if !flash[:error].nil? %>
+          <script>
+            toastr.error("<%=flash[:error]%>");
+          </script>
+        <% end %>
+
+        <% if !flash[:notice].nil? %>
+          <script>
+            toastr.info("<%=flash[:notice]%>");
+          </script>
+        <% end %>
+
+      <% end %>
+      
+      <div class="row">
+        <div class="col-sm-3 sidebar">
+          <nav class="sidebar-nav">
+            <div class="sidebar-header">
+              <button class="nav-toggler nav-toggler-sm sidebar-toggler" type="button" data-toggle="collapse" data-target="#nav-toggleable-sm">
+              <span class="sr-only">Toggle nav</span>
+              </button>
+              <a class="sidebar-brand img-responsive" href="/dashboard">
+                <!-- <span class="icon icon-leaf sidebar-brand-icon"></span>  -->
+                <img align='center' src="/site/img/logo_only.png" alt="Logo" >
+                <span style="margin-left: 10px;" class='logo'><%= setting('site_name') %></span>
+              </a>
+              
+            </div>
+            <div class="collapse nav-toggleable-sm" id="nav-toggleable-sm">
+              <!-- <form class="sidebar-form">
+                <input class="form-control" type="text" placeholder="Search...">
+                <button type="submit" class="btn-link">
+                <span class="icon icon-magnifying-glass"></span>
+                </button>
+              </form> -->
+              <ul class="nav nav-pills nav-stacked">
+
+                <% if session[:user][:role] == 'admin' %>
+                <li class="nav-header">Administrative</li>
+                <!-- <li class="<%= set_active_on_match(/dashboard$/) %>">
+                  <a href="/dashboard">Overview</a>
+                </li> -->
+                <li class="<%= set_active_on_match(/dashboard\/user/) %>">
+                  <a href="/dashboard/users">Users</a>
+                </li>
+                <li class="<%= set_active_on_match(/dashboard\/compan/) %>">
+                  <a href="/dashboard/companies">Companies</a>
+                </li>
+                <li class="<%= set_active_on_match(/dashboard\/setting/) %>">
+                  <a href="/dashboard/settings">Settings</a>
+                </li>            
+                <% end %>
+                <br>
+                <ul class="nav nav-pills nav-stacked">
+                  <li class="nav-header">Account</li>
+                  <li class="<%= set_active_on_match(/dashboard\/my\/account/) %>">
+                    <a href="/dashboard/my/account">Profile</a>
+                  </li>                  
+                  <li>
+                    <a href="/user/logout">Logout</a>
+                  </li>
+                </ul>
+                <hr class="visible-xs m-t">
+              </div>
+            </nav>
+          </div>
+          <div class="col-sm-9 content">            
+            <%=yield%>
+          </div>
+        </div>
+                
+        <footer class="footer" style="text-align: center;">
+        <small>
+        &copy; Company <code>BETA</code> <time>2016</time>. All rights reserved.
+        </small>
+      </footer>
+
+
+
+      </body>
+    </html>

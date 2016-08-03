@@ -1,3 +1,5 @@
+require 'digest'
+
 class User < Sequel::Model
 
   plugin :timestamps
@@ -15,14 +17,13 @@ class User < Sequel::Model
       end
     end
 
-    if user
-#      session[:user] = user
-    end
-
     return user
   end
 
   def before_save
+    if self[:access_token] == ''
+      self[:access_token] = SecureRandom.urlsafe_base64(nil, false) #Digest::SHA256.base64digest self[:id].to_s + Time.now.to_i.to_s
+    end
 
     if self[:provider] == "email" && !self[:email].nil? && self[:refid].nil?
       self[:refid] = self[:email]
@@ -36,29 +37,45 @@ class User < Sequel::Model
       self[:avatar_url] = path
     end
 
+    if !self[:w9_url].blank? && self[:w9_url].class == Hash
+      tempfile = self[:w9_url][:tempfile]
+      path = "/uploads/w9/" + SecureRandom.hex + '_' + self[:w9_url][:filename].to_slug
+      local_dest = Dir.pwd + "/public/" + path
+      FileUtils.mv(tempfile.path, local_dest)      
+      self[:w9_url] = path
+      self[:w9_status] = 'pending'
+    end
+
     super
   end
 
   def self.register_with_email(params, role = "users")
-    user = User.new
-    user.first_name = params[:first_name]
-    user.last_name = params[:last_name]
-    user.address = params[:address]
-    user.address2 = params[:address2]
-    user.city = params[:city]
-    user.state = params[:state]
-    user.zip = params[:zip]
-    user.country = params[:country]
-    user.email = params[:email]
-    user.username = params[:email]
-    user.refid = params[:email]
-    user.password = params[:password]
-    user.password_confirmation = params[:password_confirmation]
-    user.role = role
-    user.provider = 'email'
 
-    if user.valid?
-      user.save
+    user = User.where(:email => params[:email]).first
+
+    if user.nil? 
+    
+      user = User.new.set(params)
+      user.role = role
+      user.provider = 'email'
+      user.username = params[:email]
+      
+      if user.valid?      
+
+        user.save
+
+        if !params[:invite_id].nil?
+          Invite.where(:id => params[:invite_id]).update(:status => 'accepted', :email => user.email)
+        end
+
+      end
+
+    else
+
+      if user.authenticate(params[:password]).nil?
+        user.errors.add(:validation, 'Sorry, email is already registered in system')
+      end
+
     end
 
     return user
@@ -113,5 +130,6 @@ class User < Sequel::Model
     return user
 
   end
+  
 
 end

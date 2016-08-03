@@ -4,38 +4,33 @@ module Honeybadger
   class SiteApp
     module SiteHelper
 
-        class CodeRayify < Redcarpet::Render::HTML
-          def block_code(code, language)
-            CodeRay.scan(code, language).div
-          end
+      def flash_messages(flash)
+        html = ''
+        if !flash[:notice].nil?
+          html += '<div class="message">'
+          html += flash[:notice]
+          html += '</div>'
+        end
+        html
+      end
+
+      def setting(name)
+        # do lookup
+        row = Setting.where(:name => name).first[:value]
+
+        # if not found, get settings from config/apps.rb
+        if row.nil?
+          row = settings.send(name) rescue nil
         end
 
-        def paginate(model)
-          will_paginate @posts, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;'
+        if row[0] == '{'
+          row = eval(row)
         end
 
-        def markdown(text)
-          coderayified = CodeRayify.new(:filter_html => true, 
-                                        :hard_wrap => true)
-          options = {
-            :fenced_code_blocks => true,
-            :no_intra_emphasis => true,
-            :autolink => true,
-            :lax_html_blocks => true,
-          }
-          markdown_to_html = Redcarpet::Markdown.new(coderayified, options)
-          markdown_to_html.render(text).html_safe
-        end
+        return row      
+      end
 
     end
-
     helpers SiteHelper
   end
-
-
-  
-
-  
-
-
 end

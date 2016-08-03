@@ -1,0 +1,35 @@
+/usr/local/bin/ruby -r ./siteconf20160703-1260-6sil23.rb extconf.rb
+checking for main() in -lpq... yes
+checking for libpq-fe.h... yes
+checking for PQsetSingleRowMode()... yes
+creating Makefile
+
+make "DESTDIR=" clean
+make: Warning: File 'Makefile' has modification time 767633 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+make "DESTDIR="
+make: Warning: File 'Makefile' has modification time 767633 s in the future
+compiling sequel_pg.c
+sequel_pg.c: In function 'parse_pg_array':
+sequel_pg.c:248:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+   char *word = RSTRING_PTR(buf);
+   ^
+sequel_pg.c: In function 'spg_yield_hash_rows':
+sequel_pg.c:660:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+   int enc_index;
+   ^
+sequel_pg.c: In function 'spg__yield_each_row':
+sequel_pg.c:929:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+   int enc_index;
+   ^
+sequel_pg.c:906:11: warning: variable 'conn' set but not used [-Wunused-but-set-variable]
+   PGconn *conn;
+           ^
+linking shared-object sequel_pg.so
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+make "DESTDIR=" install
+make: Warning: File 'Makefile' has modification time 767633 s in the future
+/usr/bin/install -c -m 0755 sequel_pg.so ./.gem.20160703-1260-1j6lr45
+make: warning:  Clock skew detected.  Your build may be incomplete.

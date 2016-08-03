@@ -1,0 +1,38 @@
+[ 2016-04-08 22:21:44.0987 38303/0x7fff78acb000 age/Wat/WatchdogMain.cpp:1276 ]: Starting Passenger watchdog...
+[ 2016-04-08 22:21:44.1260 38305/0x7fff78acb000 age/Cor/CoreMain.cpp:957 ]: Starting Passenger core...
+[ 2016-04-08 22:21:44.1268 38305/0x7fff78acb000 age/Cor/CoreMain.cpp:234 ]: Passenger core running in multi-application mode.
+[ 2016-04-08 22:21:44.1443 38305/0x7fff78acb000 age/Cor/CoreMain.cpp:707 ]: Passenger core online, PID 38305
+[ 2016-04-08 22:21:44.1672 38307/0x7fff78acb000 age/Ust/UstRouterMain.cpp:504 ]: Starting Passenger UstRouter...
+[ 2016-04-08 22:21:44.1695 38307/0x7fff78acb000 age/Ust/UstRouterMain.cpp:317 ]: Passenger UstRouter online, PID 38307
+2016/04/08 22:21:46 [error] 38310#0: *3 "/Users/jaequery/Sites/markett/bin/public/index.html" is not found (2: No such file or directory), client: 127.0.0.1, server: _, request: "HEAD / HTTP/1.1", host: "0.0.0.0"
+[ 2016-04-19 23:04:18.3533 26243/0x7fff7813b000 age/Wat/WatchdogMain.cpp:1276 ]: Starting Passenger watchdog...
+[ 2016-04-19 23:04:18.3799 26246/0x7fff7813b000 age/Cor/CoreMain.cpp:957 ]: Starting Passenger core...
+[ 2016-04-19 23:04:18.3811 26246/0x7fff7813b000 age/Cor/CoreMain.cpp:234 ]: Passenger core running in multi-application mode.
+[ 2016-04-19 23:04:18.3917 26246/0x7fff7813b000 age/Cor/CoreMain.cpp:707 ]: Passenger core online, PID 26246
+[ 2016-04-19 23:04:18.4065 26248/0x7fff7813b000 age/Ust/UstRouterMain.cpp:504 ]: Starting Passenger UstRouter...
+[ 2016-04-19 23:04:18.4088 26248/0x7fff7813b000 age/Ust/UstRouterMain.cpp:317 ]: Passenger UstRouter online, PID 26248
+2016/04/19 23:04:20 [error] 26251#0: *3 "/Users/jaequery/Sites/markett/bin/public/index.html" is not found (2: No such file or directory), client: 127.0.0.1, server: _, request: "HEAD / HTTP/1.1", host: "0.0.0.0"
+
+
+[ 2016-04-22 13:04:48.9093 26248/0x700000104000 age/Ust/UstRouterMain.cpp:397 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2016-04-22 13:04:48.9095 26246/0x70000018a000 age/Cor/CoreMain.cpp:507 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2016-04-22 13:04:48.9121 26248/0x7fff7813b000 age/Ust/UstRouterMain.cpp:467 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2016-04-22 13:04:48.9123 26246/0x7fff7813b000 age/Cor/CoreMain.cpp:876 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2016-04-22 13:04:48.9137 26248/0x700000104000 Ser/Server.h:444 ]: [UstRouter] Shutdown finished
+[ 2016-04-22 13:04:48.9142 26248/0x70000020a000 Ser/Server.h:758 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2016-04-22 13:04:48.9142 26248/0x70000020a000 Ser/Server.h:444 ]: [UstRouterApiServer] Shutdown finished
+[ 2016-04-22 13:04:48.9149 26246/0x70000049c000 Ser/Server.h:758 ]: [ServerThr.4] Freed 128 spare client objects
+[ 2016-04-22 13:04:48.9150 26246/0x70000049c000 Ser/Server.h:444 ]: [ServerThr.4] Shutdown finished
+[ 2016-04-22 13:04:48.9150 26246/0x700000396000 Ser/Server.h:758 ]: [ServerThr.3] Freed 128 spare client objects
+[ 2016-04-22 13:04:48.9150 26246/0x700000396000 Ser/Server.h:444 ]: [ServerThr.3] Shutdown finished
+[ 2016-04-22 13:04:48.9152 26246/0x7000005a2000 Ser/Server.h:758 ]: [ApiServer] Freed 0 spare client objects
+[ 2016-04-22 13:04:48.9152 26246/0x7000005a2000 Ser/Server.h:444 ]: [ApiServer] Shutdown finished
+[ 2016-04-22 13:04:48.9153 26246/0x700000290000 Ser/Server.h:758 ]: [ServerThr.2] Freed 128 spare client objects
+[ 2016-04-22 13:04:48.9154 26246/0x700000290000 Ser/Server.h:444 ]: [ServerThr.2] Shutdown finished
+[ 2016-04-22 13:04:48.9155 26246/0x70000018a000 Ser/Server.h:758 ]: [ServerThr.1] Freed 128 spare client objects
+[ 2016-04-22 13:04:48.9155 26246/0x70000018a000 Ser/Server.h:444 ]: [ServerThr.1] Shutdown finished
+[ 2016-04-22 13:04:48.9156 26248/0x7fff7813b000 age/Ust/UstRouterMain.cpp:498 ]: Passenger UstRouter shutdown finished
+
+[ 2016-04-22 13:04:48.9189 26246/0x70000018a000 age/Cor/CoreMain.cpp:507 ]: Signal received. Gracefully shutting down... (send signal 1 more time(s) to force shutdown)
+[ 2016-04-22 13:04:48.9223 26246/0x7fff7813b000 age/Cor/CoreMain.cpp:942 ]: Passenger core shutdown finished
+[ 2016-04-22 13:04:48.9716 97210/0x7fff7813b000 age/Wat/WatchdogMain.cpp:356 ]: Cannot open cleanup PID file /var/folders/ch/nb2_x2bj129526cfytsb2xp00000gp/T/passenger-standalone.1gxeubc/temp_dir_toucher.pid

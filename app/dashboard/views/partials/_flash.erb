@@ -1,0 +1,21 @@
+<% if !flash.nil? %>
+	
+  <% if !flash[:success].nil? %>
+    <script>
+    	toastr.success("<%=flash[:success]%>");	
+    </script>
+  <% end %>
+
+  <% if !flash[:error].nil? %>
+    <script>
+      toastr.error("<%=flash[:error]%>");
+    </script>
+  <% end %>
+
+  <% if !flash[:notice].nil? %>
+    <script>
+      toastr.info("<%=flash[:notice]%>");
+    </script>
+  <% end %>
+
+<% end %>

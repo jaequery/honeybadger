@@ -1,0 +1,533 @@
+<% form_for :user, "/dashboard/user/save/#{params[:id]}", :id => 'admin-form', :multipart => true do |f| %>
+
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">Users</h2>
+  </div>
+  <div class="btn-toolbar dashhead-toolbar">
+    <button class="btn btn-primary-outline">Save User</button>
+    <!-- <div class="btn-toolbar-item input-with-icon">
+      <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
+      <span class="icon icon-calendar"></span>
+    </div> -->
+  </div>
+</div>
+
+<hr class="m-t">
+<h3>My Profile</h3>
+<p>Update your user profile</p>
+<br>
+
+<!-- main menus -->
+<ul class="nav nav-tabs" id="tab-menu" role="tablist">
+  <li class="nav-item active">
+    <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#team" role="tab">Team</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#withdrawal" role="tab">Withdrawal</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#questions" role="tab">Questions</a>
+  </li>
+  <!-- <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#api" role="tab">API</a>
+  </li> -->
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#beta" role="tab">Beta Request</a>
+  </li>
+</ul>
+<br>
+
+<div class="tab-content">
+
+  <div class="tab-pane active" id="profile" role="tabpanel">
+
+    <section class="content-header">
+
+      <div class="col-md-6">
+
+        <div class="field row" id="field_name">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :first_name, :caption => "First Name", :required => true %>
+              <%= f.text_field :first_name, :class => 'form-control', :required => true %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :last_name, :caption => "Last Name", :required => true %>
+              <%= f.text_field :last_name, :class => 'form-control', :required => true %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+        </div>
+        <!-- /.row -->
+        <div class="field row" id="field_email">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :email, :caption => "Email", :required => true %>
+              <%= f.text_field :email, :type => 'email', :class => 'form-control', :required => true %>
+            </div>
+          </div>
+        </div>
+        <!-- /.row -->
+        <div class="field row" id="field_phone">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :phone, :caption => "Phone", :required => false %>
+              <%= f.text_field :phone, :type => 'text', :class => 'form-control', :required => false %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="field row" id="field_username">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :username, :caption => "Username", :required => true %>
+              <%= f.text_field :username, :class => 'form-control', :required => true %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        
+
+
+        <div class="field row" id="field_city">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :city, :caption => "City" %>
+              <%= f.text_field :city, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="field row" id="field_state">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :state, :caption => "State" %>
+              <%= f.text_field :state, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+
+
+        <div class="field row" id="field_referral_user_id">
+          <div class="col-md-6">
+            <div class="form-group">            
+
+              <%= f.label :referral_user_id, :caption => "Referred By" %>
+
+              <% if session[:user][:role] == "admin" %>
+                <%= f.text_field :referral_user_id, :class => 'form-control' %>
+              <% end %>
+
+              <% if !@user[:referral_user_id].blank? %>
+                <% referral = User[@user[:referral_user_id]] %>
+                <code><%=referral[:email]%></code>
+              <% end %>
+
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+      </div>
+
+
+      <div class="col-md-6">
+
+
+        <% if session[:user][:role] == "admin" %>
+        <div class="field row" id="field_role">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :role, :caption => "Role", :required => true %>
+              <%= f.select :role, :options => ['admin', 'company', 'marketer', 'pending_marketer', 'pending_company'], :class => 'form-control select2', :required => true %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <!-- <div class="field row" id="field_provider">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :provider, :caption => "Provider", :required => true %>
+              <%= f.select :provider, :options => ['email', 'twitter', 'instagram', 'github', 'linkedin'], :class => 'form-control select2', :required => true %>
+            </div>
+          </div>
+        </div> -->
+        <!-- /.row -->
+        <% end %>
+
+        <div class="field row" id="field_password">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :password, :caption => "Change Password (optional)" %>
+              <%= f.password_field :password, :class => 'form-control', :placeholder => "" %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="field row" id="field_password_confirmation">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :password_confirmation, :caption => "Password Confirmation" %>
+              <%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => "" %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="field row" id="field_avatar_url">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :avatar_url, :caption => "Profile pic" %>
+              <%= f.file_field :avatar_url, :class => 'form-control' %>
+            </div>
+            <img src="<%= @user[:avatar_url] %>" class="img-responsive">
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+
+      </div>
+      
+
+    
+  </div>
+
+
+
+
+
+  <div class="tab-pane " id="team" role="tabpanel">
+
+      <section class="content-header">
+
+        <% if session[:user][:role] == "admin" %>
+
+        <div class="field row" id="field_open_slots">
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= f.label :team_slots %>
+              <%= f.select :open_slots, :options => (0..50), :selected => @user[:open_slots] || setting('open_slots'), :class => 'form-control select2', :required => false %>
+
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <% end %>
+
+
+
+        <div class="field row" id="field_members">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="user_team_slots" value="">Invitees: </label>
+
+              <% if !@invitees.blank? %>
+                <table class="table table-full">               
+                <% @invitees.each do |invitee| %>
+                  <tr>
+                    <td><%= invitee[:email] %></td> 
+                    <td><%= invitee[:status] %></td>
+                    <td><%= invitee[:created_at] %></td>
+                  </tr>
+                <% end %>
+                </table>
+              <% end %>
+
+              <% if @invitees.blank? %>
+                <li>None</li>
+              <% end %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+      </section>
+
+  </div>
+
+
+  <div class="tab-pane " id="beta" role="tabpanel">
+
+      <section class="content-header">
+
+        <% if session[:user][:role] == "admin" %>
+        <div class="field row" id="field_beta_request">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :beta_request %>
+              <%= f.text_area :beta_request, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+
+        <div class="field row" id="field_beta_how_hear">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :"How did you hear about us?" %>
+              <%= f.text_field :beta_how_hear, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+
+        <div class="field row" id="field_how_hear_custom">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :"Promo Code" %>
+              <%= f.text_field :beta_how_hear_custom, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <% end %>
+
+      </section>
+
+  </div>
+
+
+  <div class="tab-pane " id="questions" role="tabpanel">
+    <section class="content-header">
+
+      <% if session[:user][:role] == "admin" %>
+        <div class="field row" id="q_full_time">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :q_full_time, :caption => "Fulltime?" %>
+              <%= f.text_area :q_full_time, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+
+        <div class="field row" id="q_started_how">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :q_started_how_soon, :caption => 'How soon to start?' %>
+              <%= f.text_field :q_started_how_soon, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+
+        <div class="field row" id="q_level_of_education">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :q_level_of_education, :caption => 'Level of education' %>
+              <%= f.text_field :q_level_of_education, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="field row" id="q_school">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :q_school, :caption => 'School' %>
+              <%= f.text_field :q_school, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="field row" id="q_grad_year">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :q_grad_year, :caption => 'Grad year' %>
+              <%= f.text_field :q_grad_year, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="field row" id="q_sales_marketing_experience">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :q_sales_marketing_experience, :caption => 'Sales/Marketing Experience' %>
+              <%= f.text_field :q_sales_marketing_experience, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="field row" id="q_pandas">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.label :q_pandas, :caption => 'Do you like pandas?' %>
+              <%= f.text_field :q_pandas, :class => 'form-control' %>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+      <% end %>
+
+    </section>
+  </div>
+
+  <div class="tab-pane " id="withdrawal" role="tabpanel">
+
+    <section class="content-header">
+
+      <p class="lead">Before you can withdrawal your money, we need the following informations:</p>
+   
+      <h4>1. Paypal</h4>
+      <p>Markett uses Paypal to payout it's users. Please create a Paypal account if you have not already and enter your Paypal address here</p>
+      <div class="field row" id="paypal_email">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.email_field :paypal_email, :class => 'form-control', :required => false %>
+          </div>
+        </div>
+      </div>
+
+      <h4>2. W9</h4>
+      <a href="https://s3.amazonaws.com/markett-files/W9.pdf" target="_blank">Download this W9 Form</a>, fill it out, and then submit yours below.
+      <div class="field row" id="w9_url">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.file_field :w9_url, :class => 'form-control', :required => false %>
+          </div>
+          <% if !@user[:w9_url].nil? %>
+            <a href="<%=@user[:w9_url]%>" target="_blank"><%=@user[:w9_url]%></a>
+          <% end %>
+        </div>
+      </div>      
+
+      <% if session[:user][:role] == 'admin' %>
+      <div class="field row" id="w9_status">
+        <div class="col-md-6">
+          <div class="form-group">
+            W9 Status (admin only):
+            <%= f.select :w9_status, :options => ['', 'pending', 'rejected', 'approved'], :class => 'form-control select2', :required => false %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+    </section>
+
+  </div>
+
+
+
+
+
+
+  <!-- <div class="tab-pane " id="api" role="tabpanel">
+
+    <section class="content-header">
+      <div class="field row" id="field_api">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :access_token, :caption => "API Access Token" %>
+            <%= f.text_field :access_token, :class => 'form-control', :disabled => true %>
+            <br/>
+            <% if @user %>
+              <button id="generate_access_token" class="btn btn-primary">Re-generate</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div> -->
+
+
+
+  <div class="tab-pane" id="messages" role="tabpanel">
+  </div>
+
+  <input id="generate_token" name="generate_token" type="hidden" value="0" />
+
+
+
+</div>
+
+
+<% end %>
+
+
+<script>
+
+$(function(){
+
+  <% if !params[:tab].blank? %>
+    
+    $('#tab-menu a[href=#<%=params[:tab]%>]').tab('show');
+  <% end %>
+
+  $('#tab-menu a').click(function (e) {
+    e.preventDefault();
+    $('#tab-menu a').removeClass('active');
+    $(this).tab('show');
+  })
+
+
+
+  $('#generate_access_token').click( function(e){
+    $('#generate_token').val(1)
+  })
+});
+</script>

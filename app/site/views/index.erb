@@ -1,12 +1,12 @@
+<div class="row text-center">
+    <div class="col-md-12">
+        <h1 class="hero" style="margin-top: -20px;"><strong>Let Go</strong> </h1>
+         <br>
+ 
+    </div>
 
-<% @posts.each do |post| %>
-<article class="post">
-  <h2 class="post-title"><a href="/<%=post[:title].parameterize("-")%>/<%=post[:id]%>"><%=post[:title]%></a></h1>
-  <time datetime="<%=post[:created_at].strftime("%d %B %Y")%>" class="post-date"><%=post[:created_at].strftime("%d %B %Y")%> by <%=post.user[:username]%></time>
-  <%==markdown(post[:content])%>
-</article>
-<% end %>
 
-<div class="text-center">
-  <%= paginate(@posts) %>
+
 </div>
+
+

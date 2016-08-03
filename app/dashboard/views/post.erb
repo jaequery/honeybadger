@@ -1,0 +1,65 @@
+<% form_for :post, "/dashboard/post/save/#{params[:id]}", :id => 'admin-form', :multipart => true do |f| %>
+
+
+
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">Posts</h2>
+  </div>
+  <div class="btn-toolbar dashhead-toolbar">
+    <% if !@post.nil? %>
+    <a href="/<%=@post.title.to_slug%>/<%=@post.id%>" class="btn btn-success-outline">View Post</a>
+    <% end %>
+    <button class="btn btn-primary-outline">Save Post</button>
+  </div>
+</div>
+
+<hr class="m-t">
+
+<section class="content-header">
+  
+  <div class="field row" id="field_name">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :user_id, :caption => "User", :required => true %>
+        <%= f.select :user_id, :collection => User.all, :fields => [:email, :id], :class => 'form-control select2', :required => true %>
+      </div><!-- /.form-group -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+
+  <div class="field row" id="field_email">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :title, :caption => "Title", :required => true %>
+        <%= f.text_field :title, :class => 'form-control', :required => true %>
+      </div><!-- /.form-group -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+
+  <div class="field row" id="field_teaser">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :teaser, :caption => "Teaser" %>
+        <%= f.text_area :teaser, :class => 'form-control', :style => '' %>
+      </div><!-- /.form-group -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+
+  <div class="field row" id="field_content">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :content, :caption => "Content", :required => true %>
+        <%= f.text_area :content, :class => 'form-control wysiwyg', :style => 'height: 240px;', :required => true %>
+      </div><!-- /.form-group -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+
+
+
+
+  <!-- /.box -->
+</section>
+<% end %>
+
+
