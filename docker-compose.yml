@@ -5,7 +5,7 @@ app:
  - memcache:memcache
  command: /app/bin/docker/init.sh
  environment:
- - VIRTUAL_HOST=bambee.com.docker,bambee.com
+ - VIRTUAL_HOST=honeybadger.docker
  - RACK_ENV=development
  - BUNDLE_PATH=/app/volumes/bundler
  - PASSENGER_POOL_IDLE_TIME=0 
