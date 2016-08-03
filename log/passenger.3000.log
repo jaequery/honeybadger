@@ -42,3 +42,455 @@ App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000332s) SELECT * FROM "setti
 App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0007s[0m) /index
 App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/site
 App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0282s[0m) / - [1;9m200[0m OK
+App 82 stdout: [0;31m  ERROR[0m - [0;33m[0m PG::ConnectionBad: PQconsumeInput() server closed the connection unexpectedly
+App 82 stdout: 	This probably means the server terminated abnormally
+App 82 stdout: 	before or while processing the request.: SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000123s) SET standard_conforming_strings = ON
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000103s) SET client_min_messages = 'WARNING'
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000102s) SET DateStyle = 'ISO'
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000206s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000585s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0021s[0m) /index
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0018s[0m) /layouts/site
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0568s[0m) / - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000311s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000109s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000233s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0009s[0m) /index
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0015s[0m) /layouts/site
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0220s[0m) / - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000544s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000253s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000333s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0008s[0m) /login
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/site
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0117s[0m) /user/login - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000232s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000176s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000218s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000127s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000112s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000451s) SELECT * FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m    POST[0m ([1;35m0.5168s[0m) /user/login - [1;9m303[0m See Other
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000247s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000318s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000119s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000106s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000176s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0282s[0m) /dashboard/ - [1;9m302[0m Found
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000329s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000453s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000165s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000124s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000224s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000149s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000278s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0028s[0m) /users
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0011s[0m) /layouts/dashboard
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0015s[0m) /partials/_users
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000371s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000978s) SELECT * FROM "users" ORDER BY "id" DESC LIMIT 5000 OFFSET 0
+App 82 stdout: [1;31m  FATAL[0m - [0;33m[0m NameError - uninitialized constant Honeybadger::DashboardApp::Transaction:
+App 82 stdout:   app/dashboard/views/partials/_users.erb:28:in `block (2 levels) in singleton class'
+App 82 stdout:   sequel (4.27.0) lib/sequel/dataset/actions.rb:137:in `block in each'
+App 82 stdout:   sequel (4.27.0) lib/sequel/adapters/postgres.rb:668:in `block (2 levels) in fetch_rows'
+App 82 stdout:   sequel (4.27.0) lib/sequel/adapters/postgres.rb:668:in `block in fetch_rows'
+App 82 stdout:   sequel (4.27.0) lib/sequel/adapters/postgres.rb:173:in `execute'
+App 82 stdout:   sequel (4.27.0) lib/sequel/adapters/postgres.rb:524:in `_execute'
+App 82 stdout:   sequel (4.27.0) lib/sequel/adapters/postgres.rb:340:in `block (2 levels) in execute'
+App 82 stdout:   sequel (4.27.0) lib/sequel/adapters/postgres.rb:545:in `check_database_errors'
+App 82 stdout:   sequel (4.27.0) lib/sequel/adapters/postgres.rb:340:in `block in execute'
+App 82 stdout:   sequel (4.27.0) lib/sequel/database/connecting.rb:249:in `block in synchronize'
+App 82 stdout:   sequel (4.27.0) lib/sequel/connection_pool/threaded.rb:103:in `hold'
+App 82 stdout:   sequel (4.27.0) lib/sequel/database/connecting.rb:249:in `synchronize'
+App 82 stdout:   sequel (4.27.0) lib/sequel/adapters/postgres.rb:340:in `execute'
+App 82 stdout:   sequel (4.27.0) lib/sequel/dataset/actions.rb:950:in `execute'
+App 82 stdout:   sequel (4.27.0) lib/sequel/adapters/postgres.rb:668:in `fetch_rows'
+App 82 stdout:   sequel (4.27.0) lib/sequel/dataset/actions.rb:137:in `each'
+App 82 stdout:   sequel_pg (1.6.14) lib/sequel_pg/sequel_pg.rb:58:in `each'
+App 82 stdout:   app/dashboard/views/partials/_users.erb:18:in `block in singleton class'
+App 82 stdout:   app/dashboard/views/partials/_users.erb:65530:in `singleton class'
+App 82 stdout:   app/dashboard/views/partials/_users.erb:65528:in `__tilt_47383553115380'
+App 82 stdout:   tilt (1.4.1) lib/tilt/template.rb:170:in `evaluate'
+App 82 stdout:   tilt (1.4.1) lib/tilt/template.rb:103:in `render'
+App 82 stdout:   padrino-helpers (0.12.5) lib/padrino/rendering/erubis_template.rb:47:in `render'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:822:in `render'
+App 82 stdout:   padrino-helpers (0.12.5) lib/padrino/rendering.rb:231:in `render'
+App 82 stdout:   padrino-helpers (0.12.5) lib/padrino-helpers/render_helpers.rb:55:in `block in partial'
+App 82 stdout:   padrino-helpers (0.12.5) lib/padrino-helpers/render_helpers.rb:48:in `partial'
+App 82 stdout:   app/dashboard/views/users.erb:27:in `block in singleton class'
+App 82 stdout:   app/dashboard/views/users.erb:65530:in `singleton class'
+App 82 stdout:   app/dashboard/views/users.erb:65528:in `__tilt_47383553115380'
+App 82 stdout:   tilt (1.4.1) lib/tilt/template.rb:170:in `evaluate'
+App 82 stdout:   tilt (1.4.1) lib/tilt/template.rb:103:in `render'
+App 82 stdout:   padrino-helpers (0.12.5) lib/padrino/rendering/erubis_template.rb:47:in `render'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:822:in `render'
+App 82 stdout:   padrino-helpers (0.12.5) lib/padrino/rendering.rb:231:in `render'
+App 82 stdout:   app/dashboard/app.rb:270:in `block in <class:DashboardApp>'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/application/routing.rb:504:in `block in route'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/ext/http_router.rb:33:in `block (3 levels) in process_destination_path'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:993:in `route_eval'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/ext/http_router.rb:33:in `block (2 levels) in process_destination_path'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/ext/http_router.rb:33:in `block in process_destination_path'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/ext/http_router.rb:8:in `process_destination_path'
+App 82 stdout:   (eval):847:in `block in call'
+App 82 stdout:   (eval):836:in `call'
+App 82 stdout:   http_router (0.11.2) lib/http_router.rb:288:in `raw_call'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/application/routing.rb:931:in `route!'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/application/routing.rb:915:in `block in dispatch!'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:1066:in `block in invoke'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:1066:in `invoke'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/application/routing.rb:913:in `dispatch!'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:906:in `block in call!'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:1066:in `block in invoke'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:1066:in `invoke'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:906:in `call!'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:894:in `call'
+App 82 stdout:   rack (1.5.5) lib/rack/session/abstract/id.rb:225:in `context'
+App 82 stdout:   rack (1.5.5) lib/rack/session/abstract/id.rb:220:in `call'
+App 82 stdout:   better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+App 82 stdout:   better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+App 82 stdout:   better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+App 82 stdout:   rack-protection (1.5.3) lib/rack/protection/xss_header.rb:18:in `call'
+App 82 stdout:   rack-protection (1.5.3) lib/rack/protection/base.rb:49:in `call'
+App 82 stdout:   rack-protection (1.5.3) lib/rack/protection/base.rb:49:in `call'
+App 82 stdout:   rack-protection (1.5.3) lib/rack/protection/json_csrf.rb:18:in `call'
+App 82 stdout:   rack-protection (1.5.3) lib/rack/protection/base.rb:49:in `call'
+App 82 stdout:   rack-protection (1.5.3) lib/rack/protection/base.rb:49:in `call'
+App 82 stdout:   rack-protection (1.5.3) lib/rack/protection/frame_options.rb:31:in `call'
+App 82 stdout:   rack (1.5.5) lib/rack/head.rb:11:in `call'
+App 82 stdout:   rack (1.5.5) lib/rack/methodoverride.rb:21:in `call'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/reloader/rack.rb:22:in `call'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/logger.rb:420:in `call'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/show_exceptions.rb:21:in `call'
+App 82 stdout:   rack (1.5.5) lib/rack/session/abstract/id.rb:225:in `context'
+App 82 stdout:   rack (1.5.5) lib/rack/session/abstract/id.rb:220:in `call'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:2021:in `call'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:1486:in `block in call'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:1795:in `synchronize'
+App 82 stdout:   sinatra (1.4.6) lib/sinatra/base.rb:1486:in `call'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/router.rb:84:in `block in call'
+App 82 stdout:   padrino-core (0.12.5) lib/padrino-core/router.rb:75:in `call'
+App 82 stdout:   passenger (5.0.21) src/ruby_supportlib/phusion_passenger/rack/thread_handler_extension.rb:97:in `process_request'
+App 82 stdout:   passenger (5.0.21) src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:152:in `accept_and_process_next_request'
+App 82 stdout:   passenger (5.0.21) src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:113:in `main_loop'
+App 82 stdout:   passenger (5.0.21) src/ruby_supportlib/phusion_passenger/request_handler.rb:416:in `block (3 levels) in start_threads'
+App 82 stdout:   passenger (5.0.21) src/ruby_supportlib/phusion_passenger/utils.rb:113:in `block in create_thread_and_abort_on_exception'
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0368s[0m) /dashboard/users - [1;9m500[0m Internal Server Error
+App 2575 stdout: 
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m    POST[0m ([1;35m0.3022s[0m) /dashboard/__better_errors/f35bc8bd9efa582a/variables - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000504s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000355s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000148s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000106s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.001143s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0159s[0m) /favicon.ico - [1;9m404[0m Not Found
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000136s) SET standard_conforming_strings = ON
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000086s) SET client_min_messages = 'WARNING'
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000084s) SET DateStyle = 'ISO'
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000353s) SELECT NULL
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000123s) SELECT NULL
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.004242s) SELECT "pg_attribute"."attname" AS "name", CAST("pg_attribute"."atttypid" AS integer) AS "oid", CAST("basetype"."oid" AS integer) AS "base_oid", format_type("basetype"."oid", "pg_type"."typtypmod") AS "db_base_type", format_type("pg_type"."oid", "pg_attribute"."atttypmod") AS "db_type", pg_get_expr("pg_attrdef"."adbin", "pg_class"."oid") AS "default", NOT "pg_attribute"."attnotnull" AS "allow_null", COALESCE(("pg_attribute"."attnum" = ANY("pg_index"."indkey")), false) AS "primary_key" FROM "pg_class" INNER JOIN "pg_attribute" ON ("pg_attribute"."attrelid" = "pg_class"."oid") INNER JOIN "pg_type" ON ("pg_type"."oid" = "pg_attribute"."atttypid") LEFT OUTER JOIN "pg_type" AS "basetype" ON ("basetype"."oid" = "pg_type"."typbasetype") LEFT OUTER JOIN "pg_attrdef" ON (("pg_attrdef"."adrelid" = "pg_class"."oid") AND ("pg_attrdef"."adnum" = "pg_attribute"."attnum")) LEFT OUTER JOIN "pg_index" ON (("pg_index"."indrelid" = "pg_class"."oid") AND ("pg_index"."indisprimary" IS TRUE)) WHERE (("pg_attribute"."attisdropped" IS FALSE) AND ("pg_attribute"."attnum" > 0) AND ("pg_class"."oid" = CAST(CAST('"hits"' AS regclass) AS oid))) ORDER BY "pg_attribute"."attnum"
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000237s) SELECT NULL
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000118s) SELECT NULL
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.001284s) SELECT "pg_attribute"."attname" AS "name", CAST("pg_attribute"."atttypid" AS integer) AS "oid", CAST("basetype"."oid" AS integer) AS "base_oid", format_type("basetype"."oid", "pg_type"."typtypmod") AS "db_base_type", format_type("pg_type"."oid", "pg_attribute"."atttypmod") AS "db_type", pg_get_expr("pg_attrdef"."adbin", "pg_class"."oid") AS "default", NOT "pg_attribute"."attnotnull" AS "allow_null", COALESCE(("pg_attribute"."attnum" = ANY("pg_index"."indkey")), false) AS "primary_key" FROM "pg_class" INNER JOIN "pg_attribute" ON ("pg_attribute"."attrelid" = "pg_class"."oid") INNER JOIN "pg_type" ON ("pg_type"."oid" = "pg_attribute"."atttypid") LEFT OUTER JOIN "pg_type" AS "basetype" ON ("basetype"."oid" = "pg_type"."typbasetype") LEFT OUTER JOIN "pg_attrdef" ON (("pg_attrdef"."adrelid" = "pg_class"."oid") AND ("pg_attrdef"."adnum" = "pg_attribute"."attnum")) LEFT OUTER JOIN "pg_index" ON (("pg_index"."indrelid" = "pg_class"."oid") AND ("pg_index"."indisprimary" IS TRUE)) WHERE (("pg_attribute"."attisdropped" IS FALSE) AND ("pg_attribute"."attnum" > 0) AND ("pg_class"."oid" = CAST(CAST('"invites"' AS regclass) AS oid))) ORDER BY "pg_attribute"."attnum"
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000242s) SELECT NULL
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000116s) SELECT NULL
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.001122s) SELECT "pg_attribute"."attname" AS "name", CAST("pg_attribute"."atttypid" AS integer) AS "oid", CAST("basetype"."oid" AS integer) AS "base_oid", format_type("basetype"."oid", "pg_type"."typtypmod") AS "db_base_type", format_type("pg_type"."oid", "pg_attribute"."atttypmod") AS "db_type", pg_get_expr("pg_attrdef"."adbin", "pg_class"."oid") AS "default", NOT "pg_attribute"."attnotnull" AS "allow_null", COALESCE(("pg_attribute"."attnum" = ANY("pg_index"."indkey")), false) AS "primary_key" FROM "pg_class" INNER JOIN "pg_attribute" ON ("pg_attribute"."attrelid" = "pg_class"."oid") INNER JOIN "pg_type" ON ("pg_type"."oid" = "pg_attribute"."atttypid") LEFT OUTER JOIN "pg_type" AS "basetype" ON ("basetype"."oid" = "pg_type"."typbasetype") LEFT OUTER JOIN "pg_attrdef" ON (("pg_attrdef"."adrelid" = "pg_class"."oid") AND ("pg_attrdef"."adnum" = "pg_attribute"."attnum")) LEFT OUTER JOIN "pg_index" ON (("pg_index"."indrelid" = "pg_class"."oid") AND ("pg_index"."indisprimary" IS TRUE)) WHERE (("pg_attribute"."attisdropped" IS FALSE) AND ("pg_attribute"."attnum" > 0) AND ("pg_class"."oid" = CAST(CAST('"posts"' AS regclass) AS oid))) ORDER BY "pg_attribute"."attnum"
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000230s) SELECT NULL
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000137s) SELECT NULL
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.001588s) SELECT "pg_attribute"."attname" AS "name", CAST("pg_attribute"."atttypid" AS integer) AS "oid", CAST("basetype"."oid" AS integer) AS "base_oid", format_type("basetype"."oid", "pg_type"."typtypmod") AS "db_base_type", format_type("pg_type"."oid", "pg_attribute"."atttypmod") AS "db_type", pg_get_expr("pg_attrdef"."adbin", "pg_class"."oid") AS "default", NOT "pg_attribute"."attnotnull" AS "allow_null", COALESCE(("pg_attribute"."attnum" = ANY("pg_index"."indkey")), false) AS "primary_key" FROM "pg_class" INNER JOIN "pg_attribute" ON ("pg_attribute"."attrelid" = "pg_class"."oid") INNER JOIN "pg_type" ON ("pg_type"."oid" = "pg_attribute"."atttypid") LEFT OUTER JOIN "pg_type" AS "basetype" ON ("basetype"."oid" = "pg_type"."typbasetype") LEFT OUTER JOIN "pg_attrdef" ON (("pg_attrdef"."adrelid" = "pg_class"."oid") AND ("pg_attrdef"."adnum" = "pg_attribute"."attnum")) LEFT OUTER JOIN "pg_index" ON (("pg_index"."indrelid" = "pg_class"."oid") AND ("pg_index"."indisprimary" IS TRUE)) WHERE (("pg_attribute"."attisdropped" IS FALSE) AND ("pg_attribute"."attnum" > 0) AND ("pg_class"."oid" = CAST(CAST('"settings"' AS regclass) AS oid))) ORDER BY "pg_attribute"."attnum"
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000224s) SELECT NULL
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000108s) SELECT NULL
+App 2575 stdout: [0;32m   INFO[0m - [0;33m[0m (0.002658s) SELECT "pg_attribute"."attname" AS "name", CAST("pg_attribute"."atttypid" AS integer) AS "oid", CAST("basetype"."oid" AS integer) AS "base_oid", format_type("basetype"."oid", "pg_type"."typtypmod") AS "db_base_type", format_type("pg_type"."oid", "pg_attribute"."atttypmod") AS "db_type", pg_get_expr("pg_attrdef"."adbin", "pg_class"."oid") AS "default", NOT "pg_attribute"."attnotnull" AS "allow_null", COALESCE(("pg_attribute"."attnum" = ANY("pg_index"."indkey")), false) AS "primary_key" FROM "pg_class" INNER JOIN "pg_attribute" ON ("pg_attribute"."attrelid" = "pg_class"."oid") INNER JOIN "pg_type" ON ("pg_type"."oid" = "pg_attribute"."atttypid") LEFT OUTER JOIN "pg_type" AS "basetype" ON ("basetype"."oid" = "pg_type"."typbasetype") LEFT OUTER JOIN "pg_attrdef" ON (("pg_attrdef"."adrelid" = "pg_class"."oid") AND ("pg_attrdef"."adnum" = "pg_attribute"."attnum")) LEFT OUTER JOIN "pg_index" ON (("pg_index"."indrelid" = "pg_class"."oid") AND ("pg_index"."indisprimary" IS TRUE)) WHERE (("pg_attribute"."attisdropped" IS FALSE) AND ("pg_attribute"."attnum" > 0) AND ("pg_class"."oid" = CAST(CAST('"users"' AS regclass) AS oid))) ORDER BY "pg_attribute"."attnum"
+App 2596 stdout: 
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000379s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000375s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000195s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000228s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000412s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000257s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000229s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0009s[0m) /users
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /layouts/dashboard
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0011s[0m) /partials/_users
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000236s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000283s) SELECT * FROM "users" ORDER BY "id" DESC LIMIT 5000 OFFSET 0
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000226s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000116s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000190s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0274s[0m) /dashboard/users - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000266s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000278s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000139s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000223s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000275s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000306s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000384s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0010s[0m) /users
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /layouts/dashboard
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0010s[0m) /partials/_users
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000224s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000248s) SELECT * FROM "users" ORDER BY "id" DESC LIMIT 5000 OFFSET 0
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000247s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000153s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000238s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0231s[0m) /dashboard/users - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000243s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000317s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000136s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000102s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000188s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000130s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000148s) SELECT * FROM "settings"
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0009s[0m) /settings
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0005s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000245s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000153s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000227s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0139s[0m) /dashboard/settings - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000226s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000236s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000119s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000105s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000163s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000100s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000268s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000150s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000537s) SELECT * FROM "invites" WHERE ("user_id" = 1)
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /user
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000237s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000194s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000239s) SELECT * FROM "settings" WHERE ("name" = 'open_slots') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000210s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000106s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000193s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.1219s[0m) /dashboard/my/account - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000240s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000302s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000247s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000333s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000257s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0076s[0m) /vendor/honeybadger/img/avatar.jpg - [1;9m404[0m Not Found
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000236s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000229s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000111s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000104s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000170s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000106s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000129s) SELECT * FROM "settings"
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /settings
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0005s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000251s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000138s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000213s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0123s[0m) /dashboard/settings - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000292s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000248s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000126s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000100s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000173s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000122s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000171s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /users
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /partials/_users
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000206s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000241s) SELECT * FROM "users" ORDER BY "id" DESC LIMIT 5000 OFFSET 0
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000184s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000103s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000188s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0127s[0m) /dashboard/users - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000254s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000247s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000133s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000115s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000187s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000108s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000185s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000116s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000165s) SELECT * FROM "invites" WHERE ("user_id" = 1)
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /user
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000265s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000105s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000299s) SELECT * FROM "settings" WHERE ("name" = 'open_slots') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000223s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000104s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000189s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0220s[0m) /dashboard/my/account - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000327s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000333s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000152s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000103s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000196s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0068s[0m) /vendor/honeybadger/img/avatar.jpg - [1;9m404[0m Not Found
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000234s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000430s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000146s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000120s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000196s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000113s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000221s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000121s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000169s) SELECT * FROM "invites" WHERE ("user_id" = 1)
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0009s[0m) /user
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000209s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000104s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000196s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0274s[0m) /dashboard/my/account - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000310s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000307s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000158s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000128s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000211s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0122s[0m) /vendor/honeybadger/img/avatar.jpg - [1;9m404[0m Not Found
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000238s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000250s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000211s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000169s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000305s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000443s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000335s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000116s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000182s) SELECT * FROM "invites" WHERE ("user_id" = 1)
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0007s[0m) /user
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000210s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000105s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000191s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0163s[0m) /dashboard/my/account - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000197s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000235s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000204s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000149s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000228s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0056s[0m) /vendor/honeybadger/img/avatar.jpg - [1;9m404[0m Not Found
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000276s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000250s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000119s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000113s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000184s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000115s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000141s) SELECT * FROM "settings"
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0007s[0m) /settings
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000224s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000118s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000192s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0127s[0m) /dashboard/settings - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000227s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000237s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000288s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000125s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000207s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000133s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000203s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /users
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0007s[0m) /partials/_users
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000206s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000249s) SELECT * FROM "users" ORDER BY "id" DESC LIMIT 5000 OFFSET 0
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000219s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000104s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000187s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0144s[0m) /dashboard/users - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000210s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000225s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000109s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000103s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000316s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000173s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000153s) SELECT * FROM "settings"
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /settings
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000233s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000111s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000203s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0117s[0m) /dashboard/settings - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000206s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000495s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000149s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000098s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000185s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000102s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000179s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000102s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000165s) SELECT * FROM "invites" WHERE ("user_id" = 1)
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /user
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000250s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000107s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000355s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0149s[0m) /dashboard/my/account - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000218s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000252s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000145s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000106s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000191s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0066s[0m) /vendor/honeybadger/img/avatar.jpg - [1;9m404[0m Not Found
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000225s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000231s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000108s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000099s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000167s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000107s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000127s) SELECT * FROM "settings"
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /settings
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000222s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000119s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000191s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0107s[0m) /dashboard/settings - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000189s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000223s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000110s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000099s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000173s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000119s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000166s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0007s[0m) /users
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /partials/_users
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000235s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000249s) SELECT * FROM "users" ORDER BY "id" DESC LIMIT 5000 OFFSET 0
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000192s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000102s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000248s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0128s[0m) /dashboard/users - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000230s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000238s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000117s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000109s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000164s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000102s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000126s) SELECT * FROM "settings"
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0007s[0m) /settings
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000225s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000106s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000192s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0096s[0m) /dashboard/settings - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000270s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000253s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000129s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000117s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000270s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000171s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000225s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000115s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000173s) SELECT * FROM "invites" WHERE ("user_id" = 1)
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0006s[0m) /user
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0004s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000223s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000115s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000196s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0156s[0m) /dashboard/my/account - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000219s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000250s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000226s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000198s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000347s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0065s[0m) /vendor/honeybadger/img/avatar.jpg - [1;9m404[0m Not Found

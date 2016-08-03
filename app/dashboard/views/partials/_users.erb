@@ -8,7 +8,6 @@
             <td><input type="checkbox" class="select-all" id="selectAll"></td>
             <th class="headerSortUp">User #</th>
             <th>User</th>
-            <th>Balance</th>          
             <th>Role</th>
             <th>Created</th>
             <th></th>
@@ -25,7 +24,6 @@
               <p><%= user[:phone] %></p>
               <p><%= user[:city] %> <%= user[:state] %></p>
             </td>
-            <td><%= number_to_currency(Transaction.where(:user_id => user[:id]).sum(:amount)) %></td>
             <td>
               <%= user[:role] %>
               <% if !user[:beta_request].nil? %>
