@@ -494,3 +494,24 @@ App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000226s) SELECT NULL
 App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000198s) SELECT NULL
 App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000347s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
 App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0065s[0m) /vendor/honeybadger/img/avatar.jpg - [1;9m404[0m Not Found
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000228s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000248s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000112s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000102s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000173s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000106s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000179s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000104s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000157s) SELECT * FROM "invites" WHERE ("user_id" = 1)
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0010s[0m) /user
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;33mTEMPLATE[0m ([1;33m0.0007s[0m) /layouts/dashboard
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000213s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000104s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000190s) SELECT * FROM "settings" WHERE ("name" = 'site_name') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0236s[0m) /dashboard/my/account - [1;9m200[0m OK
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000222s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000328s) SELECT * FROM "users" WHERE "id" = 1
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000148s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000121s) SELECT NULL
+App 82 stdout: [0;32m   INFO[0m - [0;33m[0m (0.000236s) SELECT * FROM "settings" WHERE ("name" = 'site_title') LIMIT 1
+App 82 stdout: [0;36m  DEBUG[0m - [0;33m[0m [0;35m     GET[0m ([1;35m0.0095s[0m) /vendor/honeybadger/img/avatar.jpg - [1;9m404[0m Not Found
