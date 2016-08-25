@@ -1,0 +1,13 @@
+# Helper methods defined here can be accessed in any controller or view in the application
+
+module <%= @project_name %>
+  class <%= @app_name %>
+    module <%= @helper_name %>
+      # def simple_helper_method
+      # ...
+      # end
+    end
+
+    helpers <%= @helper_name %>
+  end
+end

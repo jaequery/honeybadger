@@ -1,0 +1,125 @@
+=== 1.6.14 (2016-01-19)
+
+* Make array parser ignore explicit bounds (jeremyevans)
+
+=== 1.6.13 (2015-06-29) 
+
+* Fix Dataset#paged_each when called with no arguments (jeremyevans)
+
+* Remove handling of int2vector type (jeremyevans)
+
+=== 1.6.12 (2015-03-23)
+
+* Fix segfault when Dataset#yield_hash_rows is passed a nil value when using ruby pg 0.18+ (jeremyevans) (#19)
+
+=== 1.6.11 (2014-11-04)
+
+* Work with ruby pg 0.18+ (currently a prerelease) (jeremyevans)
+
+=== 1.6.10 (2014-07-11)
+
+* Work correctly when the database timezone is not a named timezone but the application timezone is (jeremyevans)
+
+=== 1.6.9 (2014-03-05)
+
+* When using the streaming extension, automatically use streaming to implement paging in Dataset#paged_each (jeremyevans)
+
+=== 1.6.8 (2013-08-05)
+
+* Allow overriding maximum allowed columns in a result set via -- --with-cflags=\"-DSPG_MAX_FIELDS=1600\" (jeremyevans) (#12)
+
+=== 1.6.7 (2013-06-06)
+
+* Correctly handle fractional seconds in the time type (jeremyevans)
+
+=== 1.6.6 (2013-05-31)
+
+* Work correctly when using the named_timezones extension (jeremyevans)
+
+* Work around format-security false positive (jeremyevans) (#9)
+
+=== 1.6.5 (2013-03-06)
+
+* Handle infinite dates using Database#convert_infinite_timestamps (jeremyevans)
+
+=== 1.6.4 (2013-01-14)
+
+* Remove type conversion of int2vector and money types on PostgreSQL, since previous conversions were wrong (jeremyevans) (#8)
+
+=== 1.6.3 (2012-11-30)
+
+* Make streaming support not swallow errors when rows are not retrieved (jeremyevans)
+
+=== 1.6.2 (2012-11-16)
+
+* Make sequel_pg runnable on rubinius by fixing bad rb_global_variable call (dbussink) (#7)
+
+=== 1.6.1 (2012-10-25)
+
+* Make PostgreSQL array parser handle string encodings correctly on ruby 1.9 (jeremyevans)
+
+=== 1.6.0 (2012-09-04)
+
+* Replace PQsetRowProcessor streaming with PQsetSingleRowMode streaming introduced in PostgreSQL 9.2beta3 (jeremyevans)
+
+=== 1.5.1 (2012-08-02)
+
+* Sprinkle some RB_GC_GUARD to work around segfaults in the PostgreSQL array parser (jeremyevans)
+
+=== 1.5.0 (2012-07-02)
+
+* Add C-based PostgreSQL array parser, for major speedup in parsing arrays (Dan McClain, jeremyevans)
+
+=== 1.4.0 (2012-06-01)
+
+* Add support for streaming on PostgreSQL 9.2 using PQsetRowProcessor (jeremyevans)
+
+* Respect DEBUG environment variable when building (jeremyevans)
+
+=== 1.3.0 (2012-04-02)
+
+* Build Windows version against PostgreSQL 9.1.1, ruby 1.8.7, and ruby 1.9.2 (previously 9.0.1, 1.8.6, and 1.9.1) (jeremyevans)
+
+* Add major speedup for new Sequel 3.34.0 methods Dataset#to_hash_groups and #select_hash_groups (jeremyevans)
+
+* Handle infinite timestamp values using Database#convert_infinite_timestamps in Sequel 3.34.0 (jeremyevans)
+
+=== 1.2.2 (2012-03-09)
+
+* Get microsecond accuracy when using datetime_class = DateTime with 1.8-1.9.2 stdlib date library via Rational (jeremyevans)
+
+=== 1.2.1 (2012-02-22)
+
+* Handle NaN, Infinity, and -Infinity for double precision values correctly (jeremyevans)
+
+=== 1.2.0 (2011-11-01)
+
+* Add optimize_model_load setting to speedup loading of model objects, off by default (jeremyevans)
+
+* Add major speedup to Dataset#map, #to_hash, #select_map, #select_order_map, and #select_hash (jeremyevans)
+
+* Work with the new Database#timezone setting in Sequel 3.29.0 (jeremyevans)
+
+=== 1.1.1 (2011-09-01)
+
+* Work with new Sequel::SQLTime for time columns in Sequel 3.27.0 (jeremyevans)
+
+=== 1.1.0 (2011-06-01)
+
+* Work with new Database#conversion_procs method in Sequel 3.24.0 (jeremyevans)
+
+=== 1.0.2 (2011-03-16)
+
+* Build the Windows gem against PostgreSQL 9.0.1 to support the new default bytea serialization format (jeremyevans)
+
+* Allow use of Sequel::Postgres::PG_TYPES to add custom conversion support for types not handled by default (funny-falcon) (#2)
+
+* Fix handling of timestamps with fractional seconds and offsets (funny-falcon) (#1)
+
+=== 1.0.1 (2010-09-12)
+
+* Correctly handle timestamps with negative offsets and fractional hours (jeremyevans)
+
+=== 1.0.0 (2010-08-31)
+
+* Initial Public Release

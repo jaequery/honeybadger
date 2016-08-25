@@ -1,0 +1,2 @@
+- name: Ruby 1.9.3
+  command: rvm-exec ruby-1.9.3-p547 bundle exec ruby

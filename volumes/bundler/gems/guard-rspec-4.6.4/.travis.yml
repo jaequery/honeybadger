@@ -1,0 +1,13 @@
+language: ruby
+bundler_args: --without tool
+rvm:
+  - 2.2.2
+  - jruby-head
+gemfile:
+  - gemfiles/Gemfile.rspec-2.14
+  - gemfiles/Gemfile.rspec-2.99
+  - gemfiles/Gemfile.rspec-3.3
+matrix:
+  allow_failures:
+    - rvm: jruby-head
+sudo: false
