@@ -37,3 +37,39 @@ def config(name, value = nil)
 
   return row
 end
+
+def print_r(inHash, *indent)
+  @indent = indent.join
+
+  if (inHash.class.to_s == "Hash") then
+    print "Hash\n#{@indent}(\n"
+    inHash.each { |key, value|
+      #print "#{value.class.to_s}"
+      if (value.class.to_s =~ /JSONBHash/) || (value.class.to_s =~ /JSONBArray/) then
+        puts "#{@indent}    [#{key}] => #{value}"
+
+      elsif (value.class.to_s =~ /Hash/) || (value.class.to_s =~ /Array/) then
+        print "#{@indent}    [#{key}] => "
+        self.print_r(value, "#{@indent}        ")
+      else
+        puts "#{@indent}    [#{key}] => #{value}"
+      end
+    }
+    puts "#{@indent})"
+  elsif (inHash.class.to_s == "Array") then
+    print "Array\n#{@indent}(\n"
+    inHash.each_with_index { |value,index|
+      if (value.class.to_s =~ /JSONBHash/) || (value.class.to_s =~ /JSONBArray/) then
+        puts "#{@indent}    [#{key}] => #{value}"
+      elsif (value.class.to_s == "Hash") || (value.class.to_s == "Array") then
+        print "#{@indent}    [#{index}] => "
+        self.print_r(value, "#{@indent}        ")
+      else
+        puts "#{@indent}    [#{index}] => #{value}"
+      end
+    }
+    puts "#{@indent})"
+  end
+  #   Pop last indent off
+  puts 8.times {@indent.chop!}
+end
