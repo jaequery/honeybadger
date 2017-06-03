@@ -1,4 +1,5 @@
 .DS_Store
+volumes/*
 vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
