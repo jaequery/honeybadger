@@ -15,7 +15,11 @@
   </div>
 </div>
 <hr class="m-t">
+
+<h3>Contact</h3>
+
 <section class="content-header">
+  
   
   <div class="field row" id="field_name">
     <div class="col-md-6">
@@ -39,80 +43,53 @@
     <div class="col-md-12">
       <div class="form-group">
         <%= f.label :email, :caption => "Email", :required => true %>
-        <%= f.text_field :email, :type => 'email', :class => 'form-control', :required => true %>
+        <%= f.text_field :email, :type => 'email', :class => 'form-control' %>
       </div>
       <!-- /.form-group -->
     </div>
     <!-- /.col -->
   </div>
   <!-- /.row -->
-  <div class="field row" id="field_username">
+  <div class="field row" id="field_phone">
     <div class="col-md-12">
       <div class="form-group">
-        <%= f.label :username, :caption => "Username", :required => true %>
-        <%= f.text_field :username, :class => 'form-control', :required => true %>
+        <%= f.label :phone, :caption => "Phone", :required => true %>
+        <%= f.text_field :phone, :type => 'phone', :class => 'form-control' %>
       </div>
       <!-- /.form-group -->
     </div>
     <!-- /.col -->
   </div>
   <!-- /.row -->
-  <div class="field row" id="field_role">
-    <div class="col-md-12">
-      <div class="form-group">
-        <%= f.label :role, :caption => "Role", :required => true %>
-        <%= f.select :role, :options => ['admin', 'users'], :class => 'form-control select2', :required => true %>
-      </div>
-      <!-- /.form-group -->
-    </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
-  <div class="field row" id="field_provider">
-    <div class="col-md-12">
-      <div class="form-group">
-        <%= f.label :provider, :caption => "Provider", :required => true %>
-        <%= f.select :provider, :options => ['email', 'twitter', 'instagram', 'github', 'linkedin'], :class => 'form-control select2', :required => true %>
-      </div>
-      <!-- /.form-group -->
-    </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
-  <div class="field row" id="field_password">
-    <div class="col-md-12">
-      <div class="form-group">
-        <%= f.label :password, :caption => "Change Password (optional)" %>
-        <%= f.password_field :password, :class => 'form-control', :placeholder => "" %>
-      </div>
-      <!-- /.form-group -->
-    </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
-  <div class="field row" id="field_password_confirmation">
-    <div class="col-md-12">
-      <div class="form-group">
-        <%= f.label :password_confirmation, :caption => "Password Confirmation" %>
-        <%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => "" %>
-      </div>
-      <!-- /.form-group -->
-    </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
-  <div class="field row" id="field_avatar_url">
+  
+  
+  
+
+
+  <hr>
+
+  
+  <h3>Misc</h3>
+
+  <div class="field row" id="field_company">
     <div class="col-md-6">
       <div class="form-group">
-        <%= f.label :avatar_url, :caption => "Profile pic" %>
-        <%= f.file_field :avatar_url, :class => 'form-control' %>
+        <%= f.label :hear_about_us_option, :caption => "How did you hear?" %>
+        <%= f.text_field :hear_about_us_option, :class => 'form-control' %>
       </div>
-      <img src="<%= @user[:avatar_url] %>" class="col-md-12">
-      <!-- /.form-group -->
     </div>
-    <!-- /.col -->
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :hear_about_us_other, :caption => "Other" %>
+        <%= f.text_field :hear_about_us_other, :class => 'form-control' %>
+      </div>
+    </div>
   </div>
-  <!-- /.row -->
+
+
+
+
+
   <!-- /.box -->
 </section>
 <% end %>

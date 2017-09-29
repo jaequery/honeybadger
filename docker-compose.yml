@@ -5,7 +5,7 @@ app:
  - memcache:memcache 
  command: /app/bin/docker/init.sh
  environment:
- - VIRTUAL_HOST=honeybadger.docker
+ - VIRTUAL_HOST=everwill.docker
  - VIRTUAL_PORT=3000
  - RACK_ENV=development
  - BUNDLE_PATH=/app/volumes/bundler

@@ -1,0 +1,46 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+
+    <section class="content-header">
+      <h2 class="page-header">Settings</h2>
+      <ol class="breadcrumb">
+        <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="/admin/users">Users</a></li>
+        <li class="active"><%= params[:id] || 'New' %></li>
+      </ol>
+
+      <%= partial("partials/flash.erb") %>
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+
+
+
+            <%
+            Forme.form do |f|
+              f.tag(:span, :class=>"foo") do
+                f.input(:text)
+              end
+            end
+
+            %>
+
+whihih
+          </div>
+
+          <p></p><button class="btn btn-primary btn-block"><b>Save</b></button></p>
+          <p></p><button class="btn btn-default btn-block" onclick="javascript: history.go(-1);"><b>Go Back</b></button></p>
+          <!-- /.widget-user -->
+        </div>
+        <!-- /.col -->
+
+    </section>
+
+
+</div><!-- /.content-wrapper -->

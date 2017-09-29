@@ -10,10 +10,12 @@ Sequel.migration do
       String :state, :size => 32
       String :zip, :size => 16
       String :country, :size => 2
-      String :username
+      String :username      
       String :password_digest
       String :email
+      String :phone
       String :role
+      String :status
       String :uid
       String :provider
       String :refid

@@ -14,6 +14,8 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'redcarpet'
 gem 'coderay'
+gem 'awesome_print'
+gem 'intercom', '~> 3.5.10'
 
 # authentication
 gem 'omniauth'

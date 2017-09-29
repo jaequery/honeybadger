@@ -18,6 +18,9 @@ module Honeybadger
       @title = "Honeybadger CMS"
       @page = (params[:page] || 1).to_i
       @per_page = params[:per_page] || 5
+
+      @intercom = Intercom::Client.new(token: settings.intercom[:access_token])
+
     end      
 
     ### authentication routes ###
@@ -97,9 +100,9 @@ module Honeybadger
       else
         user = User.login(params)
         if user.errors.empty?
-          session[:user] = user
+          session[:user_id] = user.id
           flash[:success] = "You are now logged in"
-          redirect("/")
+          redirect("/admin")
         else
           flash.now[:notice] = user.errors[:validation][0]
           render "login"
@@ -146,9 +149,8 @@ module Honeybadger
 
 
     ### put your routes here ###
-    get '/' do
-      @posts = Post.order(:id).paginate(@page, @per_page).reverse
-      render "index"
+    get '/' do      
+      render "index", :layout => 'landing'
     end
 
     ### view page ###
@@ -161,6 +163,20 @@ module Honeybadger
       render "about"
     end
 
+    post '/api/subscribe' do
+      content_type :json
+
+      name = params[:name].split(' ')
+      phone = params[:phone]
+      role = 'subscriber'
+      status = 'subscribed'
+      user = User.create(:first_name => name.first, :last_name => name.last, :phone => phone, :role => role, :status => status)
+
+      @intercom.users.create(:user_id => user.id, :name => params[:name], :phone => phone)
+
+
+      return { :code => 200, :status => 'ok', :user => user.values }.to_json
+    end
 
   end
 

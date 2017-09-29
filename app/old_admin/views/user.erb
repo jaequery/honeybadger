@@ -1,0 +1,118 @@
+<% form_for :user, "/admin/user/save/#{params[:id]}", :id => 'admin-form', :multipart => true do |f| %>
+
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">Users</h2>
+  </div>
+  <div class="btn-toolbar dashhead-toolbar">
+
+    <button class="btn btn-primary-outline">Save User</button>
+    <!-- <div class="btn-toolbar-item input-with-icon">
+      <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
+      <span class="icon icon-calendar"></span>
+    </div> -->
+  </div>
+</div>
+<hr class="m-t">
+<section class="content-header">
+  
+  <div class="field row" id="field_name">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :first_name, :caption => "First Name", :required => true %>
+        <%= f.text_field :first_name, :class => 'form-control', :required => true %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :last_name, :caption => "Last Name", :required => true %>
+        <%= f.text_field :last_name, :class => 'form-control', :required => true %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_email">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :email, :caption => "Email", :required => true %>
+        <%= f.text_field :email, :type => 'email', :class => 'form-control', :required => true %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_username">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :username, :caption => "Username", :required => true %>
+        <%= f.text_field :username, :class => 'form-control', :required => true %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_role">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :role, :caption => "Role", :required => true %>
+        <%= f.select :role, :options => ['admin', 'users'], :class => 'form-control select2', :required => true %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_provider">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :provider, :caption => "Provider", :required => true %>
+        <%= f.select :provider, :options => ['email', 'twitter', 'instagram', 'github', 'linkedin'], :class => 'form-control select2', :required => true %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_password">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :password, :caption => "Change Password (optional)" %>
+        <%= f.password_field :password, :class => 'form-control', :placeholder => "" %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_password_confirmation">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :password_confirmation, :caption => "Password Confirmation" %>
+        <%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => "" %>
+      </div>
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="field row" id="field_avatar_url">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :avatar_url, :caption => "Profile pic" %>
+        <%= f.file_field :avatar_url, :class => 'form-control' %>
+      </div>
+      <img src="<%= @user[:avatar_url] %>" class="col-md-12">
+      <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <!-- /.box -->
+</section>
+<% end %>

@@ -16,9 +16,7 @@
   </head>
   <body>
     <nav>
-      <a href="/about">About</a>
-      <a href="https://github.com/jaequery/honeybadger" target="_blank">Github</a>
-
+      
       <% if !session[:user].nil? %>
       <div class="btn-group">
         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,8 +42,8 @@
         <h3 class="masthead-title">
         <div class="post-page__logo-wrapper">
           <a href="/" title="Home">
-            <img src="/site/img/logo.svg" alt="React" class="post-page__logo">
-            Honeybadger
+            <img src="/images/logo.png" alt="React" >
+            
           </a>
         </div>
         </h3>
@@ -58,11 +56,7 @@
 
         <%=yield%>      
       </main>
-      <footer class="footer">
-        <small>
-        &copy; Honeybadger <time>2016</time>. All rights reserved.
-        </small>
-      </footer>
+      
     </div>
     
     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

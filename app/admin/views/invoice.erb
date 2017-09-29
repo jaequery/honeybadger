@@ -1,0 +1,205 @@
+<div id="app" class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="invoice-title">
+        <div class="row">
+          <div class="col-xs-4">
+            <p><img src="/images/listicle_logo_100.jpg" height="50"></p>
+            768 Ceres Ave<br>
+            Los Angeles, CA, 90021<br>
+            (213) 747-0754<br>
+            order@listicleclothing.com<br>
+          </div>
+          <div class="col-xs-4 text-center">
+            
+          </div>
+          <div class="col-xs-4 text-right">
+            <h3 class="text-right">Purchase Order #{{order.id}}</h3>
+            <p class="text-right">Order Date: {{format_date(order.created_at, 'MM/DD/YYYY')}}</p>
+            <p class="text-right">Order Status: {{order.status}}</p>
+          </div>
+        </div>
+      </div>
+      <br>
+      
+      <div class="row">
+        <div class="col-xs-6">
+          <address>
+            <strong>Bill To:</strong><br>
+            {{user.company}}<br>
+            {{user.first_name}} {{user.last_name}}<br>
+            {{user.address}} {{user.address2}}<br>
+            {{user.city}}, {{user.state}}, {{user.zip}} {{user.country}}<br>
+            {{user.email}}<br>
+            {{user.phone}}<br>
+            <p v-if="order.ref">Ref: {{order.ref}}</p>
+          </address>
+        </div>
+        <div class="col-xs-6 text-left">
+          <address>
+            <strong>Ship To:</strong><br>
+            {{order.shipping.name}}<br>
+            {{order.shipping.address}} {{order.shipping.address2}}<br>
+            {{order.shipping.city}}, {{order.shipping.state}}, {{order.shipping.zip}} {{order.shipping.country}}
+          </address>
+          
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-xs-6">
+          <address>
+            <strong>Payment Method:</strong><br>
+            Visa ending **** 4242<br>
+            jsmith@email.com
+          </address>
+        </div>
+        <div class="col-xs-6 text-right">
+          <address>
+            <strong>Order Date:</strong><br>
+            March 7, 2014<br><br>
+          </address>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Order summary</strong></h3>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <td class="text-left">Image</td>
+                  <td class="text-left">Product Name</td>
+                  <td class="text-center">Unit Price</td>
+                  <td class="text-center">Total Qty</td>
+                  <td class="text-center">Size</td>
+                  <td class="text-center">SKU</td>
+                  <td class="text-center">Pack Qty</td>        
+                  <td class="text-center">Pack Price</td>
+                  <td class="text-center">Total</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in order.items">
+                  <td class="text-left">
+                    <img v-if="item.product.images && item.product.images[0]" :src="item.product.images[0]" :alt="item.product.name" :title="item.product.name" class="img-responsive" style="max-height:70px;">
+                  </td>
+                  <td>
+                    {{item.product.name}} <span v-if="item.color">({{item.color}})</span>
+                    <div>
+                      <small>
+                        <div v-if="item.backordered_date">Backordered: {{item.backordered_date}}</div>
+                        <div v-if="item.shipped_date">Shipped: {{item.shipped_date}}</div>
+                      </small>
+                    </div>
+                  </td>
+                  <td class="text-center">{{item.product.price}}</td>
+                  <td class="text-center">{{item.product.pack_qty}}</td>
+                  <td class="text-center">
+                    <div v-if="item.product.pack">{{item.product.pack}} ({{item.product.pack_size}})</p>
+                  </td>
+                  <td class="text-center">{{item.product.sku}}</td>
+                  <td class="text-center">{{item.qty}}</td>
+                  <td class="text-center">${{item.product.price * 6}}</td>
+                  <td class="text-center">${{(parseFloat(item.product.price) * item.qty * 6).toFixed(2)}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="row">
+            <div class="col-sm-4 col-sm-offset-8">
+              <table class="table">
+                <!-- <tr>
+                  <td class="text-right"><strong>Shipping:</strong></td>
+                  <td class="text-right"></td>
+                </tr> -->
+                <tr>
+                  <td class="text-right"><strong>Order Total:</strong></td>
+                  <td class="text-right"><%=number_to_currency(@order.total)%></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <!-- <div class="row">
+    <div class="col-sm-4 col-sm-offset-8">
+      <table class="table">
+        <tr>
+          <td class="text-right"><strong>Shipping:</strong></td>
+          <td class="text-right"></td>
+        </tr>
+        <tr>
+          <td class="text-right"><strong>Order Total:</strong></td>
+          <td class="text-right"><%=number_to_currency(@order.total)%></td>
+        </tr>
+      </table>
+    </div>
+  </div> -->
+
+
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Customer Notes</strong></h3>
+        </div>
+        <div class="panel-body" v-html="nl2br(order.comments)">
+        </div>
+      </div>
+
+    </div>
+
+    <% if params[:type] == 'staff' %>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Staff Notes</strong></h3>
+        </div>
+        <div class="panel-body" v-html="nl2br(order.comments_staff)">
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+
+
+  <center>Thank you for ordering from Listicle</center>
+
+
+  <script>
+  new Vue({
+    el: '#app',
+    data: {
+      current_user: <%== @current_user.to_json %>,
+      order: <%== @order.to_json %>,
+      user: <%== @order.user.to_json %>
+    },
+    mounted: function(){
+      // window.print()
+      // window.history.back()
+    },
+    methods: {
+    }
+  })
+  </script>

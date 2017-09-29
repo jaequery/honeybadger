@@ -1,0 +1,43 @@
+{
+  "name": "vue.draggable",
+  "authors": [
+    "desmaisons_david <desmaisons_david@hotmail.com>"
+  ],
+  "description": "vue vuedraggable component",
+  "main": "dist/vuedraggable.js",
+  "keywords": [
+    "vue",
+    "list",
+    "drag",
+    "and",
+    "drop"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/David-Desmaisons/Vue.Draggable",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "examples",
+    "*.json",
+    "*.md",
+    "gulpfile.js"
+  ],
+  "dependencies": {
+    "vue": "^2.0.2",
+    "Sortable": "^1.6.0"
+  },
+  "version": "2.14.1",
+  "_release": "2.14.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.14.1",
+    "commit": "e6a8ae690d24309b0cf1d3bc4be1287a58647d6c"
+  },
+  "_source": "https://github.com/David-Desmaisons/Vue.Draggable.git",
+  "_target": "^2.14.1",
+  "_originalSource": "vue.draggable",
+  "_direct": true
+}

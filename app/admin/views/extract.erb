@@ -1,0 +1,41 @@
+<style>
+label { margin-top: 10px;}
+</style>
+
+<h3>Update product information via SKU</h3>
+<hr>
+
+<form action="/admin/extract" METHOD="POST">
+
+  <label>SKU</label>
+  <input class="form-control" name="sku">
+
+  <label>Description</label>
+  <textarea class="form-control" name="description"></textarea>
+
+  <label>Fabric</label>
+  <input class="form-control" name="fabric">
+
+  <label>Made In</label>
+  <input class="form-control" value="Imported" name="made_in">
+
+  <label>Label</label>
+  <input class="form-control" value="Labeled" name="label">
+
+  <label>Stock</label>
+  <input class="form-control" value="In Stock" name="stock_status">
+
+  <div style="clear: both;"></div>
+  <label style="float:left;">Price</label>
+  <div style="clear: both;"></div>
+  <input class="form-control" name="price" style="width: 20%; float: left;" placeholder="price (example: 10.50)">
+  <input class="form-control" name="original_price" style="margin-left: 10px; width: 20%; float: left;" placeholder="old price (optional)">
+  <div style="clear: both;"></div>
+
+  <label>Colors</label>
+  <input class="form-control" name="colors" placeholder="Red, Blue, White">
+  
+
+  <hr>
+  <button>Submit</button>
+</form>

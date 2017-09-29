@@ -1,0 +1,66 @@
+  <script id="autocomplete-product-template" type="text/x-template">
+  <div class="autocomplete-product" style="z-index: 99999;">
+    <p class="control has-icon has-icon-right" >
+      <input v-model="keyword" class="form-control" placeholder="Add item by sku, name" id="product_search" @input="onInput($event.target.value)" @keyup.esc="isOpen = false" @blur="isOpen = false" @keydown.down="moveDown" @keydown.up="moveUp" @keydown.enter="select">
+      <i class="fa fa-angle-down"></i>
+    </p>
+    <ul v-show="isOpen" class="options-list" style="z-index: 99999;">
+      <li v-for="(option, index) in fOptions" :class="{
+    'highlighted': index === highlightedPosition
+  }" @mouseenter="highlightedPosition = index" @mousedown="select">
+        <img :src="option.images[0]" width="25" height="25">
+        {{option.sku}} - <small>{{option.name}}</small>
+      </li>
+    </ul>
+  </div>
+  </script>
+
+  <script>
+  Vue.component('autocomplete-product', {
+    template: '#autocomplete-product-template',
+    props: {
+      options: {
+        type: Array,
+        required: true
+      },
+      keyword: ''
+    },
+    data: function(){
+      return {
+        isOpen: false,
+        highlightedPosition: 0,
+        keyword: ''
+      }
+    },
+    computed: {
+      fOptions: function() {
+        const re = new RegExp(this.keyword, 'i')
+        return this.options.filter(o => (o.sku && o.sku.match(re)) || (o.name && o.name.match(re)) )
+      }
+    },
+    methods: {
+      onInput: function(value) {
+        this.highlightedPosition = 0
+        this.isOpen = !!value
+      },
+      moveDown: function() {
+        if (!this.isOpen) {
+          return
+        }
+        this.highlightedPosition = (this.highlightedPosition + 1) % this.fOptions.length
+      },
+      moveUp: function() {
+        if (!this.isOpen) {
+          return
+        }
+        this.highlightedPosition = this.highlightedPosition - 1 < 0 ? this.fOptions.length - 1 : this.highlightedPosition - 1
+      },
+      select: function() {
+        const selectedOption = this.fOptions[this.highlightedPosition]
+        this.$emit('select', selectedOption)
+        this.isOpen = false
+        this.keyword = selectedOption.sku
+      }
+    }
+  })
+  </script>

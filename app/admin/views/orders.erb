@@ -1,0 +1,181 @@
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">Orders</h2>
+  </div>
+</div>
+<hr class="m-t" style="margin: 10px 0px 10px 0px;">
+
+<div id="app">
+  <div>
+    <div class="row">
+        <div class="col-sm-5">
+          <p style="float: left; margin: 5px 15px 0px 0px; font-size: 16px;">Filter options:</p>
+          <select class="form-control" id="opt_filter" style="width: 60%;">
+            <option class="form-control" value="company" <% if @opt_filter=="company" %> selected <% end %>>Company Names</option>
+            <option class="form-control" value="ordernum" <% if @opt_filter=="ordernum" %> selected <% end %>>Order Number</option>
+          </select>
+        </div>
+        <div class="col-sm-4">
+          <p style="float: left; margin: 5px 15px 0px 0px; font-size: 16px;">Keyword:</p>
+          <input id="txt_key" value="<%= @txt_key %>" class="form-control" style="line-height:10px; width: 60%;" type="text" placeholder="Input Search Keyword!" />
+        </div>
+        <div class="col-sm-2">
+          <input class="btn btn-primary" type="button" value="Search" onclick="SearchByFilter()" />
+        </div>
+    </div>
+
+    <hr class="m-t" style="margin: 10px 0px 10px 0px;">
+
+    <div class="row">
+        <div class="col-sm-2"><p>Filter by show:</p></div>
+        <div class="col-sm-2">
+          <a href="/admin/orders?ref=Atlanta">Atlanta</a>|
+          <a href="/admin/orders?ref=Dallas">Dallas</a>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"><p>Filter by status:</p></div>
+      <% if @orderstatus.blank? %>
+        <div class="myDropdownCheckbox col-sm-3"></div>
+      <% else %>
+        <div class="myDropdownCheckbox open col-sm-3"></div>
+      <% end %>
+      <br/>
+    </div>
+    <div class="row">
+      <div class="col-sm-6"><p>Total Earnings: {{total_earnings}}</p></div>
+    </div>
+  </div>
+
+  <div class="table-full">
+    <div class="table">
+      <table class="table" data-sort="table">
+        <thead>
+          <tr>
+            <!--<th><input type="checkbox" class="select-all" id="selectAll"></th>-->
+            <th class="headerSortUp">Order #</th>
+            <th>Customer</th>
+            <th>Items</th>
+            <th>Ship To</th>
+            <th>Total</th>        
+            <th>Created</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% grand_total = 0 %>
+          <% @orders.each do |order| %>
+          <% 
+          grand_total = order.total + grand_total
+          %>
+          <tr>
+            <!--<td><input type="checkbox" class="select-row"></td>-->
+            <td><%= order[:id] %></td>
+            <td>
+              <strong><%= order.user[:company] %></strong><br>
+              <%= order.user[:first_name] %> <%= order.user[:last_name] %>
+            </td>
+            <td><%= order[:items].length %></td>
+            <td>
+              <%=order[:shipping]["address"] %> <% if !order[:shipping]["address2"].blank? %><%=order[:shipping]["address2"] %><% end %><br/>
+
+              <%=order[:shipping]["city"] %>, <%=order[:shipping]["state"] %> <%=order[:shipping]["zip"]%> <%=order[:shipping]["country"] %><br/>
+            </td>
+            <td><%= number_to_currency(order.total) %></td>          
+            <td><%= order[:created_at].strftime("%m/%d/%y") %></td>
+            <td><%= order[:status] %></td>
+            <td>
+              <a href="/admin/order/<%=order[:id] %>" class="btn btn-primary-outline btn-sm">View </a>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <input type='hidden' v-model='total_earnings'>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+
+new Vue({
+
+  el: '#app',
+  data: {      
+    total_earnings: '<%=number_to_currency(grand_total)%>'
+  }
+})
+
+var myData = [{id: 0, label: "pending", isChecked: false },
+              {id: 1, label: "partial", isChecked: false },
+              {id: 2, label: "shipped", isChecked: false }
+];
+var ostatus = "<%= @orderstatus %>";
+ostatus = ostatus.split(",");
+for(var i=0; i<myData.length; i++)
+{
+  for(var j=0; j<ostatus.length; j++)
+  { 
+    if(myData[i].label == ostatus[j])
+    {
+      myData[i].isChecked = true;
+    }
+  }
+}
+
+$('.myDropdownCheckbox').dropdownCheckbox({
+  data: myData,
+  autosearch: true,
+  title: "My Dropdown Checkbox",
+  hideHeader: false,
+  showNbSelected: false,
+  templateButton: '<a class="dropdown-checkbox-toggle" data-toggle="dropdown" href="#"><p id="chk_drop_txt">All<b class="caret"></b></p></a>'
+});
+$('.myDropdownCheckbox').change(function()
+{
+    var que = updateStatus();
+    window.location.href = "/admin/orders?status=" + que;
+});
+
+function updateStatus(){
+    var obj_chk = $('.myDropdownCheckbox').dropdownCheckbox("checked");
+    var que = '';
+    if(obj_chk.length == 0)
+    { 
+        document.getElementById('chk_drop_txt').innerHTML = 'None';
+    }
+    else
+    {
+        var str = obj_chk[0].label;
+        que = obj_chk[0].label;
+        for(var i=1; i<obj_chk.length; i++)
+        {
+            str += '|' + obj_chk[i].label;
+            que += ',' + obj_chk[i].label;
+        }
+        document.getElementById('chk_drop_txt').innerHTML = str;
+    }
+    return que;
+}
+updateStatus();
+
+function SearchByFilter()
+{
+  var opt_filter = document.getElementById('opt_filter').value;
+  var txt_key = document.getElementById('txt_key').value;
+  switch(opt_filter)
+  {
+    case "ordernum":
+      window.location.href = "/admin/orders?id=" + txt_key;
+      break;
+    case "company":
+      window.location.href = "/admin/orders?company=" + txt_key;
+      break;
+  }
+}
+</script>

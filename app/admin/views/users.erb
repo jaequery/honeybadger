@@ -6,57 +6,108 @@
   <div class="btn-toolbar dashhead-toolbar">
     <div class="btn-group">
       <a href="/admin/user" type="button" class="btn btn-primary-outline">
-      Create New <span class="icon icon-plus"></span>
+        Create New <span class="icon icon-plus"></span>
       </a>
     </div>
   </div>
 </div>
+
 <hr class="m-t">
+
 <div class="flextable table-actions">
-  <div class="flextable-item flextable-primary">
-    <div class="btn-toolbar-item input-with-icon">
-      <input type="text" class="form-control input-block" placeholder="Search users">
-      <span class="icon icon-magnifying-glass"></span>
+  <form method="GET" class='row'>
+    <div class='col-sm-6'>
+      <div class="flextable-item flextable-primary">
+        <div class="btn-toolbar-item input-with-icon">
+          <input type="text" name="search" class="form-control input-block" placeholder="Search by name, email">
+          <span class="icon icon-magnifying-glass"></span>
+        </div>
+        <button class="btn btn-default">Search</button>
+      </div>
     </div>
-  </div>
-  <div class="flextable-item">
-    
-  </div>
+
+    <div class='col-sm-6' style='text-align: right'>
+      <p class='pull-right' >Total users: <%= User.all.length %></p>
+      <a class='pull-right' style="margin-right:30px;cursor: pointer;" onclick="delete_all()">Delete All</a>
+    </div>
+
+  </form>
 </div>
+
 <div class="table-full">
   <div class="table-responsive">
-    <table class="table" data-sort="table">
-      <thead>
-        <tr>
-          <td><input type="checkbox" class="select-all" id="selectAll"></td>
-          <th class="headerSortUp">User #</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Created</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
-        <tr>
-          <td><input type="checkbox" class="select-row"></td>
-          <td><%= user[:id] %></td>
-          <td><%= user[:username] %></td>
-          <td><%= user[:email] %></td>
-          <td><%= user[:role] %></td>
-          <td><%= user[:created_at].strftime("%m/%d/%y") %></td>
-          <td>
-            <a href="/admin/user/<%=user[:id] %>" class="btn btn-primary-outline btn-sm">Edit <span class="icon icon-pencil"></span></a>
-            <a href="/admin/user/delete/<%=user[:id] %>" data-remote="true" data-confirm="Are You Sure?" class="btn btn-primary-outline btn-sm">Delete <span class="icon icon-erase"></span></a>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <table class="table" data-sort="table">
+        <thead>
+          <tr>
+            <td><input type="checkbox" class="select-all" id="selectAll" onClick="toggle(this)"></td>
+            <!-- <th class="headerSortUp">User #</th> -->
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th >Created</th>
+            <th width="200"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td><input type="checkbox" name="check_item" value="<%= user[:id] %>" class="select-row"></td></td>
+            <!-- <td><%= user[:id] %></td> -->
+            <td><%= user[:first_name] %> <%= user[:last_name] %></td>
+            <td><%= user[:phone] %></td>
+            <td><%= user[:email] %></td>
+            <td><%= user[:role] %></td>
+            <td><%= user[:status] %></td>
+            <td><%= user[:created_at].strftime("%m/%d/%y") %></td>
+            <td>
+              <a href="/admin/user/<%=user[:id] %>" class="btn btn-primary-outline btn-sm">View <span class="icon icon-pencil"></span></a>
+              <a href="/admin/user/delete/<%=user[:id] %>" data-remote="true" data-confirm="Are You Sure?" class="btn btn-primary-outline btn-sm">Delete <span class="icon icon-erase"></span></a>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
   </div>
 </div>
 <div class="text-center">
   <%= paginate(@users) %>
 </div>
 
+<script>
+function toggle(source) {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
+    }
+}
+function delete_all() {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var ids = new Array();
+    for (var i = 0; i < checkboxes.length; i++) {
+      if(checkboxes[i].name == "check_item" && checkboxes[i].checked)
+      {
+          ids.push(checkboxes[i].value);
+      }
+    }
+    if(ids.length > 0)
+    {
+        var c = confirm("Are you sure?")
+        if(c)
+        {
+          param = { ids: ids, cmd: 'delete' }
+          $.post("/admin/user/bulk_action", param, function(res){
+            var msg = JSON.parse(res);
+            if(msg.code == 200){
+              window.location.href = "/admin/users";
+            }else{
+              alert('error', res.status)
+              window.location.href = "/admin/users";
+            }
+          });
+        }
+    }
+}
+</script>

@@ -1,0 +1,96 @@
+@media only screen and (max-width:1400px){
+	
+	.banner				{min-height: 560px;}
+	.banner_img			{width: 50%;}
+	.more_reasons_in ul li:last-child{padding: 0;}
+	
+}
+
+@media only screen and (max-width:1240px){
+	
+	.container 			{padding: 0 15px;}
+	.banner				{min-height: 1px;padding: 116px 0 30px 0}
+	.banner_img			{width: 52%;}
+	.banner_in			{max-width:560px;}
+	.banner_in h1 		{font-size: 45px;line-height: 57px;}
+	.who_we_are_pos	p br{display: none;}
+}
+
+@media only screen and (max-width:992px){
+	
+	.banner				{padding: 0 0 117px 0;}
+	.banner_in			{max-width: 430px;}
+	.banner_in h1 		{font-size:24px;line-height: 30px;}
+	.banner_in span  	{font-size: 20px;line-height: 22px;}
+	.who_we_are_pos		{padding: 0 10px 0 10px;}
+	.who_we_are_pos	p 	{padding: 10px 0px;text-align: left !important;}
+	.who_we_are_in ul li{padding: 0 5px;}
+	.more_reasons_in ul li{width: 50%;padding: 0 0 10px 0;}
+	.more_reasons_info h4 br{display: none;}
+	.ass_details		{width: 100%;padding: 110px 0px;}
+	.once_i				{padding: 1px 15px 1px 15px;}
+	
+		
+}
+
+@media only screen and (max-width:767px){
+	
+	.appand				{display: block;}
+	.appand .mbl_no		{display: block;text-align: left;float: none;padding: 0;} 
+	header 				{padding: 30px 0;}
+	.banner				{padding: 37px 0 0 0;}
+	.banner_in h1 		{font-size: 40px;line-height: 47px;}
+	.banner_in span  	{font-size: 25px;line-height: 35px;padding: 10px 0;}
+	.banner_in ul li button{width: 60%;}
+	.banner_in ul 		{margin: 0;display: block;padding: 21px 0 0 0;width: 100%;}
+	.banner_in ul li    {width: 33.3%;}
+	.mbl_no    			{display: none;}
+	.banner_img			{width: 100%;position: static;text-align: right;}
+	.banner_img_info	{display: inline-block;width: 50%;}
+	.banner_in			{max-width: 100%;}
+	.mbl_none			{display: none !important;}
+	.dsk_none			{display: block !important;}
+	.who_we_are_in ul   {display: inline-block;margin: 0 -7px;padding: 0 0px 15px 0px;}
+	.who_we_are_in ul li{width: 50% !important;padding: 0 7px 15px 7px;}
+	.who_we_are_in ul li img{width: 100%;}
+	.who_we_are_in h2   {font-size: 32px;text-align: center;}
+	.who_we_are_in p br {display: none;}
+	.who_we_are_in p 	{text-align: center;}
+	.who_we_are			{padding: 80px 0 40px 0;margin: -4px 0 0 0}
+	.more_reasons		{padding: 48px 0 48px 0;}
+	.more_reasons_in ul  {display: inline-block;padding: 50px 0 0 0;}
+	.more_reasons_in ul li{width: 100%;text-align: center;}
+	.more_reasons_in ul li img{margin: 0 auto;}
+	.more_reasons_in h2 {padding: 0 0 15px 0;text-align: center;font-size: 32px;}
+	.get_start_now_img	{position: static;}
+	.get_start_now		{padding: 80px 0 0px 0;}
+	.get_start_now_img img{width: 100%;height: auto;}
+	.get_start_now_in	{text-align: center;padding: 0 0 10px 0;}
+	.get_start_now_in strong{padding: 0 0 30px 0;font-size: 24px;padding: 0 0 10px 0;}
+	.get_start_now_in strong a{font-size: 24px;padding: 0;}
+	.get_start_now_in h2{font-size: 32px;padding: 0;}
+	.footer_in			{position: relative;padding: 20px 0;}
+	.footer_in ul 		{text-align: left;}
+	.footer_in ul li 	{display: block;padding: 0 0 5px 0;}
+	.footer_in ul li:last-child{position: absolute;right: 0;bottom: 20px;}
+	.appand		{display: block !important;}
+	
+	
+	
+	
+}
+
+@media only screen and (max-width:599px){
+	
+	.banner_img_info	{display: inline-block;width: 100%;}
+	.banner_in ul li 	{width: 100%;display: block;padding: 0 0 15px 0;}
+	
+	
+	.who_we_are_in ul li{width: 100% !important;}
+	.who_we_are_in ul li img{width: 100%;}
+}
+
+@media only screen and (max-width:479px){
+
+	.wrapper {min-width: 303px;}
+}

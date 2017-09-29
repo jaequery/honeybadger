@@ -1,15 +1,17 @@
 Padrino.configure_apps do
-enable :sessions
-set :session_secret, '52cb066050f4e1bef0802bef111939d64969136a6774f7d34f26f682cf4e10e9'
-set :protection, :except => :path_traversal
+  enable :sessions
+  set :session_secret, '52cb066050f4e1bef0802bef111939d64969136a6774f7d34f26f682cf4e10e9'
+  set :protection, :except => :path_traversal
 #set :protect_from_csrf, true
 #set :protect_from_csrf, except: %r{/__better_errors/\w+/\w+\z} if Padrino.env == :development
 ### app specific settings, you can access them like this: settings.auth[:twitter][:key] ###
 # single sign on credentials
 set :auth, {
-:twitter => {:key => '', :secret => ''},
-:instagram => {:key => '', :secret => ''}
+  :twitter => {:key => '', :secret => ''},
+  :instagram => {:key => '', :secret => ''}
 }
+
+set :intercom, { :access_token => 'dG9rOjQ5MDE4N2QwXzdjNGRfNDZjMV84M2Y4XzU3NDFkMDRiYjVkMToxOjA=', :app_id => 'e1upm2d7' }
 end
 
 #ip = request.ip

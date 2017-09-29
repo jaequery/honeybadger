@@ -1,0 +1,13 @@
+<script src="/assets/js/datetimepicker/moment.min.js"></script>
+<script>
+Vue.mixin({
+  methods: {
+    format_date: function(date, format){
+      if(date) return moment(date).format(format)
+    },
+    nl2br: function(str){
+      if(str) return str.replace(/\n/g, "<br />");
+    }    
+  }
+})
+</script>

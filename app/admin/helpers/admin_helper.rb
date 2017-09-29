@@ -9,9 +9,22 @@ module Honeybadger
       end
 
       def only_for(role)
-        if session[:user].nil? || (!session[:user][:role].blank? && session[:user][:role] != role)
-          redirect("/")
+        redirect("/") if session[:user_id].nil? 
+        user = User[session[:user_id]]
+
+        access = false
+
+        if !user[:role].blank?
+
+          if role.class == Array
+            access = true if role.include? user[:role]
+          else
+            access = true if user[:role] == role
+          end
+
         end
+
+        redirect("/") if access == false
       end
 
       def set_active_on_match(regex)

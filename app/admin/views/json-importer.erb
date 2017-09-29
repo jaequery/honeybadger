@@ -1,0 +1,69 @@
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">JSON Importer</h2>
+  </div>
+</div>
+
+<hr>
+
+<div class="content">
+  <p>Use JSON from FGO</p>
+
+  <a target="_blank" href="https://www.fashiongo.net/Search.json?pn=1&ps=100&orderby=new&wid=4667&vid=4667&backUrl=%2FCatalog%3Fvid%3D4667&type=GET&dataType=json&_=1497244350961">JSON</a>
+
+  <form method="POST" action="/admin/json-importer">
+    <textarea name="json" cols="80" rows="20"></textarea>
+    <br>
+    <button type="submit" class="btn btn-primary">Import</button>
+  </form>
+</div>
+
+<% if @items %>
+  <hr>
+  <h1>Result</h1>
+  <p>Imported <%=@imported.length%></p>
+  <p>Excluded <%=@excluded.length%></p>
+  <hr>
+
+  <% if @imported.length > 0 %>
+    <h1>Imported <%=@imported.length%></h1>
+    <table class="table">
+      <tr>
+        <th>Image</th>
+        <th>PID</th>
+        <th>SKU</th>
+        <th>Name</th>
+      </tr>
+      <% @excluded.each do |item| %>
+        <tr>
+          <td><img src="<%=item.images[0]%>"></td>
+          <td><%=item.refid%></td>
+          <td><%=item.sku%></td>
+          <td><%=item.name%></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+  <% if @excluded.length > 0 %>
+    <h1>Excluded <%=@excluded.length%></h1>
+    <table class="table">
+      <tr>
+        <th>Image</th>
+        <th>PID</th>
+        <th>SKU</th>
+        <th>Name</th>
+      </tr>
+      <% @excluded.each do |item| %>
+        <tr>
+          <td><img src="<%=item.images[0]%>"></td>
+          <td><%=item.refid%></td>
+          <td><%=item.sku%></td>
+          <td><%=item.name%></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+<% end %>

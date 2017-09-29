@@ -1,0 +1,529 @@
+<script src="//unpkg.com/element-ui"></script>
+<script src="//unpkg.com/element-ui/lib/umd/locale/en.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+<style>
+  a p { display: None }
+
+  a:hover p { display: block }
+</style>
+
+<form id="app" method="POST" @submit.prevent="submit_form">
+
+  <div class="alert alert-success" role="alert" v-if="alert.success != false">{{alert.success}}</div>
+  <div class="alert alert-error" role="alert" v-if="alert.error != false">{{alert.error}}</div>
+
+  <div class="dashhead">
+    <div class="dashhead-titles">
+      <h6 class="dashhead-subtitle">Dashboards</h6>
+      <h2 class="dashhead-title">Products</h2>
+    </div>
+    <div class="btn-toolbar dashhead-toolbar">
+
+      <button @click="set_to_latest" class="btn btn-default">Set Latest</button>
+      <button class="btn btn-primary-outline">Save Product</button>
+    <!-- <div class="btn-toolbar-item input-with-icon">
+      <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
+      <span class="icon icon-calendar"></span>
+    </div> -->
+  </div>
+</div>
+
+<hr class="m-t">
+
+<section class="content-header">
+
+  <div class="field row" id="field_category">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Category</label>
+
+        <select id='category' v-model="product.categories" class="select form-control select2" multiple="multiple">
+          <option v-for="category in categories" :value="category">{{category}}</option>
+        </select>
+
+        {{product.category}}
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_name">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Name*</label>
+        <input type="text" class="form-control" v-model="product.name" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_sku">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">SKU</label>
+        <input type="text" class="form-control" v-model="product.sku">
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_description">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Description</label>
+        <textarea class="form-control" v-model="product.description"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_fabric">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Fabric</label>
+        <!-- <input type="text" class="form-control" v-model="product.fabric"> -->
+        <select id='fabric' v-model="product.fabric" class="select form-control select2">
+          <option v-for="fabric in unique_fabric" :value="fabric">{{fabric}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_images">
+    <div class="col-md-12">
+      <div class="form-group">
+
+        <label value="">Images</label>
+        <input type="hidden" class="form-control" v-model="product.images">
+
+        <div>
+          <span v-for="image_url in product.images">
+            <div v-if="image_url == product.main_image" style=" float: left;">
+              <a :href="image_url" target="_blank" >
+                <img class="" style="border:3px solid blue; height: 150px;" :src="image_url">
+                <p style="cursor: pointer;" @click.prevent="set_main_image(image_url)">set main</p>
+              </a>
+              <p><a style="cursor: pointer;" @click.prevent="remove_image(image_url)">remove</a></p>
+            </div>
+            <div v-else :href="image_url" target="_blank" style=" float: left;">
+              <a :href="image_url" target="_blank" >
+                <img class="" height="150" :src="image_url">
+                <p style="cursor: pointer;" @click.prevent="set_main_image(image_url)">set main</p>
+              </a>
+              <p><a style="cursor: pointer;" @click.prevent="remove_image(image_url)">remove</a></p>
+            </div>
+          </span>
+        </div>
+
+        <div style="clear: both;"><a @click="add_images" style="cursor: pointer;">add +</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_made_in">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Made In</label>
+        <input type="text" class="form-control" v-model="product.made_in">
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_label">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Label</label>
+        <input type="text" class="form-control" v-model="product.label">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field row" id="field_price">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Price</label>
+        <input type="text" class="form-control" v-model="product.price">
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_old_price">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Old Price</label>
+        <input type="text" class="form-control" v-model="product.old_price">
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_colors">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Colors</label>
+        <table class="table table-striped">
+          <tr>
+            <td>Color</td><td>Available on</td><td></td>
+          </tr>
+          <tr v-for="color in product.colors">
+            <td><input type="text" :value="color['color']"></td>
+            <td>
+              <div class="input-with-icon">
+                <input :id="color['color']" type="text" class="form-control color_available" :value="color['available_on']" data-provide="datepicker">
+                <span class="icon icon-calendar"></span>
+              </div>
+            </td>
+            <td><a href="#" @click.prevent="remove_color(color)">Remove</a></td>
+          </tr>
+        </table>
+      </div>
+      <div class="form-group">
+        <!-- <p><a href="#" @click.prevent="add_color()">add +</a></p> -->
+        <label value="">Add color</label>
+        <select id='color' v-model="product.colors" class="select form-control select2">
+          <option v-for="color in unique_colors" :value="color">{{color}}</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="field row" id="field_pack">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Pack</label>
+        <select id='pack' v-model="product.pack" class="select form-control select2">
+          <option v-for="pack in unique_pack" :value="pack">{{pack}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_pack_qty">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Pack Quantity</label>
+        <select id='pack_qty' v-model="product.pack_qty" class="select form-control select2">
+          <option v-for="pack_qty in unique_pack_qty" :value="pack_qty">{{pack_qty}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_pack_size">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Pack Size</label>
+        <select id='pack_size' v-model="product.pack_size" class="select form-control select2">
+          <option v-for="pack_size in unique_pack_size" :value="pack_size">{{pack_size}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_stock_status">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Stock</label>
+        <select v-model="product.stock_status" class="form-control">
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field row" id="field_arrived_on">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Arrived On</label>
+
+        <div>
+          <div class="input-with-icon">
+            <input id="arrived_on" type="text" class="form-control datepicker" v-model="product.arrived_on" data-provide="datepicker">
+            <span class="icon icon-calendar"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_available_on">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Available On</label>
+        <div>
+          <div class="input-with-icon">
+            <div class="input-with-icon">
+              <input id="available_on" type="text" class="form-control datepicker" v-model="product.available_on" data-provide="datepicker">
+              <span class="icon icon-calendar"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_activated_on">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Activated On</label>
+        <div>
+          <div class="input-with-icon">
+            <el-date-picker
+              v-model="product.activated_on"
+              id="activated_on"
+              type="datetime"
+              placeholder="Select date and time">
+            </el-date-picker>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_created_on">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Created At</label>
+        <div>
+          <div class="input-with-icon">
+            <input type="text" class="form-control datepicker" v-model="product.created_at" data-provide="datepicker">
+            <span class="icon icon-calendar"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field row" id="field_created_on">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label value="">Displayed at</label>
+        <div>
+          <div class="input-with-icon">
+
+            <el-date-picker
+              v-model="product.displayed_at"
+              id="displayed_at"
+              type="datetime"
+              placeholder="Select date and time">
+            </el-date-picker>
+
+            <!-- <input type="text" class="form-control datepicker" id="displayed_at" v-model="displayed_at" data-provide="datepicker">
+            <span class="icon icon-calendar"></span> -->
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</form>
+
+<script>
+ELEMENT.locale(ELEMENT.lang.en)
+new Vue({
+  el: '#app',
+  data: {
+    product: <%== @product.to_json %> || <%== Product.skeleton.to_json %>,
+    categories: <%== Product.categories.to_json %>,
+    latest_displayed_at: <%== Product.latest_displayed_at.to_json%>,
+    color_names: <%== @product.present? ? @product.color_names.to_json : [].to_json %>,
+    unique_colors: <%== Product.unique_colors.to_json %>,
+    unique_fabric: <%== Product.unique_fabric.to_json %>,
+    unique_pack: <%== Product.unique_pack.to_json %>,
+    unique_pack_size: <%== Product.unique_pack_size.to_json %>,
+    unique_pack_qty: <%== Product.unique_pack_qty.to_json %>,
+    alert: {
+      success: false,
+      error: false
+    }
+  },
+
+  mounted: function(){
+
+    var $categories = $("#category").select2();
+    var $fabric = $("#fabric").select2();
+    var $pack = $("#pack").select2();
+    var $pack_qty = $("#pack_qty").select2();
+    var $pack_size = $("#pack_size").select2();
+    var $color = $("#color").select2();
+    var _this = this
+
+    $categories.val(this.product.categories)
+
+    $categories.on("select2:select", function (e) {
+      var category = e.params.data.text
+      _this.product.categories = $("#category").select2().val()
+    });
+
+    $categories.on("select2:unselect", function (e) {
+      var category = e.params.data.text
+      _this.product.categories = $("#category").select2().val()
+    });
+
+    $fabric.on("select2:select", function (e) {
+      var fabric = e.params.data.text
+      _this.product.fabric = fabric
+    });
+
+    $pack.on("select2:select", function (e) {
+      var pack = e.params.data.text
+      _this.product.pack = pack
+    });
+
+    $pack_qty.on("select2:select", function (e) {
+      var pack_qty = e.params.data.text
+      _this.product.pack_qty = pack_qty
+    });
+
+    $pack_size.on("select2:select", function (e) {
+      var pack_size = e.params.data.text
+      _this.product.pack_size = pack_size
+    });
+
+    $color.on("select2:select", function (e) {
+      var color = e.params.data.text
+      color_info = {'color': color, 'available_on': null}
+      if (!_this.color_names.includes(color)) {
+        _this.color_names.push(color)
+        _this.product.colors.push(color_info)
+      }
+    });
+
+    $(".datepicker").datepicker().on("changeDate", function(){
+      var d = $(this).val()
+      var dt = moment(d).format("YYYY-MM-DD")
+      _this.product[$(this).attr('id')] = dt
+
+    });
+
+    $(document).on("changeDate", ".color_available", function(){
+      var d = $(this).val()
+      var dt = moment(d).format("MM/DD/YYYY")
+      var color = $(this).attr('id')
+      var existed_index = _this.color_names.indexOf(color)
+
+      new_color = {'color': color, 'available_on': dt }
+
+      if (existed_index > -1) {
+        _this.product.colors.splice(existed_index, 1, new_color);
+      }
+
+    });
+
+    $(document).on("clearDate", ".color_available", function(){
+      var color = $(this).attr('id')
+      var existed_index = _this.color_names.indexOf(color)
+
+      new_color = {'color': color, 'available_on': null }
+
+      if (existed_index > -1) {
+        _this.product.colors.splice(existed_index, 1, new_color);
+      }
+
+    });
+
+
+  },
+
+  methods: {
+
+    sample_product: function(){
+      return {
+        name: ''
+      }
+    },
+
+    remove_color: function(color){
+      var idx = this.product.colors.indexOf(color)
+      var idx_name = this.color_names.indexOf(color['color'])
+      this.product.colors.splice(idx, 1)
+      this.color_names.splice(idx_name, 1)
+    },
+
+    show_alert: function(type, message){
+
+      var _this = this
+
+      _this.reset_alert()
+
+      switch(type){
+        case "success":
+        _this.alert.success = message
+        break;
+
+        case "error":
+        _this.alert.error = message
+        break;
+      }
+
+      setTimeout(function(){
+        _this.reset_alert()
+      }, 2000)
+    },
+
+    reset_alert: function(){
+      this.alert.success = false
+      this.alert.error = false
+    },
+
+    submit_form: function(){
+      var product_id = ''
+      var payload = {}
+      var _this = this
+
+      if(this.product.id) product_id = this.product.id
+      payload = { product: this.product}
+
+      $.post("/admin/product/save/"+ product_id, payload, function(res){
+        if(res.code == 200){
+          _this.show_alert('success', res.status)
+          window.location.href = "/admin/product/" + res.product.id
+          $('html,body').scrollTop(0);
+        }else{
+          _this.show_alert('error', res.status)
+        }
+      })
+    },
+
+
+    add_images: function(){
+
+      var _this = this
+
+      client.pick({
+        accept: 'image/*',
+        maxFiles: 50
+      }).then(function(result) {
+        if(!_this.product.images) _this.product.images = []
+        $.each(result.filesUploaded, function(i, obj){
+          _this.product.images.push(obj.url)
+        })
+
+      })
+    },
+
+    remove_image: function(url){
+      var index = this.product.images.indexOf(url)
+      this.product.images.splice(index, 1)
+    },
+
+    set_main_image: function(url){
+      this.product.main_image = url
+    },
+
+    set_to_latest: function(){
+      this.product.displayed_at = moment.utc(moment(this.latest_displayed_at).add(1, 'seconds')).format("YYYY-MM-DD HH:mm:ss Z")
+    }
+
+  }
+
+})
+
+$(function(){
+  $('.select2').select2({tags: true});
+})
+</script>

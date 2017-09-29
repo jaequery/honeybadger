@@ -1,0 +1,90 @@
+  <script id="autocomplete-user-template" type="text/x-template">
+  <div class="autocomplete-user">
+  <p class="control has-icon has-icon-right">
+  <input v-model="keyword" class="form-control" placeholder="Search name, email, id" id="user_search" @input="onInput($event.target.value)" @keyup.esc="isOpen = false" @blur="isOpen = false" @keydown.down="moveDown" @keydown.up="moveUp" @keydown.enter="select"  autocomplete="off">
+  <i class="fa fa-angle-down"></i>
+  </p>
+  <ul v-show="isOpen" class="options-list" style='z-index: 100'>
+  <li v-for="(option, index) in fOptions" :class="{
+    'highlighted': index === highlightedPosition
+  }" @mouseenter="highlightedPosition = index" @mousedown="select">
+  #{{option.id}}: {{option.first_name}} {{option.last_name}} ({{option.company}}) {{option.email}} <span class='pull-right'>{{format_date(option.created_at, 'MM/DD/YYYY')}}</span>
+  </li>
+  </ul>
+  </div>
+  </script>
+
+  <script>  
+
+  Vue.component('autocomplete-user', {
+    template: '#autocomplete-user-template',
+    props: {
+      options: {
+        type: Array,
+        required: true
+      }
+    },
+    data: function(){
+      return {
+        isOpen: false,
+        highlightedPosition: 0,
+        keyword: ''
+      }
+    },
+    computed: {
+      fOptions: function() {
+        const re = new RegExp(this.keyword, 'i')
+        var _this = this
+
+        return this.options.filter(function(o){ 
+
+          var matched = false
+
+          if(o.company){
+            if(o.company.match(re)) matched = true
+          }
+
+          if(o.id && o.id == _this.keyword){
+            matched = true
+          }          
+
+          if(o.first_name && o.last_name){
+            var name = o.first_name + ' ' + o.last_name  
+            if(name.match(re)) matched = true
+          }
+          
+          if( (o.first_name && o.first_name.match(re)) || (o.last_name && o.last_name.match(re)) || (o.email && o.email.match(re)) ){
+            matched = true
+          }
+
+          return matched
+        })
+      }
+    },
+    methods: {
+      onInput: function(value) {
+        this.highlightedPosition = 0
+        this.isOpen = !!value
+      },
+      moveDown: function() {
+        if (!this.isOpen) {
+          return
+        }
+        this.highlightedPosition = (this.highlightedPosition + 1) % this.fOptions.length
+      },
+      moveUp: function() {
+        if (!this.isOpen) {
+          return
+        }
+        this.highlightedPosition = this.highlightedPosition - 1 < 0 ? this.fOptions.length - 1 : this.highlightedPosition - 1
+      },
+      select: function() {
+        const selectedOption = this.fOptions[this.highlightedPosition]
+        this.$emit('select', selectedOption)
+        this.isOpen = false
+        console.log(selectedOption)
+        this.keyword = selectedOption.id
+      }
+    }
+  })
+  </script>

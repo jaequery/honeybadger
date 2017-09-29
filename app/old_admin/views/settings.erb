@@ -1,0 +1,207 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+  <% form_for @settings, "/admin/settings/save", :id => 'admin-form', :remote => false, :multipart => true do |f| %>
+    <form>
+
+    <section class="content-header">
+      <h2 class="page-header">Settings</h2>
+      <ol class="breadcrumb">
+        <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="/admin/users">Users</a></li>
+        <li class="active"><%= params[:id] || 'New' %></li>
+      </ol>
+
+      <%= partial("partials/flash.erb") %>
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+                <li><a href="#sso" data-toggle="tab">Single Sign-on</a></li>
+              </ul>
+
+            </div>
+          </div>
+
+          <p></p><button class="btn btn-primary btn-block"><b>Save</b></button></p>
+          <p></p><button class="btn btn-default btn-block" onclick="javascript: history.go(-1);"><b>Go Back</b></button></p>
+          <!-- /.widget-user -->
+        </div>
+        <!-- /.col -->
+
+
+        <section class="col-md-9">
+
+          <!-- SELECT2 EXAMPLE -->
+          <div class="box box-primary">
+
+            <div class="box-body">
+
+              <div class="tab-content">
+
+
+                <div role="tabpanel" class="tab-pane active" id="general">
+
+                  <div class="row">
+
+                    <div class="col-md-12">
+
+                      <div class="field row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <%= f.label :site_title, :caption => "Site Title", :placeholder => "Honeybadger CMS" %>
+                            <%= f.text_field :site_title, :class => 'form-control' %>
+                          </div><!-- /.form-group -->
+                        </div><!-- /.col -->
+                      </div><!-- /.row -->
+
+
+                    </div><!-- - /.col -->
+
+                  </div> <!-- /.row -->
+
+
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="sso">
+
+                  <div class="row">
+
+                    <div class="col-md-12">
+                      <!-- - Custom Tabs -->
+                      <div class="nav-tabs-custom">
+                        <ul class="nav nav-pills">
+                          <li class="active"><a href="#tab_1" data-toggle="tab">Twitter</a></li>
+                          <li><a href="#tab_2" data-toggle="tab">Facebook</a></li>
+                          <li><a href="#tab_3" data-toggle="tab">Instagram</a></li>
+                        </ul>
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="tab_1">
+                            <hr>
+                            <div class="field row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>
+                                    <%= f.check_box :twitter_enable, :class => 'minimal', :checked => true %>
+                                    Enable Twitter SSO
+                                  </label>
+                                </div>
+                              </div><!-- /.col -->
+                            </div><!-- /.row -->
+                            <div class="field row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <%= f.label :twitter_key, :caption => "key" %>
+                                  <%= f.text_field :twitter_key, :class => 'form-control' %>
+                                </div><!-- /.form-group -->
+                              </div><!-- /.col -->
+                            </div><!-- /.row -->
+                            <div class="field row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <%= f.label :twitter_secret, :caption => "secret" %>
+                                  <%= f.text_field :twitter_secret, :class => 'form-control' %>
+                                </div><!-- /.form-group -->
+                              </div><!-- /.col -->
+                            </div><!-- /.row -->
+
+                          </div><!-- - /.tab-pane -->
+
+
+
+                        </div><!-- - /.tab-content -->
+                      </div><!-- - nav-tabs-custom -->
+                    </div><!-- - /.col -->
+
+                  </div> <!-- /.row -->
+
+
+                </div> <!-- /.tab -->
+
+
+
+              </div> <!-- /.tab-content -->
+
+
+            </div>
+            <!-- /.box-body -->
+
+          </div>
+          <!-- /.box -->
+
+        </section>
+
+      </div> <!-- /.row -->
+
+
+    </section>
+
+  <% end %>
+
+</div><!-- /.content-wrapper -->
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<% form_for :post, "/admin/post/save/#{params[:id]}", :id => 'admin-form', :remote => true do |f| %>
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Configuration
+        <!-- <small>add, modify, or delete configs</small> -->
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="/admin/configs">Configs</a></li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <h2 class="page-header">Single Sign-on</h2>
+          <!-- - /.row -->
+          <!-- - END CUSTOM TABS -->
+
+
+        </div><!-- /.col -->
+
+      </div><!-- /.row -->
+
+    </section><!-- /.content -->
+
+  </div><!-- /.content-wrapper -->
+
+<% end %>
+<script>
+ $(function(){
+
+   $('.datatable').DataTable({
+     "paging": true,
+     "lengthChange": true,
+     "searching": true,
+     "ordering": true,
+     "order": [[ 0, "desc" ]],
+     "info": true,
+     "autoWidth": true
+   });
+
+   $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+     checkboxClass: 'icheckbox_minimal-blue',
+     radioClass: 'iradio_minimal-blue'
+   });
+
+ });
+</script>

@@ -1,0 +1,197 @@
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Dashboards</h6>
+    <h2 class="dashhead-title">Products</h2>
+  </div>
+  <div class="btn-toolbar dashhead-toolbar">
+    <div class="btn-group">
+      <a href="/admin/product" type="button" class="btn btn-primary-outline">
+        Create New <span class="icon icon-plus"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<hr class="m-t">
+
+<div class="flextable table-actions">
+  <form method="GET" class='row'>
+    <div class='col-sm-6'>
+      <div class="flextable-item flextable-primary">
+        <div class="btn-toolbar-item input-with-icon">
+          <input type="text" name="search" class="form-control input-block" placeholder="Search products">
+          <span class="icon icon-magnifying-glass"></span>
+        </div>
+        <button class="btn btn-default">Search</button>
+      </div>
+    </div>
+
+    <div class='col-sm-3'>
+      <div class="flextable-item flextable-primary">
+        <select type="text" id="category" name="category" class="select form-control select2" placeholder="Filter category">
+          <option value=""></option>
+          <% Product.categories.each do |category| %>
+          <% if category == @category %>
+          <option value="<%= category %>" selected><%= category %></option>
+          <% else %>
+          <option value="<%= category %>"><%= category %></option>
+          <% end%>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <div class='col-sm-3'>
+      <a class='pull-right' href="/admin/products?need_review=1">Filter Need</a>
+      <a class='pull-right' style="margin-right:30px;cursor: pointer;" onclick="delete_all()">Delete All</a>
+    </div>
+
+  </form>
+</div>
+
+
+<div class="table-full">
+  <script type="text/x-template" id="tab">
+    <table class="table" data-sort="table" >
+      <thead>
+        <tr>
+          <td><input type="checkbox" class="select-all" id="selectAll" onClick="toggle(this)"></td>
+          <th class="headerSortUp">#</th>
+          <th>SKU</th>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Created</th>
+          <th>Displayed</th>
+          <th width="110"></th>
+        </tr>
+      </thead>
+
+      <draggable v-model="list" :element="'tbody'" @sort="onSort">
+        <tr v-for="(product, index) in list" :key="product">
+          <td><input type="checkbox" name="check_item" :value="product" class="select-row"></td>
+          <td>{{product.id}}</td>
+          <td>{{product.sku}}</td>
+          <td><img target="_blank" :src='product.main_image || product.images[0]' width="50"></td>
+          <td>{{product.name}}</td>
+          <td>{{product.stock_status}}</td>
+          <td>{{moment(product.created_at).format("MM/DD/YYYY")}}</td>
+          <td>{{moment(product.displayed_at).format("MM/DD/YYYY HH:mm:ss")}}</td>
+          <td>
+            <a v-bind:href="'/admin/product/' + product.id" class="btn btn-primary-outline btn-sm">View</a>
+            <a v-bind:onclick="'delete_product(' + product.id + ')'" class="btn btn-sm">x</a>
+          </td>
+        </tr>
+      </draggable>
+    </table>
+  </script>
+  <div id="app">
+     <local-table v-model="products"></local-table>
+  </div>
+</div>
+</div>
+
+<script>
+var localTd = {
+  template: '#tr',
+  props: ['item'],
+  name: 'local-td'
+};
+
+var localTable = {
+  components:{
+    localTd:localTd
+  },
+  template: '#tab',
+  props: ['value', 'products'],
+  name: 'local-table',
+  computed: {
+    list: {
+        get() {
+            return this.value
+        },
+        set(value) {
+            this.$emit('input', value)
+        }
+    }
+  },
+  methods: {
+    onSort: function(e){
+      product = this.$parent.products[e.newIndex]
+
+      // If this product is dragged to first
+      if (e.newIndex == 0) {
+        next_product = this.$parent.products[e.newIndex + 1]
+        new_displayed_at = moment.utc(moment(next_product.displayed_at).add(1, 'seconds')).format("YYYY-MM-DD HH:mm:ss Z")
+      }
+      else {
+        prev_product = this.$parent.products[e.newIndex - 1]
+        new_displayed_at = moment.utc(moment(prev_product.displayed_at).subtract(1, 'seconds')).format("YYYY-MM-DD HH:mm:ss Z")
+      }
+
+      payload = { displayed_at: new_displayed_at}
+
+      $.post("/admin/product/display/"+ product.id, payload, function(res){
+        if(res.code == 200){
+          product["displayed_at"] = new_displayed_at
+        } else{
+          this.show_alert('error', res.status)
+        }
+      })
+    }
+  }
+};
+
+new Vue({
+  components:{
+    localTable:localTable
+  },
+  el: '#app',
+  data: {
+      products: <%== @products.to_json %>,
+    }
+
+})
+function delete_product(id){
+  var c = confirm("Are you sure?")
+  if(c) window.location.href = "/admin/product/delete/" + id + "?redir=<%=request.fullpath%>"
+}
+function toggle(source) {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i] != source)
+      checkboxes[i].checked = source.checked;
+  }
+}
+function delete_all() {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  var ids = new Array();
+  for (var i = 0; i < checkboxes.length; i++) {
+    if(checkboxes[i].name == "check_item" && checkboxes[i].checked)
+    {
+      ids.push(checkboxes[i].value);
+    }
+  }
+  if(ids.length > 0)
+  {
+    var c = confirm("Are you sure?")
+    if(c)
+    {
+      param = { ids: ids, cmd: 'delete' }
+      $.post("/admin/product/bulk_action", param, function(res){
+        var msg = JSON.parse(res);
+        if(msg.code == 200){
+          window.location.href = "/admin/products";
+        }else{
+          alert('error', res.status)
+          window.location.href = "/admin/products";
+        }
+      });
+    }
+  }
+}
+
+$('#category').on('change', function () {
+     var category = $("#category option:selected").val();
+     window.location.href = "/admin/products?category=" + encodeURIComponent(category)
+});
+</script>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+  <title>
+
+    Overview &middot; 
+
+  </title>
+  <script src="/admin/assets/js/jquery.min.js"></script>
+  <script src="/bower_components/vue/dist/vue.min.js"></script>
+  <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+
+  <link href="/admin/assets/css/toolkit-light.css" rel="stylesheet">
+  <link href="/admin/assets/css/application.css" rel="stylesheet">
+
+  <style>
+
+  .user { font-size: 12px;}
+  .user legend { font-size: 12px; font-weight: bolder;}
+
+  .autocomplete-input {
+    position: relative;
+  }
+
+  autocomplete-product { z-index: 10000;}
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  ul.options-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: -12px;
+    border: 1px solid #dbdbdb;
+    border-radius: 0 0 3px 3px;
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  ul.options-list li {
+    width: 100%;
+    flex-wrap: wrap;
+    background: white;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    color: #363636;
+    padding: 7px;
+    cursor: pointer;
+  }
+
+  ul.options-list li.highlighted {
+    background: #f8f8f8
+  }
+
+
+  .spinner {
+    width: 100px;
+  }
+  .spinner input {
+    text-align: right;
+  }
+  .input-group-btn-vertical {
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    display: table-cell;
+  }
+  .input-group-btn-vertical > .btn {
+    display: block;
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    margin-left: -1px;
+    position: relative;
+    border-radius: 0;
+  }
+  .input-group-btn-vertical > .btn:first-child {
+    border-top-right-radius: 4px;
+  }
+  .input-group-btn-vertical > .btn:last-child {
+    margin-top: -2px;
+    border-bottom-right-radius: 4px;
+  }
+  .input-group-btn-vertical i{
+    position: absolute;
+    top: 0;
+    left: 4px;
+  }
+
+  </style>
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="row">
+
+      <div id="app">
+
+        <div class="row">
+          <form @submit.prevent="set_user(user_search)">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4 style="text-align: center;">Purchase Order</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-1" style="width: 10%;">
+                <p style="margin-top: 5px; padding: 0px;">Select type:</p>
+              </div>
+              <div class="col-sm-1">
+                <input id="ref_show" @change="change_type('show')" v-model="order.type" value="show" type="radio"> <label for="ref_show">Show</label>
+              </div>
+              <div class="col-sm-1">
+                <input id="ref_vendor" @change="change_type('vendor')" v-model="order.type" value="vendor" type="radio"> <label for="ref_vendor">Vendor</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-1" style="width: 10%;">
+                <p id="show_label" style="margin-top: 5px; padding: 0px;">
+                  <template v-if="order.type == 'show'" >
+                    Select show:
+                  </template>
+                  <template v-if="order.type == 'vendor'" >
+                    Select vendor:
+                  </template>
+                </p>
+              </div>
+              <div class="col-sm-3">
+                <select v-model="order.ref" class="form-control" >
+                  <option class="form-control" value=""></option>
+                  <template v-if="order.type == 'show'" >
+                    <option class="form-control" value="atlanta" selected>Atlanta</option>
+                    <option class="form-control" value="dallas">Dallas</option>
+                  </template>
+                  <template v-if="order.type == 'vendor'" >
+                    <option class="form-control" value="listicle" selected>Listicle</option>
+                    <option class="form-control" value="fashiongo" selected>Fashiongo</option>
+                    <option class="form-control" value="lashowroom">Lashowroom</option>
+                  </template>
+                </select>
+              </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+              <div class="col-sm-1" style="width: 10%;">
+                <p style="margin-top: 5px; padding: 0px; font-size:14px;">Select user:</p>
+              </div>
+              <div class="col-sm-10">
+                <autocomplete-user :options="all_users" @select="set_user_search"></autocomplete-user>
+              </div>
+            </div>            
+          </form>
+        </div>
+
+        <fieldset class="well user" id="address" v-if="order.user.id" style="margin-top: 20px;">
+          
+          <div class="row">
+            <div class="col-sm-6">
+
+              <!-- <legend>Account</legend> -->
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-address-1">Company</label>
+                <div class="col-sm-8">
+                  <a :href="'/admin/user/'+order.user.id">{{order.user.company}}</a>
+                </div>        
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-address-1">Name</label>
+                <div class="col-sm-8">
+                  {{order.user.first_name}} {{order.user.last_name}} 
+                </div>        
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-address-1">Phone</label>
+                <div class="col-sm-8">
+                  {{order.user.phone}}
+                </div>        
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-address-1">Email</label>
+                <div class="col-sm-8">
+                  {{order.user.email}}
+                </div>        
+              </div>
+
+
+            </div>
+
+            <div class="col-sm-6">
+
+              <!-- <legend>Shipping</legend> -->
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-address-1">Name</label>
+                <div class="col-sm-8">
+                  <input type="text" v-model="order.user.shipping.name" :value="order.user.first_name + ' ' + order.user.last_name">
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-address-1">Address 1</label>
+                <div class="col-sm-8">
+                  <input type="text" v-model="order.user.shipping.address">
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-address-2">Address 2</label>
+                <div class="col-sm-8">
+                  <input type="text" v-model="order.user.shipping.address2">
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-city">City</label>
+                <div class="col-sm-8">
+                  <input type="text" v-model="order.user.shipping.city">
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-region">Region / State</label>
+                <div class="col-sm-8">
+                  <input type="text" v-model="order.user.shipping.state">
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-postcode">Zip / Postal Code</label>
+                <div class="col-sm-8">
+                  <input type="text" v-model="order.user.shipping.zip">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label" for="input-country">Country</label>
+                  <div class="col-sm-8">
+                    <input type="text" v-model="order.user.shipping.country">
+                  </div>
+                </div>
+              </div>
+
+
+
+<!-- 
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-address-1">Name</label>
+                <div class="col-sm-8">
+                  {{order.user.first_name}}          
+                  {{order.user.last_name}}          
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-address-1">Address 1</label>
+                <div class="col-sm-8">
+                  {{order.user.shipping.address}}          
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-address-2">Address 2</label>
+                <div class="col-sm-8">
+                  {{order.user.shipping.address2}}                    
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-city">City</label>
+                <div class="col-sm-8">
+                  {{order.user.shipping.city}}          
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-region">Region / State</label>
+                <div class="col-sm-8">
+                  {{order.user.shipping.state}}          
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 control-label" for="input-postcode">Zip / Postal Code</label>
+                <div class="col-sm-8">
+                  {{order.user.shipping.zip}}                    
+                </div>
+              </div>              
+
+              <div class="row">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label" for="input-country">Country</label>
+                  <div class="col-sm-8">
+                    {{order.user.shipping.country || 'US'}}                      
+                  </div>
+                </div>
+              </div> -->
+
+
+            </div>
+
+          </div>
+
+
+        </fieldset>
+
+
+
+
+        <!-- order items -->
+        <div class="table" v-if="order.user.id">
+
+
+          <div class="row" style="clear: both;">
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <td class="text-left">Image</td>
+                <td class="text-left">SKU</td>
+                <td class="text-left">Product</td>
+                <td class="text-left">Color</td>
+                <td class="text-left">Quantity</td>        
+                <td class="text-center">Pack Price</td>
+                <td class="text-center">Total</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody v-if="order.items.length > 0">
+              <tr v-for="(item, i) in order.items">
+                <td class="text-left">
+                  <a :href="'/admin/product/' + item.product.id" v-if="item.product.images[0]"><img :src="item.product.images[0]" :alt="item.product.name" :title="item.product.name" class="img-responsive" style="max-width:100px;"></a>
+                </td>
+                <td>{{item.product.sku}}</td>
+                <td>{{item.product.name}}</td>
+                <td>                                  
+                  <select v-model="item.color" class="select form-control colors" style="min-width: 120px;">
+                    <option></option>
+                    <option v-for="color in item.product.colors" :value="color.color">{{color.color}}</option>
+                  </select>   
+                </td>
+                <td>
+                  <button @click="set_qty(item, item.qty - 1)">-</button>
+                  <input class="qty" readonly v-model="item.qty" type="number" style="width: 100px;">
+                  <button @click="set_qty(item, item.qty + 1)">+</button>
+                </td>
+                <td class="text-center">${{item.product.price * 6}}</td>
+                <td class="text-center">${{(parseFloat(item.product.price) * item.qty * 6).toFixed(2)}}</td>
+                <td><a href="#" @click.prevent="remove_item(i)">remove</a></td>
+              </tr>              
+            </tbody>
+
+            <tr>
+              <td colspan="8">
+                <div class="row" style="z-index: 9999;">
+                  <div class="col-sm-12">
+                    <autocomplete-product :options="all_products" :keyword="product_search" @select="set_product_search"></autocomplete-product>
+                  </div>
+                  <!-- <div class="col-sm-1">
+                    <button class="btn btn-default" @click="add_item_by_search">Add</button>
+                  </div> -->
+                </div>
+
+              </td>
+            </tr>
+
+          </table>
+
+          <div class="row">
+            <div class="col-sm-4 col-sm-offset-8">
+              <table class="table">
+                <tr>
+                  <td class="text-right"><strong>Order Total:</strong></td>
+                  <td class="text-right">${{calculate_total(order.items)}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+
+          <h4><button>Notes</button></h4>
+          <div class="well row">
+
+            <div class="col-sm-6">
+              <h5>Customer</h5>
+              <textarea v-model="order.comments" class="form-control"></textarea>
+            </div>
+
+            <div class="col-sm-6">
+              <h5>Staff</h5>
+              <textarea v-model="order.comments_staff" class="form-control"></textarea>
+            </div>
+
+            
+          </div>
+
+
+          <div class="row">
+            <button class="btn btn-primary text-center" @click="create_order">Create Order</button>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <%= partial 'partials/components/mixins' %>
+  <%= partial 'partials/components/autocomplete-product' %>
+  <%= partial 'partials/components/autocomplete-user' %>
+
+  <script>
+
+  var _barcode = { pressed: false, chars: [] }
+
+
+  new Vue({
+    el: '#app',
+    data: {      
+      user_search: null,
+      user: null,
+      product: <%== Product.last.to_json %>,
+      product_search: null,
+      order: {
+              user: {
+                shipping: {} 
+              },
+              items: [],
+              ref: 'Dallas',
+              type: 'show'
+            },
+
+      all_products: <%== Product.select(:sku, :name, :id, :price, :images).all.to_json %>,
+      all_users: <%== User.select(:id, :company, :first_name, :last_name, :email, :created_at).order(:created_at).reverse.to_json %>,
+
+      barcode: {
+        pressed: false,
+        chars: []
+      }
+
+    },
+
+    mounted: function(){
+      this.handle_barcode_scan()     
+    },
+
+    methods: {    
+
+      titleize: function(str){
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});  
+      },
+
+      set_product_search: function(option) {
+        if(option && option.sku){          
+          this.product_search = ''
+          this.add_item_by_search(option.sku)
+        }
+      },
+
+      set_user_search: function(option) {
+        if(option && option.id){
+          this.set_user(option.id)
+        }
+      },
+
+      handle_barcode_scan: function(){
+        var _this = this      
+
+
+        $(window).keypress(function(e) {
+
+          var charCode = e.which || e.keyCode;
+          var charStr = String.fromCharCode(charCode);
+          if (/[a-z0-9 \-]/i.test(charStr)) {
+            _barcode.chars.push(String.fromCharCode(e.which));
+          }
+
+          if (_barcode.pressed == false) {
+
+            setTimeout(function(){
+              if (_barcode.chars.length >= 3) {
+                var barcode = _barcode.chars.join("");
+                console.log("Barcode Scanned: " + barcode);              
+                $('.qty, .colors').blur()
+                //_this.product_search = barcode
+                _this.add_item_by_scan(barcode)
+
+            }
+            _barcode.chars = [];
+            _barcode.pressed = false;
+          }, 500);
+          }
+          _barcode.pressed = true;
+        });
+      },
+
+      add_item_by_scan: function(sku){
+
+        var color = ''
+        var x = sku.split('-')        
+        if(x[1]){
+          sku = x[0]
+          color = x[1]
+        }
+
+        this.add_item(sku, color) 
+
+      },
+
+      add_item_by_search: function(search){
+
+        var sku = $('#product_search').val()
+
+        if(search){
+          sku = search
+        }        
+
+        var color = ''
+        var x = sku.split('-')        
+        if(x[1]){
+          sku = x[0]
+          color = x[1]    
+        }
+
+        this.add_item(sku, color)
+      },
+
+      add_item: function(sku, color){
+
+        var _this = this        
+        var product_id = null
+
+        if(color){
+          color = this.titleize(color)
+        }
+
+        $.get("/admin/product/search", {sku: sku}, function(res){
+          if(res.code == 200 && res.product){
+
+            if(res.code == 200){
+
+              var is_exist = false
+              $.each(_this.order.items, function(key, item){
+                //if(item.product.sku == sku && item.color == color){
+                if(item.product.sku == sku && item.color == color){
+                  _this.order.items[key].qty += 1
+                  is_exist = true
+                }
+              })
+
+              if(!is_exist){
+                var prod = res.product
+                if( color && $.inArray(color, prod.colors) == -1 ){
+                  prod.colors.push(color)  
+                }
+                prod.colors = prod.colors.filter((x, i, a) => a.indexOf(x) == i) // get unique
+                _this.order.items.push({product: prod, color: color, qty: 1})    
+                $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+              }
+              
+              _this.product_search = null
+            }
+
+          }
+
+        })        
+
+      },
+
+      create_order: function(){
+        $.post("/admin/new-order", {order: this.order}, function(res){          
+          if(res.code == 200){
+            window.location.href = "/admin/order/" + res.order.id
+          }
+        })
+      },
+
+      remove_item: function(idx){
+        this.order.items.splice(idx, 1)
+      },
+
+      calculate_total: function(items){
+        var total = 0
+        $.each(items, function(k, item){
+          total += parseFloat(item.product.price) * item.qty * 6
+        })  
+        return total.toFixed(2)
+      },
+
+      set_user: function(search){
+        var _this = this
+        $.get("/admin/user/search/"+search, function(res){
+
+          if(res.code == 200){
+
+            _this.user = res.user
+
+            _this.order.user = res.user
+
+            // set shipping if shipping not set
+            if(!res.user.shipping){           
+
+              _this.order.user.shipping = {
+                name: res.user.first_name + ' ' + res.user.last_name,
+                address: res.user.address,
+                address2: res.user.address2,
+                city: res.user.city,
+                state: res.user.state,
+                zip: res.user.zip,
+                country: res.user.country
+              }  
+
+            }
+            
+            
+          }          
+        })
+
+      },
+
+      set_qty: function(item, qty){
+        if(qty < 1){
+          qty = 1
+        }
+        item.qty = qty
+      },
+
+      change_type: function(type){
+        //this.order.type = type;
+        if(type == 'show')
+          this.order.ref = 'Dallas';
+        else
+          this.order.ref = 'Fashiongo';
+      }
+
+    }
+  })
+
+</script>
+
+</body>
+</html>
