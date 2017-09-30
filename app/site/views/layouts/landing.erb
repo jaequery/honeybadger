@@ -112,16 +112,17 @@
           <h2>Who we are</h2>
           <p>We are experienced estate planning attorneys, but also mothers, fathers, children, spouses, and dog lovers. We understand your concerns and are ready to collaborate to create an estate plan just for you so that you can rest easy, knowing your loved ones are protected.</p>
           <ul>
+
             <li>
-              <a href="javscript:void(0)" data-featherlight="#fl1" class="who_we_are_info">
+              <a href="javscript:void(0)" data-featherlight="#fl3" class="who_we_are_info">
                 <figure>
-                  <img src="images/image.jpg" class="mbl_none" width="583" height="420" alt="image">
+                  <img src="images/lawyers/image-lrg-jenice.s@2x.jpg" class="mbl_none" width="583" height="420" alt="image">
                   <img src="images/mbl_img.jpg" class="dsk_none" width="312" height="340" alt="image">
                 </figure>
                 <div class="who_we_are_pos">
-                  <h4>Jeff Sydney</h4>
-                  <small>Head of Innovation</small>
-                  <p>“Today, there is a greater need than ever for tailor-made estate plans that<br> protects your loved ones” ... <span>Read More</span></p>
+                  <h4>Janice Shen</h4>
+                  <small>Head Attorney</small>
+                  <p>“Once I understand what is most important to my clients and what keeps them up at night, I can create the best plan for their family” ... <span>Read More</span></p>                  
                 </div>
               </a>
             </li>
@@ -129,7 +130,7 @@
             <li>
               <a href="javscript:void(0)" data-featherlight="#fl2" class="who_we_are_info">
                 <figure>
-                  <img src="images/image1.jpg" class="mbl_none" width="283" height="416" alt="image">
+                  <img src="images/lawyers/image-lrg-peng.l copy@2x.jpg" class="mbl_none" width="283" height="416" alt="image">
                   <img src="images/mbl_img1.jpg" class="dsk_none" width="312" height="340" alt="image">
                 </figure>
                 <div class="who_we_are_pos">
@@ -141,15 +142,15 @@
             </li>
 
             <li>
-              <a href="javscript:void(0)" data-featherlight="#fl3" class="who_we_are_info">
+              <a href="javscript:void(0)" data-featherlight="#fl1" class="who_we_are_info">
                 <figure>
-                  <img src="images/image2.jpg" class="mbl_none" width="283" height="416" alt="image">
+                  <img src="images/lawyers/image-lrg-jeff.s@2x.jpg" class="mbl_none" width="283" height="416" alt="image">
                   <img src="images/mbl_img3.jpg" class="dsk_none" width="312" height="340" alt="image">
                 </figure>
                 <div class="who_we_are_pos">
-                  <h4>Janice Shen</h4>
-                  <small>Head Attorney</small>
-                  <p>“Once I understand what is most important to my clients and what keeps them up at night, I can create the best plan for their family” ... <span>Read More</span></p>
+                  <h4>Jeff Sydney</h4>
+                  <small>Head of Innovation</small>
+                  <p>“Today, there is a greater need than ever for tailor-made estate plans that<br> protects your loved ones” ... <span>Read More</span></p>
                 </div>
               </a>
             </li>
@@ -257,7 +258,7 @@
   <div class="pop_up1 lightbox" id="fl1">
     <div class="ass_details">
       <figure>
-        <img src="images/pop_up_img1.png" width="181" height="181" alt="pop_up_img1">
+        <img src="images/lawyers/image-circle-jeff.s@2x.jpg" width="181" height="181" alt="pop_up_img1">
       </figure>
       <h2>Jeff Sydney</h2>
       <small>Head of Innovation</small>
@@ -287,7 +288,7 @@
   <div class="pop_up1 lightbox" id="fl2">
     <div class="ass_details">
       <figure>
-        <img src="images/pop_up_img1.png" width="181" height="181" alt="pop_up_img1">
+        <img src="images/lawyers/image-circle-peng.l@2x.jpg" width="181" height="181" alt="pop_up_img1">
       </figure>
       <h2>Peng Li</h2>
       <small>Founder & Head of Attorney Development</small>
@@ -315,7 +316,7 @@
   <div class="pop_up1 lightbox" id="fl3">
     <div class="ass_details">
       <figure>
-        <img src="images/pop_up_img1.png" width="181" height="181" alt="pop_up_img1">
+        <img src="images/lawyers/image-circle-jenice.s@2x.jpg" width="181" height="181" alt="pop_up_img1">
       </figure>
       <h2>Janice Shen</h2>
       <small>Head Attorney</small>
@@ -351,7 +352,7 @@
 
       <p class="text-center">We look forward to getting to know you.</p>
 
-      <button id="close_success" type="button" class="ok_btn">ok</button>    
+      <button style='cursor:pointer;' id="close_success" type="button" class="ok_btn">ok</button>    
 
     </div>
   </div>
@@ -411,12 +412,16 @@
       var $form = $(e.target),
       fv    = $form.data('formValidation');
 
+      $('#submit').text('submitting ...')
+
       $.ajax({
         url: $form.attr('action'),
         type: 'POST',
         data: $form.serialize(),
         success: function(res) {                  
           
+          $('#submit').text('Learn More')
+
           if(res.code == 200){
 
             Intercom('boot', {  
